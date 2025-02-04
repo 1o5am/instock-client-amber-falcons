@@ -1,4 +1,5 @@
 import "./App.scss";
+import "./styles/partials/_global.scss";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import InventoryHomePage from "./pages/InventoryHomePage/InventoryHomePage.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
