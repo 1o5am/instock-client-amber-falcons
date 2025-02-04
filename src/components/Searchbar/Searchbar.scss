@@ -1,0 +1,12 @@
+@use "../../styles/partials/variables" as *;
+.searchbar {
+  margin: 50px;
+  margin-top: 15rem;
+  padding: 4px;
+  border-radius: 20px;
+  border: 1px solid $color-cloud;
+
+  &__icon {
+    position: relative;
+  }
+}
