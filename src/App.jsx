@@ -1,5 +1,6 @@
 import "./App.scss";
 import HomePage from "./pages/HomePage/HomePage.jsx";
+import InventoryHomePage from "./pages/InventoryHomePage/InventoryHomePage.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
+        <Route path="/inventory" element={<InventoryHomePage />}></Route>
       </Routes>
     </BrowserRouter>
   );
