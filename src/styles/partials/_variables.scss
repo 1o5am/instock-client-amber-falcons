@@ -1,9 +1,75 @@
-// Responsive breakpoints
+/* ------------------------- Responsive breakpoints ------------------------- */
 $tablet-breakpoint: 768px;
 $desktop-breakpoint: 1280px;
 
-// Color
-$red: red;
-$blue: blue;
+/* ---------------------------------- Font ---------------------------------- */
+// Font Family
+$font-family-primary: "Titillium Web", sans-serif;
 
-// Font Size
+// Font Weights
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+
+// Desktop & Tablet Text Styles
+$h1-size: 2rem;
+$h1-line-height: 2.5rem;
+
+$h2-size: 1.5rem;
+$h2-line-height: 2rem;
+
+$h3-size: 0.875rem;
+$h3-line-height: 1.375rem;
+
+$h4-size: 0.75rem;
+$h4-line-height: 1.125rem;
+
+$p1-size: 1rem;
+$p1-line-height: 1.75rem;
+
+$p2-size: 0.875rem;
+$p2-line-height: 1.375rem;
+
+$p3-size: 0.75rem;
+$p3-line-height: 1.125rem;
+
+// Mobile Text Styles
+$m-h1-size: 1.75rem;
+$m-h1-line-height: 2.25rem;
+
+$m-h2-size: 1.25rem;
+$m-h2-line-height: 1.75rem;
+
+$m-h3-size: 0.8125rem;
+$m-h3-line-height: 1.25rem;
+
+$m-h4-size: 0.6875rem;
+$m-h4-line-height: 1rem;
+
+$m-p1-size: 0.9375rem;
+$m-p1-line-height: 1.625rem;
+
+$m-p2-size: 0.8125rem;
+$m-p2-line-height: 1.25rem;
+
+$m-p3-size: 0.6875rem;
+$m-p3-line-height: 1rem;
+
+/* ---------------------------------- Color --------------------------------- */
+// Primary Colors
+$color-instock-black: #13182c;
+$color-instock-indigo: #2e66e5;
+
+// Secondary Colors
+$color-slate: #5c667e;
+$color-cloud: #bdc5d5;
+
+// Background Colors
+$color-graphite: #232940;
+$color-light-grey: #f7f8f9;
+
+// Supporting Colors
+$color-green: #158463;
+$color-red: #c94515;
+
+// Neutral Colors
+$color-white: #ffffff;

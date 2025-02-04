@@ -16,10 +16,50 @@ a {
 }
 
 body {
-  font-family: "NunitoSans", sans-serif;
-  color: $red;
+  font-family: $font-family-primary;
+}
+
+h1 {
+  font-size: $m-h1-size;
+  line-height: $m-h1-line-height;
+  font-weight: $font-weight-semibold;
+
   @include tablet {
-    color: $blue;
+    font-size: $h1-size;
+    line-height: $h1-line-height;
+  }
+}
+
+h2 {
+  font-size: $m-h2-size;
+  line-height: $m-h2-line-height;
+  font-weight: $font-weight-semibold;
+
+  @include tablet {
+    font-size: $h2-size;
+    line-height: $h2-line-height;
+  }
+}
+
+h3 {
+  font-size: $m-h3-size;
+  line-height: $m-h3-line-height;
+  font-weight: $font-weight-semibold;
+
+  @include tablet {
+    font-size: $h3-size;
+    line-height: $h3-line-height;
+  }
+}
+
+h4 {
+  font-size: $m-h4-size;
+  line-height: $m-h4-line-height;
+  font-weight: $font-weight-regular;
+
+  @include tablet {
+    font-size: $h4-size;
+    line-height: $h4-line-height;
   }
 }
 
@@ -34,11 +74,6 @@ ul {
 input,
 textarea {
   text-decoration: none;
-  // font-family: sans-serif;
-
-  &::placeholder {
-    // letter-spacing: 0px;
-  }
 
   &:focus {
     outline: none;
