@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import InventoryListItem from "../InventoryListItem/InventoryListItem";
+
 function InventoryList() {
   const [inventory, setInventory] = useState([]);
   async function getAllInventoryItems() {
@@ -16,7 +18,17 @@ function InventoryList() {
 
   return (
     <>
-      <table>
+      {inventory ? (
+        <ul>
+          {inventory.map((item) => (
+            <InventoryListItem item={item} key={item.id} />
+          ))}
+        </ul>
+      ) : (
+        <></>
+      )}
+
+      {/* <table>
         <thead>
           <tr>
             <th>INVENTORY ITEM</th>
@@ -38,7 +50,7 @@ function InventoryList() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </>
   );
 }
