@@ -1,10 +1,10 @@
-import Header from "../../components/Header/Header";
+// import Header from "../../components/Header/Header";
 import "./HomePage.scss";
 
 const HomePage = () => {
   return (
     <>
-      <Header page={"inventory"} />
+      {/* <Header /> */}
       <h2>Home Page</h2>
     </>
   );
