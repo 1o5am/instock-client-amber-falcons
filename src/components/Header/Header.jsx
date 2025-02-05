@@ -6,6 +6,7 @@ function Header() {
   return (
     <header className="header">
       <section className="header__logo-box">
+        <p>test</p>
         <Link className="header__link-logo" to="/">
           <img
             className="header__logo-image"
