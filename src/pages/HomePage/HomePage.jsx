@@ -4,7 +4,7 @@ import "./HomePage.scss";
 const HomePage = () => {
   return (
     <>
-      <Header page={"warehouse"} />
+      <Header page={"inventory"} />
       <h2>Home Page</h2>
     </>
   );

@@ -7,7 +7,6 @@
   padding: 1.5rem $p1-size 0;
   background-color: $color-graphite;
   width: 100%;
-  //   width: 23.5rem;
   height: 12.5rem;
 
   @include tablet {
@@ -38,10 +37,13 @@
     }
   }
 
+  &__link-logo {
+    align-self: center;
+  }
+
   &__logo-image {
     width: 8.037rem;
     height: 1.75rem;
-    align-self: center;
 
     @include tablet {
       height: 100%;
@@ -62,7 +64,7 @@
 
   &__link {
     text-decoration: none;
-    width: 7rem;
+    width: 10.25rem;
     height: 2.25rem;
     border-radius: 1.25rem;
     display: flex;
@@ -72,11 +74,12 @@
     color: $color-slate;
     font-size: $m-h3-size;
     line-height: $m-h3-line-height;
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-regular;
 
     @include tablet {
       font-size: $h3-size;
       line-height: $h3-line-height;
+      width: 7rem;
     }
 
     &:hover {
