@@ -2,10 +2,14 @@ import "./Searchbar.scss";
 import searchIcon from "../../assets/icons/search-24px.svg";
 function Searchbar() {
   return (
-    <>
-      <input type="text" className="searchbar" placeholder="Search..."></input>
+    <div className="searchbar">
+      <input
+        type="text"
+        className="searchbar__bar"
+        placeholder="Search..."
+      ></input>
       <img className="searchbar__icon" src={searchIcon} />
-    </>
+    </div>
   );
 }
 
