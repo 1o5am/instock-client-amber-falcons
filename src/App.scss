@@ -1,3 +1,8 @@
 @use "./styles/partials/global";
 @use "./styles/partials/mixins" as *;
 @use "./styles/partials/variables" as *;
+
+.page-content {
+  margin: 0 1rem;
+  box-shadow: 0 0 4rem rgba(0, 0, 0, 0.08); // rgba(0, 0, 0, 0.08);
+}
