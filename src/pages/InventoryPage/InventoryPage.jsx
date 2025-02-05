@@ -15,7 +15,7 @@ function InventoryPage() {
             onClick={() => {
               navigate("/inventory/add");
             }}
-            className="btn btn--primary" //inventory-page__add
+            className="btn btn--primary inventory-page__add"
           >
             + Add New Item
           </button>
