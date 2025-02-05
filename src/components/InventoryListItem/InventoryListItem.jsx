@@ -8,13 +8,21 @@ function InventoryListItem({ item }) {
     <li className="inventory-item__item">
       <div className="inventory-item__info">
         <p className="inventory-item__title">INVENTORY ITEM</p>
-        <p className="inventory-item__name inventory-item__name--blue">
+        <p className="inventory-item__name inventory-item__name--bold inventory-item__name--blue">
           {item.item_name} <img className="icon" src={arrowIcon}></img>
         </p>
       </div>
       <div className="inventory-item__info">
         <p className="inventory-item__title">STATUS</p>
-        <p className="inventory-item__name">{item.status}</p>
+        <p
+          className={`inventory-item__name inventory-item__name--bold inventory-item__name--bubble ${
+            item.status === "In Stock"
+              ? "inventory-item__name--green"
+              : "inventory-item__name--red"
+          }`}
+        >
+          {item.status.toUpperCase()}
+        </p>
       </div>
       <div className="inventory-item__info">
         <p className="inventory-item__title">CATEGORY</p>
@@ -25,7 +33,7 @@ function InventoryListItem({ item }) {
         <p className="inventory-item__title">QTY</p>
         <p className="inventory-item__name">{item.quantity}</p>
       </div>
-      <div className="inventory-item__info">
+      <div className="inventory-item__info inventory-item__info--right">
         <p className="inventory-item__title">WAREHOUSE</p>
         <p className="inventory-item__name">{item.warehouse_name}</p>
       </div>

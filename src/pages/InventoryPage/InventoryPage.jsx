@@ -1,7 +1,7 @@
 import InventoryList from "../../components/InventoryList/InventoryList.jsx";
 import Searchbar from "../../components/Searchbar/Searchbar.jsx";
 
-function InventoryHomePage() {
+function InventoryPage() {
   return (
     <div className="page-content">
       <h1>Inventory</h1>
@@ -12,4 +12,4 @@ function InventoryHomePage() {
   );
 }
 
-export default InventoryHomePage;
+export default InventoryPage;
