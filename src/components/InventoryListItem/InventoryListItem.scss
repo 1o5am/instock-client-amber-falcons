@@ -3,21 +3,31 @@
   &__item {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    border-top: 1px solid $color-instock-black;
+    padding: 1rem;
   }
   &__info {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+    width: calc(50%);
+    padding-bottom: 0.8rem;
   }
   &__title {
-    font-size: 0.5rem;
-    color: $color-graphite;
+    font-size: 0.55rem;
+    color: $color-slate;
   }
   &__name {
-    font-size: 0.5rem;
+    font-size: 0.55rem;
     &--blue {
       color: $color-instock-indigo;
       font-weight: 600;
+      display: flex;
+      align-items: baseline;
     }
+  }
+  &__icons {
+    display: flex;
+    justify-content: space-between;
   }
 }
