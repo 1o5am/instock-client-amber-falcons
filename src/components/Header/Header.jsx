@@ -11,11 +11,11 @@ function Header() {
             className="header__logo-image"
             src={instockLogo}
             alt="instock logo"
-          />{" "}
+          />
         </Link>
         <div className="header__link-content">
           <NavLink
-            to="/warehouse"
+            to="/warehouses"
             className={({ isActive }) =>
               `header__link ${
                 isActive ? "header__link--active" : "header__link--inactive"
