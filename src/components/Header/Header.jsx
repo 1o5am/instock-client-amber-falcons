@@ -1,41 +1,39 @@
 import instockLogo from "../../assets/logo/InStock-Logo.svg";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./Header.scss";
 
-import React from "react";
-
-function Header({ page }) {
+function Header() {
   return (
     <header className="header">
       <section className="header__logo-box">
-        <Link className="header__link-logo" to="/warehouse">
+        <Link className="header__link-logo" to="/">
           <img
             className="header__logo-image"
             src={instockLogo}
             alt="instock logo"
-          />{" "}
+          />
         </Link>
         <div className="header__link-content">
-          <Link
-            to="/warehouse"
-            className={`header__link ${
-              page === "warehouse"
-                ? "header__link--active"
-                : "header__link--inactive"
-            }`}
+          <NavLink
+            to="/warehouses"
+            className={({ isActive }) =>
+              `header__link ${
+                isActive ? "header__link--active" : "header__link--inactive"
+              }`
+            }
           >
             Warehouses
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/inventory"
-            className={`header__link ${
-              page === "inventory"
-                ? "header__link--active"
-                : "header__link--inactive"
-            }`}
+            className={({ isActive }) =>
+              `header__link ${
+                isActive ? "header__link--active" : "header__link--inactive"
+              }`
+            }
           >
             Inventory
-          </Link>
+          </NavLink>
         </div>
       </section>
     </header>
