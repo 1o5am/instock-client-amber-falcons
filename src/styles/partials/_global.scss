@@ -13,6 +13,14 @@
   width: 20px;
 }
 
+.page-content {
+  margin: 0 1rem;
+  box-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
+  @include tablet {
+    margin: 0 2rem;
+  }
+}
+
 a {
   text-decoration: none;
   color: inherit;
