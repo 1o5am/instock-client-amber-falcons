@@ -7,21 +7,27 @@ function List({ allItems }) {
     <div className="list">
       <div className="list-headers--tablet">
         <p className="list__header">
-          INVENTORY ITEM <img className="icon" src={sortArrowIcon}></img>
+          INVENTORY ITEM{" "}
+          <img className="icon list__sort-icon" src={sortArrowIcon}></img>
         </p>
         <p className="list__header">
-          CATEGORY <img className="icon" src={sortArrowIcon}></img>
+          CATEGORY{" "}
+          <img className="icon list__sort-icon" src={sortArrowIcon}></img>
         </p>
         <p className="list__header">
-          STATUS <img className="icon" src={sortArrowIcon}></img>
+          STATUS{" "}
+          <img className="icon list__sort-icon" src={sortArrowIcon}></img>
+        </p>
+        <p className="list__header list__header--small">
+          QTY <img className="icon list__sort-icon" src={sortArrowIcon}></img>
         </p>
         <p className="list__header">
-          QTY <img className="icon" src={sortArrowIcon}></img>
+          WAREHOUSE{" "}
+          <img className="icon list__sort-icon" src={sortArrowIcon}></img>
         </p>
-        <p className="list__header">
-          WAREHOUSE <img className="icon" src={sortArrowIcon}></img>
+        <p className="list__header list__header--center list__header--small">
+          ACTIONS
         </p>
-        <p className="list__header">ACTIONS</p>
       </div>
       <ul className="list--mobile">
         {allItems.map((item) => (

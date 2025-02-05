@@ -8,9 +8,8 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0 2rem;
+    padding: 0.5rem 2rem;
+    font-weight: 600;
   }
 }
 .list__header {
@@ -18,6 +17,16 @@
   align-items: center;
   font-size: 0.7rem;
   color: $color-slate;
+  display: flex;
+  gap: 0.3rem;
+  flex: 2;
+  &--small {
+    flex: 1;
+  }
+  &--center {
+    justify-content: center;
+  }
 }
-.list--mobile {
+.list__sort-icon {
+  width: 15px;
 }
