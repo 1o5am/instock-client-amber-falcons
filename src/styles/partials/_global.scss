@@ -11,6 +11,9 @@
 }
 .icon {
   width: 20px;
+  @include tablet {
+    width: 25px;
+  }
 }
 
 .page-content {

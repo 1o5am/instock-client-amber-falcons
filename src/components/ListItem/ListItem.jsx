@@ -5,12 +5,16 @@ import "./ListItem.scss";
 
 function ListItem({ item }) {
   return (
-    <li className="list-item__item">
+    <li className="item">
       <div className="item__info">
         <p className="item__title">INVENTORY ITEM</p>
         <p className="item__name item__name--bold item__name--blue">
           {item.item_name} <img className="icon" src={arrowIcon}></img>
         </p>
+      </div>
+      <div className="item__info item__info--tablet">
+        <p className="item__title">CATEGORY</p>
+        <p className="item__name">{item.category}</p>
       </div>
       <div className="item__info">
         <p className="item__title">STATUS</p>
@@ -22,11 +26,10 @@ function ListItem({ item }) {
           {item.status.toUpperCase()}
         </p>
       </div>
-      <div className="item__info">
+      <div className="item__info item__info--mobile">
         <p className="item__title">CATEGORY</p>
         <p className="item__name">{item.category}</p>
       </div>
-
       <div className="item__info">
         <p className="item__title">QTY</p>
         <p className="item__name">{item.quantity}</p>
