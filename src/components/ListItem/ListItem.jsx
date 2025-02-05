@@ -10,7 +10,7 @@ function ListItem({ item }) {
       <div className="item__info">
         <p className="item__title">INVENTORY ITEM</p>
         <Link to={`${item.id}`}>
-          <p className="item__name item__name--bold item__name--blue">
+          <p className="item__name item__name--bold item__name--blue text-link">
             {item.item_name} <img className="icon" src={arrowIcon}></img>
           </p>
         </Link>
