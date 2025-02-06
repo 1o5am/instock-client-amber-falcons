@@ -2,6 +2,11 @@
 @use "../../styles/partials/mixins" as *;
 
 .warehouse-page {
+  position: relative;
+  top: -5.5rem;
+  z-index: 10;
+  background-color: white;
+
   &__header {
     padding: 1.2rem;
     display: flex;
@@ -11,7 +16,8 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding: 2rem;
+      height: 5.5rem;
+      padding: 0 2rem;
     }
   }
   &__buttons {
