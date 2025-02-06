@@ -79,7 +79,9 @@ a {
   color: inherit;
 }
 
-body {
+body,
+textarea,
+* {
   font-family: $font-family-primary;
 }
 
