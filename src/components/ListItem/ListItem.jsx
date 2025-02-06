@@ -4,7 +4,7 @@ import arrowIcon from "../../assets/icons/chevron_right-24px.svg";
 import { Link } from "react-router-dom";
 import "./ListItem.scss";
 
-function ListItem({ item }) {
+function ListItem({ item, isWarehouse }) {
   return (
     <li className="item">
       <div className="item__info">
@@ -37,11 +37,13 @@ function ListItem({ item }) {
         <p className="item__title">QTY</p>
         <p className="item__name">{item.quantity}</p>
       </div>
-      <div className="item__info item__info--right">
-        <p className="item__title">WAREHOUSE</p>
-        <p className="item__name">{item.warehouse_name}</p>
-      </div>
-      <div className="item__icons">
+      {!isWarehouse && (
+        <div className="item__info item__info--right">
+          <p className="item__title">WAREHOUSE</p>
+          <p className="item__name">{item.warehouse_name}</p>
+        </div>
+      )}
+      <div className={`item__icons ${isWarehouse?"item__icons--warehouse":""}`}>
         <Link to={`delete/${item.id}`}>
           <img className="icon" src={deleteIcon}></img>
         </Link>
