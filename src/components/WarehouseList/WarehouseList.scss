@@ -1,0 +1,51 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.warehouse-list-headers {
+  &--tablet {
+    background-color: $color-light-grey;
+    display: none;
+    @include tablet {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 2rem;
+      font-weight: 600;
+    }
+  }
+}
+.warehouse-list {
+  &__header {
+    display: flex;
+    align-items: center;
+    font-size: 0.7rem;
+    color: $color-slate;
+    display: flex;
+    gap: 0.3rem;
+    flex: 2;
+
+    &--small {
+      flex: 2;
+    }
+
+    &--medium {
+      flex: 2.5;
+    }
+
+    &--large {
+      flex: 3;
+    }
+
+    &--center {
+      justify-content: center;
+    }
+
+    &--action {
+      flex: 1;
+    }
+  }
+
+  &__sort-icon {
+    width: 15px;
+  }
+}
