@@ -1,10 +1,27 @@
-import WarehouseTable from "../../components/WarehouseTable/WarehouseTable.jsx";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import Searchbar from "../../components/Searchbar/Searchbar.jsx";
 import "./WarehousePage.scss";
 import { useNavigate } from "react-router-dom";
 
 const WarehousePage = () => {
   const navigate = useNavigate();
+  const [warehouse, setWarehouse] = useState([]);
+
+  async function getAllWarehouseItems() {
+    const allWarehouseResponse = await axios.get(
+      `http://localhost:8080/api/warehouses`
+    );
+
+    console.log("Warehouse", allWarehouseResponse.data);
+    setWarehouse(allWarehouseResponse.data);
+  }
+
+  useEffect(() => {
+    getAllWarehouseItems();
+  }, []);
+
   return (
     <div className="page-content warehouse-page">
       <div className="warehouse-page__header">
@@ -22,7 +39,7 @@ const WarehousePage = () => {
         </div>
       </div>
 
-      <WarehouseTable />
+      <>{warehouse ? <WarehouseList allItems={warehouse} /> : <></>}</>
     </div>
   );
 };
