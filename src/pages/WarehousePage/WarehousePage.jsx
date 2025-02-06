@@ -1,10 +1,10 @@
 import WarehouseLists from "../../components/WarehouseLists/WarehouseLists.jsx";
 import Searchbar from "../../components/Searchbar/Searchbar.jsx";
 import "./WarehousePage.scss";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const WarehousePage = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="page-content warehouse-page">
       <div className="warehouse-page__header">
@@ -12,9 +12,9 @@ const WarehousePage = () => {
         <div className="warehouse-page__buttons">
           <Searchbar />
           <button
-            // onClick={() => {
-            //   navigate("/inventory/add");
-            // }}
+            onClick={() => {
+              navigate("/warehouse/add");
+            }}
             className="btn btn--primary warehouse-page__add"
           >
             + Add New Item
