@@ -1,0 +1,28 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+
+  @include tablet {
+    padding: 1.5rem 0;
+  }
+
+  &__paragraph {
+    font-size: $m-p3-size;
+    line-height: $m-p3-line-height;
+    font-weight: 400;
+    color: $color-slate;
+    opacity: 80%;
+
+    @include tablet {
+      font-size: $p3-size;
+      line-height: $p3-line-height;
+    }
+  }
+}
