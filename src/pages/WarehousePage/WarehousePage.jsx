@@ -1,4 +1,4 @@
-import WarehouseLists from "../../components/WarehouseLists/WarehouseLists.jsx";
+import WarehouseTable from "../../components/WarehouseTable/WarehouseTable.jsx";
 import Searchbar from "../../components/Searchbar/Searchbar.jsx";
 import "./WarehousePage.scss";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ const WarehousePage = () => {
         </div>
       </div>
 
-      <WarehouseLists />
+      <WarehouseTable />
     </div>
   );
 };

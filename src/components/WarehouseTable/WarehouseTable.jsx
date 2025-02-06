@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import WarehouseList from "../WarehouseList/WarehouseList";
 
-const WarehouseLists = () => {
+const WarehouseTable = () => {
   const [warehouse, setWarehouse] = useState([]);
 
   async function getAllWarehouseItems() {
@@ -21,4 +21,4 @@ const WarehouseLists = () => {
   return <>{warehouse ? <WarehouseList allItems={warehouse} /> : <></>}</>;
 };
 
-export default WarehouseLists;
+export default WarehouseTable;
