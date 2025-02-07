@@ -4,6 +4,9 @@ import arrowIcon from "../../assets/icons/chevron_right-24px.svg";
 import { Link } from "react-router-dom";
 import "./ListItem.scss";
 import { useState } from "react";
+import axios from "axios";
+import DeleteModal from "../DeleteModal/DeleteModal.jsx";
+import modalMessages from "../../constants/modalMessages";
 
 function ListItem({ item, onDelete, isWarehouse }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,7 +68,9 @@ function ListItem({ item, onDelete, isWarehouse }) {
           <p className="item__name">{item.warehouse_name}</p>
         </div>
       )}
-      <div className={`item__icons ${isWarehouse?"item__icons--warehouse":""}`}>
+      <div
+        className={`item__icons ${isWarehouse ? "item__icons--warehouse" : ""}`}
+      >
         <button onClick={openDeleteModal} className="icon__button">
           <img className="icon" src={deleteIcon} alt="Delete" />
         </button>
@@ -73,6 +78,15 @@ function ListItem({ item, onDelete, isWarehouse }) {
           <img className="icon" src={editIcon}></img>
         </Link>
       </div>
+
+      {isModalOpen && (
+        <DeleteModal
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={handleDelete}
+          question={modalContent.question}
+          message={modalContent.message}
+        />
+      )}
     </li>
   );
 }

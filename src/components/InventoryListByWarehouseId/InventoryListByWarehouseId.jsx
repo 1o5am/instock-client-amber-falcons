@@ -5,6 +5,10 @@ import React from "react";
 
 function InventoryListByWarehouseId({ id }) {
   const [inventoryById, setInventoryById] = useState([]);
+  const handleDelete = (deletedId) => {
+    setInventoryById(inventoryById.filter((item) => item.id !== deletedId));
+  };
+  
 
   async function getAllInventoryItemsById() {
     try {
@@ -25,7 +29,7 @@ function InventoryListByWarehouseId({ id }) {
   return (
     <>
       {inventoryById ? (
-        <List allItems={inventoryById} isWarehouse={true} />
+        <List allItems={inventoryById} isWarehouse={true} onDelete={handleDelete}/>
       ) : (
         <></>
       )}
