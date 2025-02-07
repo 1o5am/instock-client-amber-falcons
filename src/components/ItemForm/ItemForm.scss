@@ -9,6 +9,9 @@
     &:hover {
       background-color: none;
     }
+    @include tablet {
+      padding: 0 0.8rem;
+    }
   }
 }
 

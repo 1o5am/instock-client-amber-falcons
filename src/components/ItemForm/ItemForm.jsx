@@ -65,61 +65,42 @@ function ItemForm() {
       return false;
     }
   }
+  function setValid(name, bool) {
+    setFormValidState((prevFormResponse) => {
+      return {
+        ...prevFormResponse,
+        [name]: bool,
+      };
+    });
+  }
   function isFormValid() {
     let isValid = true;
     if (!formResponse.item_name.trim()) {
       isValid = false;
-      setFormValidState((prevFormResponse) => {
-        return {
-          ...prevFormResponse,
-          item_name: false,
-        };
-      });
+      setValid("item_name", false);
     }
     if (!formResponse.description.trim()) {
       isValid = false;
-      setFormValidState((prevFormResponse) => {
-        return {
-          ...prevFormResponse,
-          description: false,
-        };
-      });
+      setValid("description", false);
     }
     if (!formResponse.category) {
       isValid = false;
-      setFormValidState((prevFormResponse) => {
-        return {
-          ...prevFormResponse,
-          category: false,
-        };
-      });
+      setValid("category", false);
     }
     if (!formResponse.status.trim()) {
       isValid = false;
-      setFormValidState((prevFormResponse) => {
-        return {
-          ...prevFormResponse,
-          status: false,
-        };
-      });
+      setValid("status", false);
     }
-    if (formResponse.status === "In Stock" && !formResponse.quantity) {
+    if (
+      (formResponse.status === "In Stock" && !formResponse.quantity) ||
+      formResponse.quantity <= 0
+    ) {
       isValid = false;
-      setFormValidState((prevFormResponse) => {
-        return {
-          ...prevFormResponse,
-          quantity: false,
-        };
-      });
+      setValid("quantity", false);
     }
     if (!formResponse.warehouse_id.trim()) {
       isValid = false;
-      setFormValidState((prevFormResponse) => {
-        return {
-          ...prevFormResponse,
-          warehouse_id: false,
-        };
-      });
+      setValid("warehouse_id", false);
     }
     if (!isValid) {
       return false;
@@ -135,7 +116,18 @@ function ItemForm() {
         [name]: value,
       };
     });
+    if (name === "quantity") {
+      if (value > 0) {
+        setValid("quantity", true);
+      } else {
+        setValid("quantity", false);
+      }
+    }
+    if (value.length > 0) {
+      setValid(name, true);
+    }
   }
+
   function handleSubmit(e) {
     e.preventDefault();
     if (isFormValid()) {
@@ -283,6 +275,9 @@ function ItemForm() {
                   onChange={(e) => handleInputChange(e)}
                   value={formResponse.quantity}
                 ></input>
+                {!isFormValidState.quantity && (
+                  <p>Quantity must be a positive, non-negative number</p>
+                )}
               </div>
             ) : (
               <></>
