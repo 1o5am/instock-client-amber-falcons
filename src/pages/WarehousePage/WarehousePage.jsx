@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const WarehousePage = () => {
   const navigate = useNavigate();
-  const [warehouse, setWarehouse] = useState([]);
+  const [warehouses, setWarehouses] = useState([]);
 
   async function getAllWarehouseItems() {
     const allWarehouseResponse = await axios.get(
@@ -15,31 +15,43 @@ const WarehousePage = () => {
     );
 
     console.log("Warehouse", allWarehouseResponse.data);
-    setWarehouse(allWarehouseResponse.data);
+    setWarehouses(allWarehouseResponse.data);
   }
 
   useEffect(() => {
     getAllWarehouseItems();
   }, []);
 
+  const handleDelete = (deletedId) => {
+    setWarehouses(warehouses.filter((warehouse) => warehouse.id !== deletedId));
+  };
+
   return (
     <div className="page-content warehouse-page">
       <div className="warehouse-page__header">
         <h1 className="warehouse-page__title">Warehouses</h1>
         <div className="warehouse-page__buttons">
-          <Searchbar />
+          <div className="warehouse-page__search">
+            <Searchbar />
+          </div>
           <button
             onClick={() => {
               navigate("/warehouse/add");
             }}
             className="btn btn--primary warehouse-page__add"
           >
-            + Add New Item
+            + Add New Warehouse
           </button>
         </div>
       </div>
 
-      <>{warehouse ? <WarehouseList allItems={warehouse} /> : <></>}</>
+      <>
+        {warehouses ? (
+          <WarehouseList allItems={warehouses} onDelete={handleDelete} />
+        ) : (
+          <></>
+        )}
+      </>
     </div>
   );
 };
