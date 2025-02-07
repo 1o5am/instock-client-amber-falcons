@@ -24,6 +24,7 @@
       padding: 0 2rem;
     }
   }
+
   &__buttons {
     display: flex;
     flex-direction: column;
@@ -31,15 +32,16 @@
 
     @include tablet {
       flex-direction: row;
-      width: 50%;
-    }
-    @include desktop {
-      width: 45%;
     }
   }
+
+  &__search {
+    min-width: 274px;
+  }
+
   &__add {
     @include tablet {
-      flex: 1;
+      padding: 0 1rem !important;
     }
   }
 }
