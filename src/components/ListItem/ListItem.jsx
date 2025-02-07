@@ -74,7 +74,7 @@ function ListItem({ item, onDelete, isWarehouse }) {
         <button onClick={openDeleteModal} className="icon__button">
           <img className="icon" src={deleteIcon} alt="Delete" />
         </button>
-        <Link to={`edit/${item.id}`}>
+        <Link to={`/inventory/edit/${item.id}`}>
           <img className="icon" src={editIcon}></img>
         </Link>
       </div>

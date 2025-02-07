@@ -66,7 +66,7 @@ function EditItemPage() {
     if (isSuccess) {
       toast.success("Success! Item Edited");
       setTimeout(() => {
-        navigate("/inventory");
+        navigate(-1);
       }, 10);
     } else {
       toast.error("Error. Could not edit item");
@@ -75,9 +75,13 @@ function EditItemPage() {
   return (
     <div className="page-content edit-item-page">
       <div className="edit-item-page__header">
-        <Link to="/inventory">
+        <a
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
           <img className="icon edit-item-page__back" src={backArrow}></img>
-        </Link>
+        </a>
         <h1 className="edit-item-page__title">Edit Inventory Item</h1>
       </div>
       <ItemForm

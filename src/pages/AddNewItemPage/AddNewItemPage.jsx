@@ -51,9 +51,13 @@ function AddNewItemPage() {
   return (
     <div className="page-content new-item-page">
       <div className="new-item-page__header">
-        <Link to="/inventory">
+        <a
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
           <img className="icon new-item-page__back" src={backArrow}></img>
-        </Link>
+        </a>
         <h1 className="new-item-page__title">Add New Inventory Item</h1>
       </div>
       <ItemForm

@@ -301,7 +301,7 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/inventory");
+                navigate(-1);
               }}
               type="reset"
               className="btn btn--secondary form__cancel-btn"
