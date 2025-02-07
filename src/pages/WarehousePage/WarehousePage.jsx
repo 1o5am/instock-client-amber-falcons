@@ -36,7 +36,7 @@ const WarehousePage = () => {
           </div>
           <button
             onClick={() => {
-              navigate("/warehouse/add");
+              navigate("/warehouses/add");
             }}
             className="btn btn--primary warehouse-page__add"
           >
