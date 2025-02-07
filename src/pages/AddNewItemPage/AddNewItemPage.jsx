@@ -1,4 +1,4 @@
-import AddNewItemForm from "../../components/AddNewItemForm/AddNewItemForm.jsx";
+import AddNewItemForm from "../../components/ItemForm/ItemForm.jsx";
 import "./AddNewItemPage.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 function AddNewItemPage() {
