@@ -53,7 +53,6 @@ function EditItemPage() {
         `http://localhost:8080/api/inventory/${id}`,
         editItem
       );
-      console.log(addItemResponse);
       console.log("Item Edited!");
       return true;
     } catch (error) {
@@ -61,13 +60,11 @@ function EditItemPage() {
       return false;
     }
   }
-  function validateEditItem() {
-    const isSuccess = editItem();
+  async function validateEditItem() {
+    const isSuccess = await editItem();
     if (isSuccess) {
       toast.success("Success! Item Edited");
-      setTimeout(() => {
-        navigate(-1);
-      }, 10);
+      navigate(-1);
     } else {
       toast.error("Error. Could not edit item");
     }
