@@ -1,9 +1,7 @@
 import "./DeleteModal.scss";
 import closeIcon from "../../assets/icons/close-24px.svg";
 
-const DeleteModal = ({ isOpen, onClose, onConfirm, question, message }) => {
-  if (!isOpen) return null;
-
+const DeleteModal = ({ onClose, onConfirm, question, message }) => {
   return (
     <div className="modal-overlay">
       <div className="modal">

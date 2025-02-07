@@ -64,13 +64,14 @@ const WarehouseListItem = ({ item, onDelete }) => {
         </Link>
       </div>
 
-      <DeleteModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={handleDelete}
-        question={modalContent.question}
-        message={modalContent.message}
-      />
+      {isModalOpen && (
+        <DeleteModal
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={handleDelete}
+          question={modalContent.question}
+          message={modalContent.message}
+        />
+      )}
     </li>
   );
 };
