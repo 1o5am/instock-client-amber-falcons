@@ -65,7 +65,9 @@ function EditItemPage() {
     const isSuccess = editItem();
     if (isSuccess) {
       toast.success("Success! Item Edited");
-      navigate("/inventory");
+      setTimeout(() => {
+        navigate("/inventory");
+      }, 10);
     } else {
       toast.error("Error. Could not edit item");
     }
