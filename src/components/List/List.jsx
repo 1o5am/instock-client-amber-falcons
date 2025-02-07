@@ -2,7 +2,7 @@ import ListItem from "../ListItem/ListItem";
 import sortArrowIcon from "../../assets/icons/sort-24px.svg";
 import "./List.scss";
 
-function List({ allItems, onDelete }) {
+function List({ allItems, onDelete, isWarehouse=false }) {
   return (
     <div className="list">
       <div className="list-headers--tablet">
@@ -21,17 +21,17 @@ function List({ allItems, onDelete }) {
         <p className="list__header list__header--small">
           QTY <img className="icon list__sort-icon" src={sortArrowIcon}></img>
         </p>
-        <p className="list__header">
+        {!isWarehouse && <p className="list__header">
           WAREHOUSE{" "}
           <img className="icon list__sort-icon" src={sortArrowIcon}></img>
-        </p>
+        </p>}
         <p className="list__header list__header--center list__header--small">
           ACTIONS
         </p>
       </div>
       <ul className="list--mobile">
         {allItems.map((item) => (
-          <ListItem item={item} key={item.id} onDelete={onDelete} />
+          <ListItem isWarehouse={isWarehouse} item={item} key={item.id} onDelete={onDelete} />
         ))}
       </ul>
     </div>

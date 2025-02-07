@@ -34,7 +34,7 @@ const WarehouseListItem = ({ item, onDelete }) => {
     <li className="warehouse-item">
       <div className="warehouse-item__info warehouse-item__info--col1">
         <p className="warehouse-item__title">WAREHOUSE</p>
-        <Link to={`${item.id}`} className="warehouse-item__link">
+        <Link to={`${item.id}/inventories`}>
           <p className="warehouse-item__name warehouse-item__name--bold warehouse-item__name--blue text-link">
             {item.warehouse_name} <img className="icon" src={arrowIcon}></img>
           </p>
