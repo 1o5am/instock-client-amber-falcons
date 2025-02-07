@@ -2,6 +2,7 @@ import "./ItemForm.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function ItemForm() {
   const [warehouses, setWarehouses] = useState([]);
@@ -30,6 +31,8 @@ function ItemForm() {
     quantity: true,
   });
 
+  const navigate = useNavigate();
+
   async function getAllWarehouses() {
     const allWarehousesResponse = await axios.get(
       `http://localhost:8080/api/warehouses`
@@ -55,13 +58,17 @@ function ItemForm() {
         `http://localhost:8080/api/inventory`,
         newItem
       );
-      console.log("Successful!", addItemResponse.data);
+      console.log("New Item Added!");
+      return true;
     } catch (error) {
-      console.log("error", newItem);
+      console.log("Error: Could not add Item");
+      return false;
     }
   }
   function isFormValid() {
+    let isValid = true;
     if (!formResponse.item_name.trim()) {
+      isValid = false;
       setFormValidState((prevFormResponse) => {
         return {
           ...prevFormResponse,
@@ -70,6 +77,7 @@ function ItemForm() {
       });
     }
     if (!formResponse.description.trim()) {
+      isValid = false;
       setFormValidState((prevFormResponse) => {
         return {
           ...prevFormResponse,
@@ -78,6 +86,7 @@ function ItemForm() {
       });
     }
     if (!formResponse.category) {
+      isValid = false;
       setFormValidState((prevFormResponse) => {
         return {
           ...prevFormResponse,
@@ -86,6 +95,7 @@ function ItemForm() {
       });
     }
     if (!formResponse.status.trim()) {
+      isValid = false;
       setFormValidState((prevFormResponse) => {
         return {
           ...prevFormResponse,
@@ -93,7 +103,8 @@ function ItemForm() {
         };
       });
     }
-    if (!formResponse.quantity) {
+    if (formResponse.status === "In Stock" && !formResponse.quantity) {
+      isValid = false;
       setFormValidState((prevFormResponse) => {
         return {
           ...prevFormResponse,
@@ -102,6 +113,7 @@ function ItemForm() {
       });
     }
     if (!formResponse.warehouse_id.trim()) {
+      isValid = false;
       setFormValidState((prevFormResponse) => {
         return {
           ...prevFormResponse,
@@ -109,7 +121,10 @@ function ItemForm() {
         };
       });
     }
-    return false;
+    if (!isValid) {
+      return false;
+    }
+    return true;
   }
 
   function handleInputChange(e) {
@@ -124,10 +139,14 @@ function ItemForm() {
   function handleSubmit(e) {
     e.preventDefault();
     if (isFormValid()) {
-      addNewItem();
-      toast.success("New Item Added");
+      const isSuccess = addNewItem();
+      if (isSuccess) {
+        toast.success("New Item Added");
+        navigate("/inventory");
+      } else {
+        toast.error("Error. Could not add item");
+      }
     } else {
-      console.log(isFormValidState);
       toast.error("Error! All fields required");
     }
   }
@@ -221,7 +240,7 @@ function ItemForm() {
                     }`}
                     htmlFor="In Stock"
                   >
-                    In Stock
+                    In stock
                   </label>
                 </div>
                 <div className="form__radio">
@@ -244,7 +263,7 @@ function ItemForm() {
                     }`}
                     htmlFor="Out of Stock"
                   >
-                    Out of Stock
+                    Out of stock
                   </label>
                 </div>
               </div>
@@ -255,7 +274,7 @@ function ItemForm() {
                   Quantity
                 </label>
                 <input
-                  className={`form__input ${
+                  className={`form__input form__input--short ${
                     isFormValidState.quantity ? "" : "form__input--error"
                   }`}
                   type="number"
@@ -268,7 +287,6 @@ function ItemForm() {
             ) : (
               <></>
             )}
-
             <div className="form__item">
               <label className="form__label" htmlFor="warehouse_id">
                 Warehouse
@@ -298,10 +316,19 @@ function ItemForm() {
         </article>
         <div className="form__button-container">
           <div className="form__buttons">
-            <button type="reset" className="btn btn--secondary">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/inventory");
+              }}
+              type="reset"
+              className="btn btn--secondary form__cancel-btn"
+            >
               Cancel
             </button>
-            <button className="btn btn--primary">+ Add Item</button>
+            <button className="btn btn--primary form__add-btn">
+              + Add Item
+            </button>
           </div>
         </div>
       </form>

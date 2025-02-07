@@ -43,6 +43,7 @@
     font-size: 1rem;
     @include tablet {
       font-size: 1.4rem;
+      padding-bottom: 0.1rem;
     }
   }
   &__button-container {
@@ -58,8 +59,17 @@
     padding: 1.2rem;
     width: 100%;
     @include tablet {
-      width: 40%;
+      width: 35%;
     }
+    @include desktop {
+      width: 25%;
+    }
+  }
+  &__cancel-btn {
+    flex: 1;
+  }
+  &__add-btn {
+    flex: 2;
   }
   &__item {
     display: flex;
@@ -69,11 +79,18 @@
   &__radio-container {
     display: flex;
     justify-content: space-between;
+    @include tablet {
+      justify-content: flex-start;
+      gap: 3rem;
+    }
   }
   &__radio {
     width: calc(50% - 1rem);
     display: flex;
     gap: 0.4rem;
+    @include tablet {
+      width: fit-content;
+    }
   }
   &__label {
     font-size: 0.7rem;
@@ -109,6 +126,11 @@
     @include tablet {
       padding: 0.7rem 0.9rem;
       font-size: 0.85rem;
+    }
+    @include desktop {
+      &--short {
+        width: 26%;
+      }
     }
   }
 }
