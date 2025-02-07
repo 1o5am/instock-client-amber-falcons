@@ -3,8 +3,30 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import arrowIcon from "../../assets/icons/chevron_right-24px.svg";
 import { Link } from "react-router-dom";
 import "./ListItem.scss";
+import { useState } from "react";
 
-function ListItem({ item, isWarehouse }) {
+function ListItem({ item, onDelete, isWarehouse }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState({
+    question: "",
+    message: "",
+  });
+
+  const openDeleteModal = () => {
+    setModalContent(modalMessages.deleteInventory(item.item_name));
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:8080/api/inventory/${item.id}`);
+      onDelete(item.id);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error deleting inventory:", error);
+    }
+  };
+
   return (
     <li className="item">
       <div className="item__info">
@@ -44,9 +66,9 @@ function ListItem({ item, isWarehouse }) {
         </div>
       )}
       <div className={`item__icons ${isWarehouse?"item__icons--warehouse":""}`}>
-        <Link to={`delete/${item.id}`}>
-          <img className="icon" src={deleteIcon}></img>
-        </Link>
+        <button onClick={openDeleteModal} className="icon__button">
+          <img className="icon" src={deleteIcon} alt="Delete" />
+        </button>
         <Link to={`edit/${item.id}`}>
           <img className="icon" src={editIcon}></img>
         </Link>

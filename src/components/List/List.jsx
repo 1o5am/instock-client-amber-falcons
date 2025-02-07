@@ -2,7 +2,7 @@ import ListItem from "../ListItem/ListItem";
 import sortArrowIcon from "../../assets/icons/sort-24px.svg";
 import "./List.scss";
 
-function List({ allItems, isWarehouse=false }) {
+function List({ allItems, onDelete, isWarehouse=false }) {
   return (
     <div className="list">
       <div className="list-headers--tablet">
@@ -31,7 +31,7 @@ function List({ allItems, isWarehouse=false }) {
       </div>
       <ul className="list--mobile">
         {allItems.map((item) => (
-          <ListItem isWarehouse={isWarehouse} item={item} key={item.id} />
+          <ListItem isWarehouse={isWarehouse} item={item} key={item.id} onDelete={onDelete} />
         ))}
       </ul>
     </div>
