@@ -293,7 +293,9 @@ function ItemForm() {
           </div>
         </div>
         <div className="form__buttons">
-          <button className="btn btn--secondary">Cancel</button>
+          <button type="reset" className="btn btn--secondary">
+            Cancel
+          </button>
           <button className="btn btn--primary">+ Add Item</button>
         </div>
       </form>
