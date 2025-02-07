@@ -2,11 +2,6 @@
 @use "../../styles/partials/mixins" as *;
 
 .warehouse-page {
-  position: relative;
-  top: -3rem;
-  z-index: 10;
-  background-color: white;
-
   @include tablet {
     top: -5.5rem;
   }

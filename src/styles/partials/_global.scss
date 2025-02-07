@@ -18,6 +18,10 @@
 }
 
 .page-content {
+  position: relative;
+  top: -4rem;
+  z-index: 10;
+  background-color: white;
   margin: 0 0.8rem;
   box-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
   @include tablet {
