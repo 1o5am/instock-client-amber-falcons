@@ -6,6 +6,7 @@ import InventoryPage from "./pages/InventoryPage/InventoryPage.jsx";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Footer from "./components/Footer/Footer.jsx";
 import AddNewItemPage from "./pages/AddNewItemPage/AddNewItemPage.jsx";
+import EditItemPage from "./pages/EditItemPage/EditItemPage.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/warehouses" element={<WarehousePage />}></Route>
         <Route path="/inventory" element={<InventoryPage />}></Route>
         <Route path="/inventory/add" element={<AddNewItemPage />}></Route>
+        <Route path="/inventory/edit/:id" element={<EditItemPage />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>
