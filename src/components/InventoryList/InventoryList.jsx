@@ -16,7 +16,19 @@ function InventoryList() {
     getAllInventoryItems();
   }, []);
 
-  return <>{inventory ? <List allItems={inventory} /> : <></>}</>;
+  const handleDelete = (deletedId) => {
+    setInventory(inventory.filter((item) => item.id !== deletedId));
+  };
+
+  return (
+    <>
+      {inventory ? (
+        <List allItems={inventory} onDelete={handleDelete} />
+      ) : (
+        <></>
+      )}
+    </>
+  );
 }
 
 export default InventoryList;
