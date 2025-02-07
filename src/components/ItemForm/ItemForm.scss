@@ -13,22 +13,53 @@
 }
 
 .form {
+  &__details {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      border-top: 1px solid rgba($color-instock-black, 0.2);
+      flex-direction: row;
+      justify-content: space-between;
+      padding-top: 1rem;
+    }
+  }
   &__section {
     border-top: 1px solid rgba($color-instock-black, 0.2);
     padding: 0.8rem 1.2rem;
     display: flex;
     flex-direction: column;
     gap: 1.1rem;
+    width: 100%;
+    @include tablet {
+      border-top: none;
+      gap: 1.8rem;
+      &--right-border {
+        border-right: 1px solid rgba($color-instock-black, 0.2);
+      }
+    }
   }
   &__section-title {
     font-weight: 600;
     font-size: 1rem;
+    @include tablet {
+      font-size: 1.4rem;
+    }
+  }
+  &__button-container {
+    position: relative;
+    background-color: rgba($color-light-grey, 0.5);
+    display: flex;
+    align-content: flex-end;
+    justify-content: flex-end;
   }
   &__buttons {
     display: flex;
     gap: 1rem;
-    background-color: rgba($color-light-grey, 0.5);
     padding: 1.2rem;
+    width: 100%;
+    @include tablet {
+      width: 40%;
+    }
   }
   &__item {
     display: flex;
@@ -47,11 +78,17 @@
   &__label {
     font-size: 0.7rem;
     font-weight: 600;
+    @include tablet {
+      font-size: 0.85rem;
+    }
   }
   &__radio-label {
     font-size: 0.7rem;
     &--grey {
       color: $color-slate;
+    }
+    @include tablet {
+      font-size: 0.85rem;
     }
   }
   &__radio-label ::before {
@@ -68,6 +105,10 @@
     }
     &--grey {
       color: $color-slate;
+    }
+    @include tablet {
+      padding: 0.7rem 0.9rem;
+      font-size: 0.85rem;
     }
   }
 }

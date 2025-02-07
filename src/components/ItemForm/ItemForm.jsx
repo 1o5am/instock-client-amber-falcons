@@ -135,168 +135,174 @@ function ItemForm() {
   return (
     <div>
       <form className="item__form" onSubmit={handleSubmit}>
-        <div className="form__section">
-          <h2 className="form__section-title">Item Details</h2>
-          <div className="form__item">
-            <label className="form__label" htmlFor="name">
-              Item Name
-            </label>
-            <input
-              className={`form__input ${
-                isFormValidState.item_name ? "" : "form__input--error"
-              }`}
-              id="name"
-              name="item_name"
-              placeholder="Item Name"
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.item_name}
-            ></input>
-          </div>
-          <div className="form__item">
-            <label className="form__label" htmlFor="description">
-              Description
-            </label>
-            <textarea
-              className={`form__input ${
-                isFormValidState.description ? "" : "form__input--error"
-              }`}
-              id="description"
-              name="description"
-              placeholder="Please enter a brief item description..."
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.description}
-              rows={7}
-            ></textarea>
-          </div>
-          <div className="form__item">
-            <label className="form__label" htmlFor="category">
-              Category
-            </label>
-            <select
-              className={`form__input ${
-                isFormValidState.category ? "" : "form__input--error"
-              } ${formResponse.category === "" ? "form__input--grey" : ""}`}
-              id="category"
-              name="category"
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.category}
-              placeholder="Please select"
-            >
-              <option hidden value="">
-                Please select
-              </option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.name}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div className="form__section">
-          <h2 className="form__section-title">Item Availability</h2>
-          <div className="form__item">
-            <label className="form__label" htmlFor="status">
-              Status
-            </label>
-            <div className="form__radio-container">
-              <div className="form__radio">
-                <input
-                  className={`form__input form__input--radio ${
-                    isFormValidState.status ? "" : "form__input--error"
-                  }`}
-                  name="status"
-                  type="radio"
-                  value="In Stock"
-                  id="In Stock"
-                  checked={formResponse.status === "In Stock"}
-                  onChange={(e) => handleInputChange(e)}
-                />
-                <label
-                  className={`form__radio-label ${
-                    formResponse.status !== "In Stock"
-                      ? "form__radio-label--grey"
-                      : ""
-                  }`}
-                  htmlFor="In Stock"
-                >
-                  In Stock
-                </label>
-              </div>
-              <div className="form__radio">
-                <input
-                  className={`form__input form__input--radio ${
-                    isFormValidState.status ? "" : "form__input--error"
-                  } `}
-                  name="status"
-                  type="radio"
-                  value="Out of Stock"
-                  id="Out of Stock"
-                  checked={formResponse.status === "Out of Stock"}
-                  onChange={(e) => handleInputChange(e)}
-                />
-                <label
-                  className={`form__radio-label ${
-                    formResponse.status !== "Out of Stock"
-                      ? "form__radio-label--grey"
-                      : ""
-                  }`}
-                  htmlFor="Out of Stock"
-                >
-                  Out of Stock
-                </label>
-              </div>
-            </div>
-          </div>
-          {formResponse.status === "In Stock" ? (
+        <article className="form__details">
+          <div className="form__section form__section--right-border">
+            <h2 className="form__section-title">Item Details</h2>
             <div className="form__item">
-              <label className="form__label" htmlFor="quantity">
-                Quantity
+              <label className="form__label" htmlFor="name">
+                Item Name
               </label>
               <input
                 className={`form__input ${
-                  isFormValidState.quantity ? "" : "form__input--error"
+                  isFormValidState.item_name ? "" : "form__input--error"
                 }`}
-                type="number"
-                id="quantity"
-                name="quantity"
+                id="name"
+                name="item_name"
+                placeholder="Item Name"
                 onChange={(e) => handleInputChange(e)}
-                value={formResponse.quantity}
+                value={formResponse.item_name}
               ></input>
             </div>
-          ) : (
-            <></>
-          )}
-
-          <div className="form__item">
-            <label className="form__label" htmlFor="warehouse_id">
-              Warehouse
-            </label>
-            <select
-              className={`form__input ${
-                isFormValidState.warehouse_id ? "" : "form__input--error"
-              } ${formResponse.warehouse_id === "" ? "form__input--grey" : ""}`}
-              id="warehouse_id"
-              name="warehouse_id"
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.warehouse_id}
-            >
-              <option hidden value="">
-                Please select
-              </option>
-              {warehouses.map((warehouse) => (
-                <option key={warehouse.id} value={warehouse.id}>
-                  {warehouse.warehouse_name}
+            <div className="form__item">
+              <label className="form__label" htmlFor="description">
+                Description
+              </label>
+              <textarea
+                className={`form__input ${
+                  isFormValidState.description ? "" : "form__input--error"
+                }`}
+                id="description"
+                name="description"
+                placeholder="Please enter a brief item description..."
+                onChange={(e) => handleInputChange(e)}
+                value={formResponse.description}
+                rows={7}
+              ></textarea>
+            </div>
+            <div className="form__item">
+              <label className="form__label" htmlFor="category">
+                Category
+              </label>
+              <select
+                className={`form__input ${
+                  isFormValidState.category ? "" : "form__input--error"
+                } ${formResponse.category === "" ? "form__input--grey" : ""}`}
+                id="category"
+                name="category"
+                onChange={(e) => handleInputChange(e)}
+                value={formResponse.category}
+                placeholder="Please select"
+              >
+                <option hidden value="">
+                  Please select
                 </option>
-              ))}
-            </select>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.name}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
-        <div className="form__buttons">
-          <button type="reset" className="btn btn--secondary">
-            Cancel
-          </button>
-          <button className="btn btn--primary">+ Add Item</button>
+          <div className="form__section">
+            <h2 className="form__section-title">Item Availability</h2>
+            <div className="form__item">
+              <label className="form__label" htmlFor="status">
+                Status
+              </label>
+              <div className="form__radio-container">
+                <div className="form__radio">
+                  <input
+                    className={`form__input form__input--radio ${
+                      isFormValidState.status ? "" : "form__input--error"
+                    }`}
+                    name="status"
+                    type="radio"
+                    value="In Stock"
+                    id="In Stock"
+                    checked={formResponse.status === "In Stock"}
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                  <label
+                    className={`form__radio-label ${
+                      formResponse.status !== "In Stock"
+                        ? "form__radio-label--grey"
+                        : ""
+                    }`}
+                    htmlFor="In Stock"
+                  >
+                    In Stock
+                  </label>
+                </div>
+                <div className="form__radio">
+                  <input
+                    className={`form__input form__input--radio ${
+                      isFormValidState.status ? "" : "form__input--error"
+                    } `}
+                    name="status"
+                    type="radio"
+                    value="Out of Stock"
+                    id="Out of Stock"
+                    checked={formResponse.status === "Out of Stock"}
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                  <label
+                    className={`form__radio-label ${
+                      formResponse.status !== "Out of Stock"
+                        ? "form__radio-label--grey"
+                        : ""
+                    }`}
+                    htmlFor="Out of Stock"
+                  >
+                    Out of Stock
+                  </label>
+                </div>
+              </div>
+            </div>
+            {formResponse.status === "In Stock" ? (
+              <div className="form__item">
+                <label className="form__label" htmlFor="quantity">
+                  Quantity
+                </label>
+                <input
+                  className={`form__input ${
+                    isFormValidState.quantity ? "" : "form__input--error"
+                  }`}
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  onChange={(e) => handleInputChange(e)}
+                  value={formResponse.quantity}
+                ></input>
+              </div>
+            ) : (
+              <></>
+            )}
+
+            <div className="form__item">
+              <label className="form__label" htmlFor="warehouse_id">
+                Warehouse
+              </label>
+              <select
+                className={`form__input ${
+                  isFormValidState.warehouse_id ? "" : "form__input--error"
+                } ${
+                  formResponse.warehouse_id === "" ? "form__input--grey" : ""
+                }`}
+                id="warehouse_id"
+                name="warehouse_id"
+                onChange={(e) => handleInputChange(e)}
+                value={formResponse.warehouse_id}
+              >
+                <option hidden value="">
+                  Please select
+                </option>
+                {warehouses.map((warehouse) => (
+                  <option key={warehouse.id} value={warehouse.id}>
+                    {warehouse.warehouse_name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </article>
+        <div className="form__button-container">
+          <div className="form__buttons">
+            <button type="reset" className="btn btn--secondary">
+              Cancel
+            </button>
+            <button className="btn btn--primary">+ Add Item</button>
+          </div>
         </div>
       </form>
       <ToastContainer
