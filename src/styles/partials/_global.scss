@@ -18,7 +18,7 @@
 }
 
 .page-content {
-  margin: 0 1rem;
+  margin: 0 0.8rem;
   box-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
   @include tablet {
     margin: 0 2rem;
@@ -60,7 +60,7 @@ button {
   }
   &--secondary {
     background-color: $color-white;
-    border: 1.5px solid $color-cloud;
+    border: 1px solid $color-cloud;
     color: $color-slate;
     &:hover {
       color: $color-instock-indigo;
@@ -76,12 +76,25 @@ button {
   }
 }
 
+select {
+  //remove default dropdown arrow
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  //add custom dropdown arrow
+  background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
+  background-repeat: no-repeat;
+  background-position-x: 96%;
+  background-position-y: 3px;
+}
+
 a {
   text-decoration: none;
   color: inherit;
 }
 
-body {
+body,
+textarea,
+* {
   font-family: $font-family-primary;
 }
 
