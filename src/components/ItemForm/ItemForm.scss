@@ -111,9 +111,6 @@
       font-size: 0.85rem;
     }
   }
-  &__radio-label ::before {
-    background-color: red;
-  }
   &__input {
     border: 1px solid $color-cloud;
     border-radius: 1.25rem;
@@ -121,7 +118,7 @@
     padding: 0.5rem 0.8rem;
     font-size: 0.7rem;
     &--error {
-      border-color: red;
+      border-color: $color-red;
     }
     &--grey {
       color: $color-slate;
@@ -135,5 +132,14 @@
         width: 26%;
       }
     }
+  }
+}
+
+.error-statement {
+  color: $color-red;
+  font-style: italic;
+  font-size: 0.7rem;
+  @include tablet {
+    font-size: 0.85rem;
   }
 }

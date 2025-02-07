@@ -92,11 +92,20 @@ function ItemForm() {
       setValid("status", false);
     }
     if (
-      (formResponse.status === "In Stock" && !formResponse.quantity) ||
-      formResponse.quantity <= 0
+      formResponse.status === "In Stock" &&
+      (!formResponse.quantity || formResponse.quantity <= 0)
     ) {
       isValid = false;
       setValid("quantity", false);
+    }
+    if (formResponse.status === "Out of Stock") {
+      setValid("quantity", true);
+      setFormResponse((prevState) => {
+        return {
+          ...prevState,
+          quantity: 0,
+        };
+      });
     }
     if (!formResponse.warehouse_id.trim()) {
       isValid = false;
@@ -116,6 +125,10 @@ function ItemForm() {
         [name]: value,
       };
     });
+    if (value.length > 0) {
+      setValid(name, true);
+    }
+
     if (name === "quantity") {
       if (value > 0) {
         setValid("quantity", true);
@@ -123,8 +136,14 @@ function ItemForm() {
         setValid("quantity", false);
       }
     }
-    if (value.length > 0) {
-      setValid(name, true);
+    if (name === "status" && value === "Out of Stock") {
+      setValid("quantity", true);
+      setFormResponse((prevState) => {
+        return {
+          ...prevState,
+          quantity: 0,
+        };
+      });
     }
   }
 
@@ -141,6 +160,7 @@ function ItemForm() {
     } else {
       toast.error("Error! All fields required");
     }
+    console.log(formResponse, isFormValidState);
   }
 
   return (
@@ -276,7 +296,9 @@ function ItemForm() {
                   value={formResponse.quantity}
                 ></input>
                 {!isFormValidState.quantity && (
-                  <p>Quantity must be a positive, non-negative number</p>
+                  <p className="error-statement">
+                    Quantity must be a positive, non-zero number
+                  </p>
                 )}
               </div>
             ) : (
