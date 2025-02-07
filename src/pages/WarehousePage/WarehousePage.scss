@@ -2,6 +2,15 @@
 @use "../../styles/partials/mixins" as *;
 
 .warehouse-page {
+  position: relative;
+  top: -3rem;
+  z-index: 10;
+  background-color: white;
+
+  @include tablet {
+    top: -5.5rem;
+  }
+
   &__header {
     padding: 1.2rem;
     display: flex;
@@ -11,9 +20,11 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding: 2rem;
+      height: 5.5rem;
+      padding: 0 2rem;
     }
   }
+
   &__buttons {
     display: flex;
     flex-direction: column;
@@ -21,15 +32,16 @@
 
     @include tablet {
       flex-direction: row;
-      width: 50%;
-    }
-    @include desktop {
-      width: 45%;
     }
   }
+
+  &__search {
+    min-width: 274px;
+  }
+
   &__add {
     @include tablet {
-      flex: 1;
+      padding: 0 1rem !important;
     }
   }
 }

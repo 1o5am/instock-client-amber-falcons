@@ -1,15 +1,40 @@
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import arrowIcon from "../../assets/icons/chevron_right-24px.svg";
+import { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import DeleteModal from "../DeleteModal/DeleteModal.jsx";
+import modalMessages from "../../constants/modalMessages";
 import "./WarehouseListItem.scss";
 
-const WarehouseListItem = ({ item }) => {
+const WarehouseListItem = ({ item, onDelete }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState({
+    question: "",
+    message: "",
+  });
+
+  const openDeleteModal = () => {
+    setModalContent(modalMessages.deleteWarehouse(item.warehouse_name));
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:8080/api/warehouses/${item.id}`);
+      onDelete(item.id);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error deleting warehouse:", error);
+    }
+  };
+
   return (
     <li className="warehouse-item">
       <div className="warehouse-item__info warehouse-item__info--col1">
         <p className="warehouse-item__title">WAREHOUSE</p>
-        <Link to={`${item.id}`}>
+        <Link to={`${item.id}`} className="warehouse-item__link">
           <p className="warehouse-item__name warehouse-item__name--bold warehouse-item__name--blue text-link">
             {item.warehouse_name} <img className="icon" src={arrowIcon}></img>
           </p>
@@ -31,13 +56,22 @@ const WarehouseListItem = ({ item }) => {
         <p className="warehouse-item__name">{item.contact_email}</p>
       </div>
       <div className="warehouse-item__icons">
-        <Link to={`delete/${item.id}`}>
-          <img className="icon" src={deleteIcon}></img>
-        </Link>
+        <button onClick={openDeleteModal} className="icon__button">
+          <img className="icon" src={deleteIcon} alt="Delete" />
+        </button>
         <Link to={`edit/${item.id}`}>
           <img className="icon" src={editIcon}></img>
         </Link>
       </div>
+
+      {isModalOpen && (
+        <DeleteModal
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={handleDelete}
+          question={modalContent.question}
+          message={modalContent.message}
+        />
+      )}
     </li>
   );
 };
