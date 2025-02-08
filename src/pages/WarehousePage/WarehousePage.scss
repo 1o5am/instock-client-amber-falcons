@@ -34,9 +34,10 @@
     min-width: 274px;
   }
 
+  .btn--primary,
   &__add {
     @include tablet {
-      padding: 0 1rem !important;
+      padding: 0 1rem;
     }
   }
 }

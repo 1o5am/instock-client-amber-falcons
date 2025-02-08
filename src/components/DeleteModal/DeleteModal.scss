@@ -50,9 +50,10 @@
 
   &__actions {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: end;
     gap: 1rem;
+    width: 100%;
 
     @include tablet {
       display: flex;
@@ -60,11 +61,24 @@
     }
   }
 
+  &__button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
   &__button {
-    width: 100%;
     @include tablet {
-      width: auto !important;
-      padding: 0 1rem !important;
+    }
+
+    &.btn--secondary,
+    &--cancel {
+      padding: 0 1rem;
+    }
+
+    &.btn--delete,
+    &--delete {
+      padding: 0 1rem;
     }
 
     &--close {
