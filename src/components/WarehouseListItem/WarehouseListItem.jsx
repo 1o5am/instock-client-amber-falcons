@@ -9,6 +9,7 @@ import modalMessages from "../../constants/modalMessages";
 import "./WarehouseListItem.scss";
 
 const WarehouseListItem = ({ item, onDelete }) => {
+  const baseURL = import.meta.env.VITE_API_URL;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
     question: "",
@@ -22,7 +23,7 @@ const WarehouseListItem = ({ item, onDelete }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/warehouses/${item.id}`);
+      await axios.delete(`${baseURL}/warehouses/${item.id}`);
       onDelete(item.id);
       setIsModalOpen(false);
     } catch (error) {

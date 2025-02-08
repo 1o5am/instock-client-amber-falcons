@@ -8,13 +8,14 @@ import InventoryItemDetails from "../../components/InventoryItemDetails/Inventor
 import "./InventoryItemDetailPage.scss";
 
 function InventoryItemDetailPage() {
+  const baseURL = import.meta.env.VITE_API_URL;
   const [inventoryItemDetails, setInventoryItemDetails] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
 
   async function getInventoryItemDetails() {
     const responseInventoryItemDetail = await axios.get(
-      `http://localhost:8080/api/inventory/${id}`
+      `${baseURL}/inventory/${id}`
     );
     setInventoryItemDetails(responseInventoryItemDetail.data);
   }

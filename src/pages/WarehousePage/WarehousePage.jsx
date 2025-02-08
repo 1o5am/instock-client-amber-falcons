@@ -6,13 +6,12 @@ import "./WarehousePage.scss";
 import { useNavigate } from "react-router-dom";
 
 const WarehousePage = () => {
+  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [warehouses, setWarehouses] = useState([]);
 
   async function getAllWarehouseItems() {
-    const allWarehouseResponse = await axios.get(
-      `http://localhost:8080/api/warehouses`
-    );
+    const allWarehouseResponse = await axios.get(`${baseURL}/warehouses`);
 
     console.log("Warehouse", allWarehouseResponse.data);
     setWarehouses(allWarehouseResponse.data);
