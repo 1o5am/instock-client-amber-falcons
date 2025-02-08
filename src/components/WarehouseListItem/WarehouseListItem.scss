@@ -86,11 +86,10 @@
 
   &__name {
     font-size: 0.65rem;
-    width: 80%;
+    width: max-content;
 
     @include tablet {
       font-size: 0.8rem;
-      width: 85%;
     }
 
     &--bold {
@@ -121,4 +120,8 @@
       order: unset;
     }
   }
+}
+
+.icon__button {
+  cursor: pointer;
 }

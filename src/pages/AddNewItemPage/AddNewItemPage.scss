@@ -1,0 +1,20 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+.new-item-page {
+  &__header {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.5rem;
+    @include tablet {
+      flex-direction: row;
+      align-items: center;
+      padding: 2rem;
+    }
+  }
+  &__back {
+    height: 100%;
+    cursor: pointer;
+  }
+}
