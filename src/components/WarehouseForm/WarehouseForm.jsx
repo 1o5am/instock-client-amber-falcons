@@ -101,6 +101,7 @@ const WarehouseForm = () => {
                   value={formData.warehouse_name}
                   onChange={handleChange}
                   placeholder="Warehouse Name"
+                  className={errors.warehouse_name ? "input--error" : ""}
                 />
                 {errors.warehouse_name && (
                   <div className="error__container">
@@ -118,6 +119,7 @@ const WarehouseForm = () => {
                   value={formData.address}
                   onChange={handleChange}
                   placeholder="Street Address"
+                  className={errors.address ? "input--error" : ""}
                 />
                 {errors.address && (
                   <div className="error__container">
@@ -134,6 +136,7 @@ const WarehouseForm = () => {
                   value={formData.city}
                   onChange={handleChange}
                   placeholder="City"
+                  className={errors.city ? "input--error" : ""}
                 />
                 {errors.city && (
                   <div className="error__container">
@@ -151,6 +154,7 @@ const WarehouseForm = () => {
                   value={formData.country}
                   onChange={handleChange}
                   placeholder="Country"
+                  className={errors.country ? "input--error" : ""}
                 />
                 {errors.country && (
                   <div className="error__container">
@@ -174,6 +178,7 @@ const WarehouseForm = () => {
                   value={formData.contact_name}
                   onChange={handleChange}
                   placeholder="Contact Name"
+                  className={errors.contact_name ? "input--error" : ""}
                 />
                 {errors.contact_name && (
                   <div className="error__container">
@@ -191,6 +196,7 @@ const WarehouseForm = () => {
                   value={formData.contact_position}
                   onChange={handleChange}
                   placeholder="Position"
+                  className={errors.contact_position ? "input--error" : ""}
                 />
                 {errors.contact_position && (
                   <div className="error__container">
@@ -208,6 +214,7 @@ const WarehouseForm = () => {
                   value={formData.contact_phone}
                   onChange={handleChange}
                   placeholder="Phone Number"
+                  className={errors.contact_phone ? "input--error" : ""}
                 />
                 {errors.contact_phone && (
                   <div className="error__container">
@@ -225,6 +232,7 @@ const WarehouseForm = () => {
                   value={formData.contact_email}
                   onChange={handleChange}
                   placeholder="Email"
+                  className={errors.contact_email ? "input--error" : ""}
                 />
                 {errors.contact_email && (
                   <div className="error__container">
