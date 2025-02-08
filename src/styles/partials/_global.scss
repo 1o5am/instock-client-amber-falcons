@@ -40,9 +40,18 @@ button {
 
 .text-link {
   color: $color-instock-indigo;
+  transition: transform 0.1s linear;
+
+  .icon {
+    transition: transform 0.1s linear;
+  }
+
   &:hover {
     cursor: pointer;
     text-decoration: underline;
+    .icon {
+      transform: translateX(4px);
+    }
   }
 }
 
