@@ -10,16 +10,21 @@ const DeleteModal = ({ onClose, onConfirm, question, message }) => {
           <p className="modal__message">{message}</p>
         </div>
         <div className="modal__actions">
-          <button
-            className="modal__button btn btn--secondary"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
+          <div className="modal__button-container">
+            <button
+              className="modal__button btn btn--secondary"
+              onClick={onClose}
+            >
+              Cancel
+            </button>
 
-          <button className="modal__button btn btn--delete" onClick={onConfirm}>
-            Delete
-          </button>
+            <button
+              className="modal__button btn btn--delete"
+              onClick={onConfirm}
+            >
+              Delete
+            </button>
+          </div>
         </div>
         <button onClick={onClose} className="modal__button--close">
           <img className="icon" src={closeIcon} alt="Close" />
