@@ -4,7 +4,8 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-function ItemForm() {
+function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
+  const navigate = useNavigate();
   const [warehouses, setWarehouses] = useState([]);
   const [categories, setCategories] = useState([
     { name: "Electronics", id: 1 },
@@ -14,14 +15,7 @@ function ItemForm() {
     { name: "Shampoo", id: 5 },
     { name: "Health", id: 6 },
   ]);
-  const [formResponse, setFormResponse] = useState({
-    warehouse_id: "",
-    item_name: "",
-    description: "",
-    category: "",
-    status: "In Stock",
-    quantity: 0,
-  });
+
   const [isFormValidState, setFormValidState] = useState({
     warehouse_id: true,
     item_name: true,
@@ -30,8 +24,6 @@ function ItemForm() {
     status: true,
     quantity: true,
   });
-
-  const navigate = useNavigate();
 
   async function getAllWarehouses() {
     const allWarehousesResponse = await axios.get(
@@ -44,27 +36,6 @@ function ItemForm() {
     getAllWarehouses();
   }, []);
 
-  async function addNewItem() {
-    const newItem = {
-      warehouse_id: Number(formResponse.warehouse_id),
-      item_name: formResponse.item_name,
-      description: formResponse.description,
-      category: formResponse.category,
-      status: formResponse.status,
-      quantity: Number(formResponse.quantity),
-    };
-    try {
-      const addItemResponse = await axios.post(
-        `http://localhost:8080/api/inventory`,
-        newItem
-      );
-      console.log("New Item Added!");
-      return true;
-    } catch (error) {
-      console.log("Error: Could not add Item");
-      return false;
-    }
-  }
   function setValid(name, bool) {
     setFormValidState((prevFormResponse) => {
       return {
@@ -107,7 +78,7 @@ function ItemForm() {
         };
       });
     }
-    if (!formResponse.warehouse_id.trim()) {
+    if (!formResponse.warehouse_id) {
       isValid = false;
       setValid("warehouse_id", false);
     }
@@ -150,13 +121,7 @@ function ItemForm() {
   function handleSubmit(e) {
     e.preventDefault();
     if (isFormValid()) {
-      const isSuccess = addNewItem();
-      if (isSuccess) {
-        toast.success("New Item Added");
-        navigate("/inventory");
-      } else {
-        toast.error("Error. Could not add item");
-      }
+      itemManipulation();
     } else {
       toast.error("Error! All fields required");
     }
@@ -336,7 +301,7 @@ function ItemForm() {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/inventory");
+                navigate(-1);
               }}
               type="reset"
               className="btn btn--secondary form__cancel-btn"
@@ -344,7 +309,7 @@ function ItemForm() {
               Cancel
             </button>
             <button className="btn btn--primary form__add-btn">
-              + Add Item
+              {isNew ? "+ Add Item" : "Save"}
             </button>
           </div>
         </div>
