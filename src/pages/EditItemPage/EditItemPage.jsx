@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 function EditItemPage() {
+  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const { id } = useParams();
   const [formResponse, setFormResponse] = useState({
@@ -20,9 +21,7 @@ function EditItemPage() {
 
   async function getItemDetails() {
     try {
-      const getItemResponse = await axios.get(
-        `http://localhost:8080/api/inventory/${id}`
-      );
+      const getItemResponse = await axios.get(`${baseURL}/inventory/${id}`);
       setFormResponse({
         warehouse_id: getItemResponse.data.warehouse_id,
         item_name: getItemResponse.data.item_name,
@@ -50,7 +49,7 @@ function EditItemPage() {
     };
     try {
       const addItemResponse = await axios.put(
-        `http://localhost:8080/api/inventory/${id}`,
+        `${baseURL}/inventory/${id}`,
         editItem
       );
       console.log("Item Edited!");

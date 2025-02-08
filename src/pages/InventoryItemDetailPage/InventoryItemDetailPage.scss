@@ -27,7 +27,9 @@
   @include desktop {
     padding: 1.5rem 2.25rem 1.5rem;
   }
-
+  &__back-icon {
+    cursor: pointer;
+  }
   &__icon {
     display: flex;
     gap: 0.5rem;

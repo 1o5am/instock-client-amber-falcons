@@ -9,6 +9,7 @@ import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import modalMessages from "../../constants/modalMessages";
 
 function ListItem({ item, onDelete, isWarehouse }) {
+  const baseURL = import.meta.env.VITE_API_URL;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
     question: "",
@@ -22,7 +23,7 @@ function ListItem({ item, onDelete, isWarehouse }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/inventory/${item.id}`);
+      await axios.delete(`${baseURL}/inventory/${item.id}`);
       onDelete(item.id);
       setIsModalOpen(false);
     } catch (error) {
@@ -34,7 +35,7 @@ function ListItem({ item, onDelete, isWarehouse }) {
     <li className="item">
       <div className="item__info">
         <p className="item__title">INVENTORY ITEM</p>
-        <Link to={`${item.id}`}>
+        <Link to={`/inventory/${item.id}`}>
           <p className="item__name item__name--bold item__name--blue text-link">
             {item.item_name} <img className="icon" src={arrowIcon}></img>
           </p>

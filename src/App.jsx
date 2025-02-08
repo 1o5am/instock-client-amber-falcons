@@ -11,6 +11,8 @@ import InventoryItemDetailPage from "./pages/InventoryItemDetailPage/InventoryIt
 import AddNewWarehousePage from "./pages/AddNewWarehousePage/AddNewWarehousePage.jsx";
 import EditItemPage from "./pages/EditItemPage/EditItemPage.jsx";
 
+const baseURL = import.meta.env.VITE_API_URL;
+
 function App() {
   return (
     <BrowserRouter>

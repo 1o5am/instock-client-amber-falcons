@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import errorIcon from "../../assets/icons/error-24px.svg";
 
 function ItemForm({ formResponse, setFormResponse, addOrEditItem, isNew }) {
+  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [warehouses, setWarehouses] = useState([]);
   const [categories, setCategories] = useState([
@@ -20,9 +21,7 @@ function ItemForm({ formResponse, setFormResponse, addOrEditItem, isNew }) {
   const [errors, setErrors] = useState({});
 
   async function getAllWarehouses() {
-    const allWarehousesResponse = await axios.get(
-      `http://localhost:8080/api/warehouses`
-    );
+    const allWarehousesResponse = await axios.get(`${baseURL}/warehouses`);
     setWarehouses(allWarehousesResponse.data);
   }
 

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 function AddNewItemPage() {
+  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [formResponse, setFormResponse] = useState({
     warehouse_id: "",
@@ -27,10 +28,7 @@ function AddNewItemPage() {
       quantity: Number(formResponse.quantity),
     };
     try {
-      const addItemResponse = await axios.post(
-        `http://localhost:8080/api/inventory`,
-        newItem
-      );
+      const addItemResponse = await axios.post(`${baseURL}/inventory`, newItem);
       console.log("New Item Added!");
       return true;
     } catch (error) {
