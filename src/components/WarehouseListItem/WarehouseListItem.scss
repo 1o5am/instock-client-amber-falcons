@@ -86,7 +86,7 @@
 
   &__name {
     font-size: 0.65rem;
-    width: max-content;
+    width: fit-content;
 
     @include tablet {
       font-size: 0.8rem;
