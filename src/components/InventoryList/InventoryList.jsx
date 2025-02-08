@@ -4,11 +4,10 @@ import List from "../List/List";
 
 function InventoryList() {
   const [inventory, setInventory] = useState([]);
+  const baseURL = import.meta.env.VITE_API_URL;
 
   async function getAllInventoryItems() {
-    const allInventoryResponse = await axios.get(
-      `http://localhost:8080/api/inventory`
-    );
+    const allInventoryResponse = await axios.get(`${baseURL}/inventory`);
     setInventory(allInventoryResponse.data);
   }
 

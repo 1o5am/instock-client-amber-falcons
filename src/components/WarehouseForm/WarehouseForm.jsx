@@ -5,6 +5,7 @@ import "./WarehouseForm.scss";
 import errorIcon from "../../assets/icons/error-24px.svg";
 
 const WarehouseForm = () => {
+  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     warehouse_name: "",
@@ -71,10 +72,7 @@ const WarehouseForm = () => {
     if (!validateForm()) return;
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/warehouses",
-        formData
-      );
+      const response = await axios.post(`${baseURL}/warehouses`, formData);
       console.log("Warehouse Added:", response.data);
       navigate("/warehouses");
     } catch (error) {

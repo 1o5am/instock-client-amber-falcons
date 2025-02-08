@@ -8,12 +8,12 @@ function InventoryListByWarehouseId({ id }) {
   const handleDelete = (deletedId) => {
     setInventoryById(inventoryById.filter((item) => item.id !== deletedId));
   };
-  
+  const baseURL = import.meta.env.VITE_API_URL;
 
   async function getAllInventoryItemsById() {
     try {
       const inventoryByIdResponse = await axios.get(
-        `http://localhost:8080/api/warehouses/${id}/inventories`
+        `${baseURL}/warehouses/${id}/inventories`
       );
       //   console.log(inventoryByIdResponse.data);
       setInventoryById(inventoryByIdResponse.data);
@@ -29,7 +29,11 @@ function InventoryListByWarehouseId({ id }) {
   return (
     <>
       {inventoryById ? (
-        <List allItems={inventoryById} isWarehouse={true} onDelete={handleDelete}/>
+        <List
+          allItems={inventoryById}
+          isWarehouse={true}
+          onDelete={handleDelete}
+        />
       ) : (
         <></>
       )}
