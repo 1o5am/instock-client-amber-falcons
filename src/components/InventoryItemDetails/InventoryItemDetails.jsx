@@ -1,4 +1,3 @@
-import React from "react";
 import "./InventoryItemDetails.scss";
 
 function InventoryItemDetails({ allDetails }) {

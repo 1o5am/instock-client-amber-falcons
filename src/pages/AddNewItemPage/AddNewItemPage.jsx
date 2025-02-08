@@ -1,7 +1,7 @@
 import "./AddNewItemPage.scss";
 import ItemForm from "../../components/ItemForm/ItemForm.jsx";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";

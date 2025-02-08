@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import List from "../List/List";
-import React from "react";
+import InventoryTable from "../InventoryTable/InventoryTable";
 
-function InventoryListByWarehouseId({ id }) {
+function WarehouseInventoryContainer({ id }) {
   const [inventoryById, setInventoryById] = useState([]);
   const handleDelete = (deletedId) => {
     setInventoryById(inventoryById.filter((item) => item.id !== deletedId));
   };
-  
 
   async function getAllInventoryItemsById() {
     try {
@@ -29,7 +27,11 @@ function InventoryListByWarehouseId({ id }) {
   return (
     <>
       {inventoryById ? (
-        <List allItems={inventoryById} isWarehouse={true} onDelete={handleDelete}/>
+        <InventoryTable
+          allItems={inventoryById}
+          isWarehouse={true}
+          onDelete={handleDelete}
+        />
       ) : (
         <></>
       )}
@@ -37,4 +39,4 @@ function InventoryListByWarehouseId({ id }) {
   );
 }
 
-export default InventoryListByWarehouseId;
+export default WarehouseInventoryContainer;

@@ -1,8 +1,8 @@
 import WarehouseListItem from "../WarehouseListItem/WarehouseListItem";
 import sortArrowIcon from "../../assets/icons/sort-24px.svg";
-import "./WarehouseList.scss";
+import "./WarehouseTable.scss";
 
-const WarehouseList = ({ allItems, onDelete }) => {
+const WarehouseTable = ({ allItems, onDelete }) => {
   return (
     <div className="warehouse-list">
       <div className="warehouse-list-headers--tablet">
@@ -47,4 +47,4 @@ const WarehouseList = ({ allItems, onDelete }) => {
   );
 };
 
-export default WarehouseList;
+export default WarehouseTable;

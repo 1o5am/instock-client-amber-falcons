@@ -10,87 +10,6 @@
   box-sizing: border-box;
 }
 
-.icon {
-  width: 20px;
-  @include tablet {
-    width: 25px;
-  }
-}
-
-.page-content {
-  position: relative;
-  top: -4rem;
-  z-index: 10;
-  background-color: white;
-  margin: 0 0.8rem;
-  box-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
-  @include tablet {
-    margin: 0 2rem;
-  }
-  @include desktop {
-    margin: 0 auto;
-    max-width: 1000px;
-  }
-}
-
-button {
-  border: none;
-  background-color: transparent;
-}
-
-.text-link {
-  color: $color-instock-indigo;
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-}
-
-.btn {
-  padding: 0.5rem 0;
-  border-radius: 1.25rem;
-  height: 2.25rem;
-  width: 100%;
-  cursor: pointer;
-  @include tablet {
-    height: 2.375rem;
-  }
-  &--primary {
-    background-color: $color-instock-indigo;
-    color: $color-white;
-    &:hover {
-      background-color: $color-graphite;
-    }
-  }
-  &--secondary {
-    background-color: $color-white;
-    border: 1px solid $color-cloud;
-    color: $color-slate;
-    &:hover {
-      color: $color-instock-indigo;
-      border-color: $color-instock-indigo;
-    }
-  }
-  &--delete {
-    color: $color-white;
-    background-color: $color-red;
-    &:hover {
-      background-color: $color-graphite;
-    }
-  }
-}
-
-select {
-  //remove default dropdown arrow
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  //add custom dropdown arrow
-  background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
-  background-repeat: no-repeat;
-  background-position-x: 96%;
-  background-position-y: 3px;
-}
-
 a {
   text-decoration: none;
   color: inherit;
@@ -100,6 +19,15 @@ body,
 textarea,
 * {
   font-family: $font-family-primary;
+}
+
+input,
+textarea {
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 h1 {
@@ -150,25 +78,94 @@ ul {
   list-style: none;
 }
 
-input,
-textarea {
-  text-decoration: none;
+.text-link {
+  color: $color-instock-indigo;
 
-  &:focus {
-    outline: none;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
   }
 }
 
-// Section Container
-.section-container {
-  margin: 0 1rem;
+button {
+  border: none;
+  background-color: transparent;
+}
+
+select {
+  //remove default dropdown arrow
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  //add custom dropdown arrow
+  background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
+  background-repeat: no-repeat;
+  background-position-x: 96%;
+  background-position-y: 3px;
+}
+
+.btn {
+  padding: 0.5rem 0;
+  border-radius: 1.25rem;
+  height: 2.25rem;
+  width: 100%;
+  cursor: pointer;
 
   @include tablet {
-    margin: 0 1.5rem;
+    height: 2.375rem;
+  }
+
+  &--primary {
+    background-color: $color-instock-indigo;
+    color: $color-white;
+
+    &:hover {
+      background-color: $color-graphite;
+    }
+  }
+
+  &--secondary {
+    background-color: $color-white;
+    border: 1px solid $color-cloud;
+    color: $color-slate;
+
+    &:hover {
+      color: $color-instock-indigo;
+      border-color: $color-instock-indigo;
+    }
+  }
+
+  &--delete {
+    color: $color-white;
+    background-color: $color-red;
+
+    &:hover {
+      background-color: $color-graphite;
+    }
+  }
+}
+
+.icon {
+  width: 20px;
+
+  @include tablet {
+    width: 25px;
+  }
+}
+
+.page-content {
+  position: relative;
+  top: -4rem;
+  z-index: 10;
+  background-color: white;
+  margin: 0 0.8rem;
+  box-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
+
+  @include tablet {
+    margin: 0 2rem;
   }
 
   @include desktop {
     margin: 0 auto;
-    max-width: 1280px;
+    max-width: 1000px;
   }
 }

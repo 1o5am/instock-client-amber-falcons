@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import List from "../List/List";
+import InventoryTable from "../InventoryTable/InventoryTable";
 
-function InventoryList() {
+function InventoryContainer() {
   const [inventory, setInventory] = useState([]);
 
   async function getAllInventoryItems() {
@@ -23,7 +23,7 @@ function InventoryList() {
   return (
     <>
       {inventory ? (
-        <List allItems={inventory} onDelete={handleDelete} />
+        <InventoryTable allItems={inventory} onDelete={handleDelete} />
       ) : (
         <></>
       )}
@@ -31,4 +31,4 @@ function InventoryList() {
   );
 }
 
-export default InventoryList;
+export default InventoryContainer;

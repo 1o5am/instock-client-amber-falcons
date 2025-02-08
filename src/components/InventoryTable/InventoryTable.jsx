@@ -1,8 +1,8 @@
-import ListItem from "../ListItem/ListItem";
+import InventoryListItem from "../InventoryListItem/InventoryListItem";
 import sortArrowIcon from "../../assets/icons/sort-24px.svg";
-import "./List.scss";
+import "./InventoryTable.scss";
 
-function List({ allItems, onDelete, isWarehouse=false }) {
+function InventoryTable({ allItems, onDelete, isWarehouse = false }) {
   return (
     <div className="list">
       <div className="list-headers--tablet">
@@ -21,21 +21,28 @@ function List({ allItems, onDelete, isWarehouse=false }) {
         <p className="list__header list__header--small">
           QTY <img className="icon list__sort-icon" src={sortArrowIcon}></img>
         </p>
-        {!isWarehouse && <p className="list__header">
-          WAREHOUSE{" "}
-          <img className="icon list__sort-icon" src={sortArrowIcon}></img>
-        </p>}
+        {!isWarehouse && (
+          <p className="list__header">
+            WAREHOUSE{" "}
+            <img className="icon list__sort-icon" src={sortArrowIcon}></img>
+          </p>
+        )}
         <p className="list__header list__header--center list__header--small">
           ACTIONS
         </p>
       </div>
       <ul className="list--mobile">
         {allItems.map((item) => (
-          <ListItem isWarehouse={isWarehouse} item={item} key={item.id} onDelete={onDelete} />
+          <InventoryListItem
+            isWarehouse={isWarehouse}
+            item={item}
+            key={item.id}
+            onDelete={onDelete}
+          />
         ))}
       </ul>
     </div>
   );
 }
 
-export default List;
+export default InventoryTable;

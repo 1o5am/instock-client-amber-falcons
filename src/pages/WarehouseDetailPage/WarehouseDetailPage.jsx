@@ -1,13 +1,11 @@
-import React from "react";
 import { useParams } from "react-router-dom";
-import InventoryListByWarehouseId from "../../components/InventoryListByWarehouseId/InventoryListByWarehouseId";
-import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
+import WarehouseInventoryContainer from "../../components/WarehouseInventoryContainer/WarehouseInventoryContainer.jsx";
 
 function WarehouseDetailPage() {
   const { id } = useParams();
   return (
     <div className="page-content">
-      <InventoryListByWarehouseId id={id} />
+      <WarehouseInventoryContainer id={id} />
     </div>
   );
 }

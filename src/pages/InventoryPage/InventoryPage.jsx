@@ -1,4 +1,4 @@
-import InventoryList from "../../components/InventoryList/InventoryList.jsx";
+import InventoryContainer from "../../components/InventoryContainer/InventoryContainer.jsx";
 import Searchbar from "../../components/Searchbar/Searchbar.jsx";
 import "./InventoryPage.scss";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ function InventoryPage() {
         </div>
       </div>
 
-      <InventoryList />
+      <InventoryContainer />
     </div>
   );
 }
