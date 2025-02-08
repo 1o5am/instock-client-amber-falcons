@@ -1,7 +1,7 @@
 import React from "react";
 import "./WarehouseDetails.scss";
 
-const WarehouseDetails = ({ warehouse }) => {
+const WarehouseDetails = ({ id }) => {
   return (
     <section className="warehouse-details">
       <h2 className="warehouse-details__name">{warehouse.name}</h2>

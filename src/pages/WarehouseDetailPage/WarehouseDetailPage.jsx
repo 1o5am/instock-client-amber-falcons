@@ -7,7 +7,9 @@ function WarehouseDetailPage() {
   const { id } = useParams();
   return (
     <div className="page-content">
+      <WarehouseDetails id={id} />
       <InventoryListByWarehouseId id={id} />
+
     </div>
   );
 }
