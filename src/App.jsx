@@ -7,6 +7,8 @@ import WarehouseDetailPage from "./pages/WarehouseDetailPage/WarehouseDetailPage
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Footer from "./components/Footer/Footer.jsx";
 import AddNewItemPage from "./pages/AddNewItemPage/AddNewItemPage.jsx";
+import InventoryItemDetailPage from "./pages/InventoryItemDetailPage/InventoryItemDetailPage.jsx";
+
 
 function App() {
   return (
@@ -20,6 +22,10 @@ function App() {
         <Route
           path="/warehouses/:id/inventories"
           element={<WarehouseDetailPage />}
+        ></Route>
+        <Route
+          path="/inventory/:id"
+          element={<InventoryItemDetailPage />}
         ></Route>
       </Routes>
       <Footer />
