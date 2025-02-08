@@ -90,7 +90,7 @@ button {
 }
 
 select {
-  //remove default dropdown arrow
+  //remove default dropdown arrow (for Chrome and Firefox)
   -webkit-appearance: none;
   -moz-appearance: none;
   //add custom dropdown arrow

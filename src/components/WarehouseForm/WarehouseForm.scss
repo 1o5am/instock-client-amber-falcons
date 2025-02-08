@@ -76,6 +76,10 @@
         height: 38px;
       }
 
+      &:focus {
+        border-color: $color-instock-indigo;
+      }
+
       &--error {
         border-color: $color-red;
       }

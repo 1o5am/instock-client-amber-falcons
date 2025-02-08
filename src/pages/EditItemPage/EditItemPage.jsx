@@ -84,7 +84,7 @@ function EditItemPage() {
       <ItemForm
         formResponse={formResponse}
         setFormResponse={setFormResponse}
-        itemManipulation={validateEditItem}
+        addOrEditItem={validateEditItem}
         isNew={false}
       />
     </div>
