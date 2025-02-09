@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import InventoryList from "../InventoryList/InventoryList";
+import { BASE_URL } from "../../utils/utils.js";
 
 function InventoryContainer({ searchTerm, sortField, sortOrder, onSort }) {
   const [inventory, setInventory] = useState([]);
-  const baseURL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     async function getAllInventoryItems() {
       try {
         const allInventoryResponse = await axios.get(
-          `${baseURL}/inventory?s=${searchTerm}&sort_by=${sortField}&order_by=${sortOrder}`
+          `${BASE_URL}/inventory?s=${searchTerm}`
         );
 
         setInventory(allInventoryResponse.data);

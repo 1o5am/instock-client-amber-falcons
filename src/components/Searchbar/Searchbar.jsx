@@ -1,13 +1,14 @@
 import "./Searchbar.scss";
 import searchIcon from "../../assets/icons/search-24px.svg";
 import { useEffect } from "react";
+
 function Searchbar({ searchTerm, setSearchTerm }) {
   function handleSearchChange(e) {
     setSearchTerm(e.target.value);
   }
   useEffect(() => {
     setSearchTerm("");
-  }, []);
+  }, [setSearchTerm]);
 
   return (
     <div className="searchbar">

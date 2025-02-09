@@ -3,6 +3,7 @@ import WarehouseInventoryContainer from "../../components/WarehouseInventoryCont
 
 function WarehouseDetailPage() {
   const { id } = useParams();
+
   return (
     <div className="page-content">
       <WarehouseInventoryContainer id={id} />

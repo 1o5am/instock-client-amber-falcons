@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import WarehouseList from "../WarehouseList/WarehouseList";
+import { BASE_URL } from "../../utils/utils.js";
 
 const WarehouseContainer = ({ searchTerm, sortField, sortOrder, onSort }) => {
   const [warehouses, setWarehouses] = useState([]);
-  const baseURL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     async function getAllWarehouseItems() {
       try {
         const allWarehouseResponse = await axios.get(
-          `${baseURL}/warehouses?s=${searchTerm}&sort_by=${sortField}&order_by=${sortOrder}`
+          `${BASE_URL}/warehouses?s=${searchTerm}`
         );
 
         setWarehouses(allWarehouseResponse.data);

@@ -4,25 +4,29 @@ import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import errorIcon from "../../assets/icons/error-24px.svg";
+import { BASE_URL } from "../../utils/utils.js";
 
 function ItemForm({ formResponse, setFormResponse, addOrEditItem, isNew }) {
-  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [warehouses, setWarehouses] = useState([]);
-  const [categories, setCategories] = useState([
+  const categories = [
     { name: "Electronics", id: 1 },
     { name: "Gear", id: 2 },
     { name: "Apparel", id: 3 },
     { name: "Accessories", id: 4 },
     { name: "Shampoo", id: 5 },
     { name: "Health", id: 6 },
-  ]);
+  ];
 
   const [errors, setErrors] = useState({});
 
   async function getAllWarehouses() {
-    const allWarehousesResponse = await axios.get(`${baseURL}/warehouses`);
-    setWarehouses(allWarehousesResponse.data);
+    try {
+      const allWarehousesResponse = await axios.get(`${BASE_URL}/warehouses`);
+      setWarehouses(allWarehousesResponse.data);
+    } catch (error) {
+      console.error("Failed to fetch all warehouses:", error);
+    }
   }
 
   useEffect(() => {
