@@ -3,11 +3,11 @@ import axios from "axios";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import "./WarehouseForm.scss";
 import errorIcon from "../../assets/icons/error-24px.svg";
+import { BASE_URL } from "../../utils/utils.js";
 
 const WarehouseForm = () => {
   const { id } = useParams();
   const { pathname } = useLocation();
-  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const isEditing = pathname.includes("/edit");
   const [errors, setErrors] = useState({});
@@ -27,7 +27,7 @@ const WarehouseForm = () => {
       if (!isEditing) return;
 
       try {
-        const response = await axios.get(`${baseURL}/warehouses/${id}`);
+        const response = await axios.get(`${BASE_URL}/warehouses/${id}`);
         setFormData(response.data);
       } catch (error) {
         console.error("Error fetching warehouse:", error);
@@ -91,8 +91,8 @@ const WarehouseForm = () => {
 
     try {
       const endpoint = isEditing
-        ? `${baseURL}/warehouses/${id}`
-        : `${baseURL}/warehouses`;
+        ? `${BASE_URL}/warehouses/${id}`
+        : `${BASE_URL}/warehouses`;
 
       const method = isEditing ? "put" : "post";
 

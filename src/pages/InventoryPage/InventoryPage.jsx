@@ -7,6 +7,7 @@ import { useState } from "react";
 function InventoryPage() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <div className="page-content inventory-page">
       <div className="inventory-page__header">

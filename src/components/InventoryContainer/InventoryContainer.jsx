@@ -1,26 +1,26 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import InventoryList from "../InventoryList/InventoryList";
+import { BASE_URL } from "../../utils/utils.js";
 
 function InventoryContainer({ searchTerm }) {
   const [inventory, setInventory] = useState([]);
-  const baseURL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     async function getAllInventoryItems() {
       try {
         const allInventoryResponse = await axios.get(
-          `${baseURL}/inventory?s=${searchTerm}`
+          `${BASE_URL}/inventory?s=${searchTerm}`
         );
 
         setInventory(allInventoryResponse.data);
       } catch (error) {
-        console.error("Failed to fetch inventory:", error);
+        console.error("Failed to fetch all inventories:", error);
       }
     }
 
     getAllInventoryItems();
-  }, [searchTerm, baseURL]);
+  }, [searchTerm]);
 
   const handleDelete = (deletedId) => {
     setInventory(inventory.filter((item) => item.id !== deletedId));

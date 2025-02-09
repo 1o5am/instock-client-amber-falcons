@@ -1,13 +1,13 @@
 import ItemForm from "../../components/ItemForm/ItemForm.jsx";
 import "./EditItemPage.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { BASE_URL } from "../../utils/utils.js";
 
 function EditItemPage() {
-  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const { id } = useParams();
   const [formResponse, setFormResponse] = useState({
@@ -19,24 +19,25 @@ function EditItemPage() {
     quantity: 0,
   });
 
-  async function getItemDetails() {
-    try {
-      const getItemResponse = await axios.get(`${baseURL}/inventory/${id}`);
-      setFormResponse({
-        warehouse_id: getItemResponse.data.warehouse_id,
-        item_name: getItemResponse.data.item_name,
-        description: getItemResponse.data.description,
-        category: getItemResponse.data.category,
-        status: getItemResponse.data.status,
-        quantity: getItemResponse.data.quantity,
-      });
-    } catch (error) {
-      console.log(`Error: Could not get Item with id ${id}`);
-    }
-  }
   useEffect(() => {
+    async function getItemDetails() {
+      try {
+        const getItemResponse = await axios.get(`${BASE_URL}/inventory/${id}`);
+        setFormResponse({
+          warehouse_id: getItemResponse.data.warehouse_id,
+          item_name: getItemResponse.data.item_name,
+          description: getItemResponse.data.description,
+          category: getItemResponse.data.category,
+          status: getItemResponse.data.status,
+          quantity: getItemResponse.data.quantity,
+        });
+      } catch (error) {
+        console.log(`Error: Could not get Item with id ${id}`, error);
+      }
+    }
+
     getItemDetails();
-  }, []);
+  }, [id]);
 
   async function editItem() {
     const editItem = {
@@ -47,8 +48,9 @@ function EditItemPage() {
       status: formResponse.status,
       quantity: Number(formResponse.quantity),
     };
+
     try {
-      await axios.put(`${baseURL}/inventory/${id}`, editItem);
+      await axios.put(`${BASE_URL}/inventory/${id}`, editItem);
       console.log("Item Edited!");
       return true;
     } catch (error) {
@@ -56,6 +58,7 @@ function EditItemPage() {
       return false;
     }
   }
+
   async function validateEditItem() {
     try {
       const isSuccess = await editItem();
@@ -70,6 +73,7 @@ function EditItemPage() {
       toast.error("An unexpected error occurred.");
     }
   }
+
   return (
     <div className="page-content edit-item-page">
       <div className="edit-item-page__header">
