@@ -134,7 +134,7 @@ function EditWarehousePage() {
       <form className="item__form" onSubmit={handleSubmit}>
         <div className="form__details">
           <section className="form__section form__section--right-border">
-            <p className="form__section-title">Warehouse Details</p>
+            <p className="form__section-title title">Warehouse Details</p>
             
             <div className="form__item">
               <label htmlFor="warehouse_name">Warehouse Name</label>
@@ -210,7 +210,7 @@ function EditWarehousePage() {
           </section>
 
           <section className="form__section">
-            <p className="form__section-title">Contact Details</p>
+            <p className="form__section-title title">Contact Details</p>
             
             <div className="form__item">
               <label htmlFor="contact_name">Contact Name</label>
@@ -296,7 +296,7 @@ function EditWarehousePage() {
             >
               Cancel
             </button>
-            <button type="submit" className="form__add-btn">
+            <button type="submit" className="form__add-btn save-btn">
               Save
             </button>
           </div>

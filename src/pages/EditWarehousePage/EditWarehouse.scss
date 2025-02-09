@@ -43,16 +43,22 @@
   }
 }
 
-// Override ItemForm styles for this specific page
 .edit-warehouse-page {
   .item__form {
     background-color: transparent;
   }
 
-  .form__section-title {
-    font-size: 1.25rem;
+  &__title {
+    font-size: 1.563rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+  }
+
+  &__section-title {
     font-weight: $font-weight-semibold;
-    color: $color-slate;
+    font-size: 1rem;
+    color: $color-instock-black;
+    padding-bottom: 1rem;
     @include tablet {
       font-size: 1.4rem;
       padding-bottom: 0.1rem;
@@ -60,17 +66,53 @@
   }
 
   .form__item {
+    label {
+      font-size: 0.7rem;
+      font-weight: $font-weight-semibold;
+      color: $color-instock-black;
+      @include tablet {
+        font-size: 0.8rem;
+      }
+    }
+
+
     input {
+      border: 1px solid $color-cloud;
       border-radius: 1.25rem;
+      padding: 0.5rem; 
+      &::placeholder {
+        color: $color-slate;
+      }
+      @include tablet {
+        padding: 0.75rem; 
+      }
     }
   }
 
-  .form__button-container {
+  &__button-container {
     border-radius: 0 0 1.25rem 1.25rem;
   }
 
-  .form__cancel-btn,
-  .form__add-btn {
+  &__cancel-btn,
+  &__add-btn {
     border-radius: 1.25rem;
   }
+}
+
+button {
+    padding: 0.5rem 0;
+    border-radius: 1.25rem;
+    height: 2.25rem;
+    width: 100%;
+    cursor: pointer;
+}
+
+.save-btn {
+    background-color: #2e66e5;
+    color: #ffffff;
+}
+
+.title {
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
 }
