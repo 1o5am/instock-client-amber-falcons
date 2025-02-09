@@ -23,7 +23,9 @@ function EditItemPage() {
   useEffect(() => {
     async function getItemDetails() {
       try {
-        const getItemResponse = await axios.get(`${BASE_URL}/inventory/${id}`);
+        const getItemResponse = await axios.get(
+          `${BASE_URL}/inventories/${id}`
+        );
         setFormResponse({
           warehouse_id: getItemResponse.data.warehouse_id,
           item_name: getItemResponse.data.item_name,
@@ -51,7 +53,7 @@ function EditItemPage() {
     };
 
     try {
-      await axios.put(`${BASE_URL}/inventory/${id}`, editItem);
+      await axios.put(`${BASE_URL}/inventories/${id}`, editItem);
       console.log("Item Edited!");
       return true;
     } catch (error) {

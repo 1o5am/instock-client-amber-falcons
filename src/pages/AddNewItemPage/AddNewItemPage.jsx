@@ -29,7 +29,7 @@ function AddNewItemPage() {
     };
     try {
       const addItemResponse = await axios.post(
-        `${BASE_URL}/inventory`,
+        `${BASE_URL}/inventories`,
         newItem
       );
       console.log("New Item Added!");

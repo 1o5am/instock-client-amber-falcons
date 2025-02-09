@@ -10,7 +10,7 @@ function InventoryContainer({ searchTerm }) {
     async function getAllInventoryItems() {
       try {
         const allInventoryResponse = await axios.get(
-          `${BASE_URL}/inventory?s=${searchTerm}`
+          `${BASE_URL}/inventories?s=${searchTerm}`
         );
 
         setInventory(allInventoryResponse.data);
