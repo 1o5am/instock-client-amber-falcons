@@ -104,36 +104,35 @@ const WarehouseDetails = ({ id }) => {
     <section className="warehouse-details">
       <div className="warehouse-details__header">
         <div className="warehouse-details__title-container">
-          <Link to="/warehouses" className="warehouse-details__back">
+          <Link to="/warehouses" className="warehouse-details__back button">
             <img src={backArrow} alt="Back" />
           </Link>
           <h1 className="warehouse-details__title">{warehouse.warehouse_name}</h1>
         </div>
-        <Link to={`/warehouses/${id}/edit`} className="warehouse-details__edit">
+        <Link to={`/warehouses/${id}/edit`} className="warehouse-details__edit-button button">
           <img src={editIcon} alt="Edit" />
-          <span>Edit</span>
         </Link>
       </div>
-
-      <div className="warehouse-details__content">
+      <div className="warehouse-details__content-container">
         <div className="warehouse-details__section">
-          <div className="warehouse-details__address">
-            <h2 className="warehouse-details__subtitle">WAREHOUSE ADDRESS:</h2>
-            <p className="warehouse-details__text">{warehouse.address}</p>
-            <p className="warehouse-details__text">{warehouse.city}, {warehouse.country}</p>
+          <div className="warehouse-details__address-details">
+            <p className="warehouse-details__address-label label">WAREHOUSE ADDRESS:</p>
+            <div className="warehouse-details__address-value">
+              <p className="warehouse-details__text">{warehouse.address},</p>
+              <span className="warehouse-details__text">{warehouse.city}, {warehouse.country}</span>
+            </div>
           </div>
         </div>
-
         <div className="warehouse-details__section">
-          <div className="warehouse-details__contact">
+          <div className="warehouse-details__contact-details">
             <div className="warehouse-details__contact-name">
-              <h2 className="warehouse-details__subtitle">CONTACT NAME:</h2>
+              <p className="warehouse-details__contact-label label">CONTACT NAME:</p>
               <p className="warehouse-details__text">{warehouse.contact_name}</p>
               <p className="warehouse-details__text">{warehouse.contact_position}</p>
             </div>
 
             <div className="warehouse-details__contact-info">
-              <h2 className="warehouse-details__subtitle">CONTACT INFORMATION:</h2>
+              <p className="warehouse-details__contact-label label">CONTACT INFORMATION:</p>
               <p className="warehouse-details__text">{warehouse.contact_phone}</p>
               <p className="warehouse-details__text">{warehouse.contact_email}</p>
             </div>

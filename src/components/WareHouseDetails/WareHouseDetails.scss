@@ -4,11 +4,29 @@
 .warehouse-details {
   background-color: $color-white;
   @include grid-container;
-
+  text-align: left;
 
   &__header {
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
   }
 
+  &__title-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__edit-button {
+    
+  }
+
+  &__address-value {
+    display: flex;
+    gap: 0.3rem;
+  }
+  
 
 }
