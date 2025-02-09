@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import List from "../List/List";
-import React from "react";
+import InventoryList from "../InventoryList/InventoryList";
 
-function InventoryListByWarehouseId({ id }) {
+function WarehouseInventoryContainer({ id }) {
   const [inventoryById, setInventoryById] = useState([]);
   const handleDelete = (deletedId) => {
     setInventoryById(inventoryById.filter((item) => item.id !== deletedId));
@@ -15,7 +14,7 @@ function InventoryListByWarehouseId({ id }) {
       const inventoryByIdResponse = await axios.get(
         `${baseURL}/warehouses/${id}/inventories`
       );
-      //   console.log(inventoryByIdResponse.data);
+
       setInventoryById(inventoryByIdResponse.data);
     } catch (error) {
       console.error("Error in fetching inventory by id", error);
@@ -29,7 +28,7 @@ function InventoryListByWarehouseId({ id }) {
   return (
     <>
       {inventoryById ? (
-        <List
+        <InventoryList
           allItems={inventoryById}
           isWarehouse={true}
           onDelete={handleDelete}
@@ -41,4 +40,4 @@ function InventoryListByWarehouseId({ id }) {
   );
 }
 
-export default InventoryListByWarehouseId;
+export default WarehouseInventoryContainer;
