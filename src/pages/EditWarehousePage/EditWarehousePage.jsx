@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import errorIcon from "../../assets/icons/error-24px.svg";
 
 function EditWarehousePage() {
   const baseURL = import.meta.env.VITE_API_URL;
@@ -23,45 +24,37 @@ function EditWarehousePage() {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  // Validation functions
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePhone = (phone) => {
-    const phoneRegex = /^\+1 \(\d{3}\) \d{3}-\d{4}$/;
-    return phoneRegex.test(phone);
-  };
-
   const validateForm = () => {
     const newErrors = {};
-    
-    // Check required fields
-    if (!formResponse.warehouse_name.trim()) {
-      newErrors.warehouse_name = "Warehouse name is required";
-    }
-    if (!formResponse.address.trim()) {
-      newErrors.address = "Street address is required";
-    }
-    if (!formResponse.city.trim()) {
-      newErrors.city = "City is required";
-    }
-    if (!formResponse.country.trim()) {
-      newErrors.country = "Country is required";
-    }
-    if (!formResponse.contact_name.trim()) {
-      newErrors.contact_name = "Contact name is required";
-    }
-    if (!formResponse.contact_position.trim()) {
-      newErrors.contact_position = "Position is required";
-    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+1 \(\d{3}\) \d{3}-\d{4}$/;
 
-    // Validate phone and email
-    if (!validatePhone(formResponse.contact_phone)) {
+    if (!formResponse.warehouse_name?.trim()) {
+      newErrors.warehouse_name = "This field is required";
+    }
+    if (!formResponse.address?.trim()) {
+      newErrors.address = "This field is required";
+    }
+    if (!formResponse.city?.trim()) {
+      newErrors.city = "This field is required";
+    }
+    if (!formResponse.country?.trim()) {
+      newErrors.country = "This field is required";
+    }
+    if (!formResponse.contact_name?.trim()) {
+      newErrors.contact_name = "This field is required";
+    }
+    if (!formResponse.contact_position?.trim()) {
+      newErrors.contact_position = "This field is required";
+    }
+    if (!formResponse.contact_phone?.trim()) {
+      newErrors.contact_phone = "This field is required";
+    } else if (!phoneRegex.test(formResponse.contact_phone)) {
       newErrors.contact_phone = "Please enter a valid phone number: +1 (XXX) XXX-XXXX";
     }
-    if (!validateEmail(formResponse.contact_email)) {
+    if (!formResponse.contact_email?.trim()) {
+      newErrors.contact_email = "This field is required";
+    } else if (!emailRegex.test(formResponse.contact_email)) {
       newErrors.contact_email = "Please enter a valid email address";
     }
 
@@ -71,7 +64,6 @@ function EditWarehousePage() {
 
   async function getWarehouseDetails() {
     try {
-      setIsLoading(true);
       const response = await axios.get(`${baseURL}/api/warehouses/${id}`);
       setFormResponse({
         warehouse_name: response.data.warehouse_name,
@@ -101,7 +93,6 @@ function EditWarehousePage() {
       ...prev,
       [name]: value
     }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -110,39 +101,19 @@ function EditWarehousePage() {
     }
   };
 
-  async function editWarehouse() {
-    if (!validateForm()) {
-      toast.error("Please fix the errors in the form");
-      return false;
-    }
-
-    try {
-      await axios.put(`${baseURL}/api/warehouses/${id}`, formResponse);
-      return true;
-    } catch (error) {
-      console.error("Error: Could not edit warehouse", error);
-      if (error.response?.status === 400) {
-        toast.error(error.response.data.message);
-      } else {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      try {
+        await axios.put(`${baseURL}/api/warehouses/${id}`, formResponse);
+        toast.success("Warehouse updated successfully");
+        navigate("/warehouses");
+      } catch (error) {
+        console.error("Error updating warehouse:", error);
         toast.error("Failed to update warehouse");
       }
-      return false;
     }
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      const isSuccess = await editWarehouse();
-      if (isSuccess) {
-        toast.success("Success! Warehouse Updated");
-        navigate("/warehouses");
-      }
-    } catch (error) {
-      console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred");
-    }
-  }
+  };
 
   if (isLoading) {
     return <div className="edit-warehouse-page__loading">Loading...</div>;
@@ -151,139 +122,184 @@ function EditWarehousePage() {
   return (
     <div className="edit-warehouse-page">
       <div className="edit-warehouse-page__header">
-        <button 
-          className="edit-warehouse-page__back-button" 
+        <img 
+          className="edit-warehouse-page__back" 
+          src={backArrow} 
+          alt="Back"
           onClick={() => navigate(-1)}
-        >
-          <img 
-            className="edit-warehouse-page__back-icon" 
-            src={backArrow} 
-            alt="Back"
-          />
-          <span>Back</span>
-        </button>
+        />
         <h1 className="edit-warehouse-page__title">Edit Warehouse</h1>
       </div>
 
-      <form className="edit-warehouse-page__form" onSubmit={handleSubmit}>
-        <div className="edit-warehouse-page__form-section">
-          <h2 className="edit-warehouse-page__subtitle">Warehouse Details</h2>
-          <div className="edit-warehouse-page__input-group">
-            <label htmlFor="warehouse_name">Warehouse Name</label>
-            <input
-              type="text"
-              id="warehouse_name"
-              name="warehouse_name"
-              value={formResponse.warehouse_name}
-              onChange={handleInputChange}
-              className={errors.warehouse_name ? "error" : ""}
-            />
-            {errors.warehouse_name && <span className="error-message">{errors.warehouse_name}</span>}
-          </div>
-          <div className="edit-warehouse-page__input-group">
-            <label htmlFor="address">Street Address</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              value={formResponse.address}
-              onChange={handleInputChange}
-              className={errors.address ? "error" : ""}
-            />
-            {errors.address && <span className="error-message">{errors.address}</span>}
-          </div>
-          <div className="edit-warehouse-page__input-group">
-            <label htmlFor="city">City</label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              value={formResponse.city}
-              onChange={handleInputChange}
-              className={errors.city ? "error" : ""}
-            />
-            {errors.city && <span className="error-message">{errors.city}</span>}
-          </div>
-          <div className="edit-warehouse-page__input-group">
-            <label htmlFor="country">Country</label>
-            <input
-              type="text"
-              id="country"
-              name="country"
-              value={formResponse.country}
-              onChange={handleInputChange}
-              className={errors.country ? "error" : ""}
-            />
-            {errors.country && <span className="error-message">{errors.country}</span>}
-          </div>
+      <form className="item__form" onSubmit={handleSubmit}>
+        <div className="form__details">
+          <section className="form__section form__section--right-border">
+            <p className="form__section-title">Warehouse Details</p>
+            
+            <div className="form__item">
+              <label htmlFor="warehouse_name">Warehouse Name</label>
+              <input
+                type="text"
+                id="warehouse_name"
+                name="warehouse_name"
+                value={formResponse.warehouse_name}
+                onChange={handleInputChange}
+                className={errors.warehouse_name ? "error" : ""}
+              />
+              {errors.warehouse_name && (
+                <div className="form__error">
+                  <img src={errorIcon} alt="Error" />
+                  <span>{errors.warehouse_name}</span>
+                </div>
+              )}
+            </div>
+
+            <div className="form__item">
+              <label htmlFor="address">Street Address</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value={formResponse.address}
+                onChange={handleInputChange}
+                className={errors.address ? "error" : ""}
+              />
+              {errors.address && (
+                <div className="form__error">
+                  <img src={errorIcon} alt="Error" />
+                  <span>{errors.address}</span>
+                </div>
+              )}
+            </div>
+
+            <div className="form__item">
+              <label htmlFor="city">City</label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                value={formResponse.city}
+                onChange={handleInputChange}
+                className={errors.city ? "error" : ""}
+              />
+              {errors.city && (
+                <div className="form__error">
+                  <img src={errorIcon} alt="Error" />
+                  <span>{errors.city}</span>
+                </div>
+              )}
+            </div>
+
+            <div className="form__item">
+              <label htmlFor="country">Country</label>
+              <input
+                type="text"
+                id="country"
+                name="country"
+                value={formResponse.country}
+                onChange={handleInputChange}
+                className={errors.country ? "error" : ""}
+              />
+              {errors.country && (
+                <div className="form__error">
+                  <img src={errorIcon} alt="Error" />
+                  <span>{errors.country}</span>
+                </div>
+              )}
+            </div>
+          </section>
+
+          <section className="form__section">
+            <p className="form__section-title">Contact Details</p>
+            
+            <div className="form__item">
+              <label htmlFor="contact_name">Contact Name</label>
+              <input
+                type="text"
+                id="contact_name"
+                name="contact_name"
+                value={formResponse.contact_name}
+                onChange={handleInputChange}
+                className={errors.contact_name ? "error" : ""}
+              />
+              {errors.contact_name && (
+                <div className="form__error">
+                  <img src={errorIcon} alt="Error" />
+                  <span>{errors.contact_name}</span>
+                </div>
+              )}
+            </div>
+
+            <div className="form__item">
+              <label htmlFor="contact_position">Position</label>
+              <input
+                type="text"
+                id="contact_position"
+                name="contact_position"
+                value={formResponse.contact_position}
+                onChange={handleInputChange}
+                className={errors.contact_position ? "error" : ""}
+              />
+              {errors.contact_position && (
+                <div className="form__error">
+                  <img src={errorIcon} alt="Error" />
+                  <span>{errors.contact_position}</span>
+                </div>
+              )}
+            </div>
+
+            <div className="form__item">
+              <label htmlFor="contact_phone">Phone Number</label>
+              <input
+                type="tel"
+                id="contact_phone"
+                name="contact_phone"
+                value={formResponse.contact_phone}
+                onChange={handleInputChange}
+                placeholder="+1 (XXX) XXX-XXXX"
+                className={errors.contact_phone ? "error" : ""}
+              />
+              {errors.contact_phone && (
+                <div className="form__error">
+                  <img src={errorIcon} alt="Error" />
+                  <span>{errors.contact_phone}</span>
+                </div>
+              )}
+            </div>
+
+            <div className="form__item">
+              <label htmlFor="contact_email">Email</label>
+              <input
+                type="email"
+                id="contact_email"
+                name="contact_email"
+                value={formResponse.contact_email}
+                onChange={handleInputChange}
+                className={errors.contact_email ? "error" : ""}
+              />
+              {errors.contact_email && (
+                <div className="form__error">
+                  <img src={errorIcon} alt="Error" />
+                  <span>{errors.contact_email}</span>
+                </div>
+              )}
+            </div>
+          </section>
         </div>
 
-        <div className="edit-warehouse-page__form-section">
-          <h2 className="edit-warehouse-page__subtitle">Contact Details</h2>
-          <div className="edit-warehouse-page__input-group">
-            <label htmlFor="contact_name">Contact Name</label>
-            <input
-              type="text"
-              id="contact_name"
-              name="contact_name"
-              value={formResponse.contact_name}
-              onChange={handleInputChange}
-              className={errors.contact_name ? "error" : ""}
-            />
-            {errors.contact_name && <span className="error-message">{errors.contact_name}</span>}
+        <div className="form__button-container">
+          <div className="form__buttons">
+            <button
+              type="button"
+              className="form__cancel-btn"
+              onClick={() => navigate(-1)}
+            >
+              Cancel
+            </button>
+            <button type="submit" className="form__add-btn">
+              Save
+            </button>
           </div>
-          <div className="edit-warehouse-page__input-group">
-            <label htmlFor="contact_position">Position</label>
-            <input
-              type="text"
-              id="contact_position"
-              name="contact_position"
-              value={formResponse.contact_position}
-              onChange={handleInputChange}
-              className={errors.contact_position ? "error" : ""}
-            />
-            {errors.contact_position && <span className="error-message">{errors.contact_position}</span>}
-          </div>
-          <div className="edit-warehouse-page__input-group">
-            <label htmlFor="contact_phone">Phone Number</label>
-            <input
-              type="text"
-              id="contact_phone"
-              name="contact_phone"
-              value={formResponse.contact_phone}
-              onChange={handleInputChange}
-              className={errors.contact_phone ? "error" : ""}
-            />
-            {errors.contact_phone && <span className="error-message">{errors.contact_phone}</span>}
-          </div>
-          <div className="edit-warehouse-page__input-group">
-            <label htmlFor="contact_email">Email Address</label>
-            <input
-              type="email"
-              id="contact_email"
-              name="contact_email"
-              value={formResponse.contact_email}
-              onChange={handleInputChange}
-              className={errors.contact_email ? "error" : ""}
-            />
-            {errors.contact_email && <span className="error-message">{errors.contact_email}</span>}
-          </div>
-        </div>
-
-        <div className="edit-warehouse-page__actions">
-          <button 
-            type="button" 
-            className="edit-warehouse-page__cancel"
-            onClick={() => navigate(-1)}
-          >
-            Cancel
-          </button>
-          <button 
-            type="submit" 
-            className="edit-warehouse-page__save"
-          >
-            Save
-          </button>
         </div>
       </form>
     </div>

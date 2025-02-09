@@ -10,6 +10,7 @@ import AddNewItemPage from "./pages/AddNewItemPage/AddNewItemPage.jsx";
 import InventoryItemDetailPage from "./pages/InventoryItemDetailPage/InventoryItemDetailPage.jsx";
 import AddNewWarehousePage from "./pages/AddNewWarehousePage/AddNewWarehousePage.jsx";
 import EditItemPage from "./pages/EditItemPage/EditItemPage.jsx";
+import EditWarehousePage from "./pages/EditWarehousePage/EditWarehousePage.jsx"; 
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           path="/inventory/:id"
           element={<InventoryItemDetailPage />}
         ></Route>
+        <Route path="/warehouses/:id/edit" element={<EditWarehousePage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

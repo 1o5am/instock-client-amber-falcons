@@ -2,12 +2,38 @@
 @use "../../styles/partials/mixins" as *;
 
 .edit-warehouse-page {
-  padding: 1rem;
-  max-width: 1020px;
-  margin: 0 auto;
-  
+  background-color: $color-white;
+  margin: 1rem;
+  border-radius: 1.25rem;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  overflow: hidden;
+
   @include tablet {
-    padding: 2rem;
+    margin: 2rem;
+  }
+
+  &__header {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid $color-cloud;
+
+    @include tablet {
+      padding: 2rem;
+    }
+  }
+
+  &__back {
+    height: 100%;
+    cursor: pointer;
+  }
+
+  &__title {
+    font-size: $h1-size;
+    font-weight: $font-weight-semibold;
+    margin: 0;
   }
 
   &__loading {
@@ -15,146 +41,36 @@
     padding: 2rem;
     font-size: 1.2rem;
   }
+}
 
-  &__header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid $color-cloud;
+// Override ItemForm styles for this specific page
+.edit-warehouse-page {
+  .item__form {
+    background-color: transparent;
   }
 
-  &__back-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-
-  &__back-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  &__title {
-    font-size: 1.75rem;
-    font-weight: 600;
-    margin: 0;
-
-    @include tablet {
-      font-size: 2rem;
-    }
-  }
-
-  &__form {
-    background-color: white;
-    border-radius: 4px;
-    padding: 1rem;
-
-    @include tablet {
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-  }
-
-  &__form-section {
-    margin-bottom: 2rem;
-
-    @include tablet {
-      margin-bottom: 0;
-    }
-  }
-
-  &__subtitle {
+  .form__section-title {
     font-size: 1.25rem;
-    margin-bottom: 1.5rem;
+    font-weight: $font-weight-semibold;
     color: $color-slate;
-  }
-
-  &__input-group {
-    margin-bottom: 1.5rem;
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid $color-cloud;
-      border-radius: 4px;
-      font-size: 0.9rem;
-
-      &.error {
-        border-color: $color-red;
-      }
-
-      &:focus {
-        outline: none;
-        border-color: $color-indigo;
-      }
+    @include tablet {
+      font-size: 1.4rem;
+      padding-bottom: 0.1rem;
     }
   }
 
-  .error-message {
-    color: $color-red;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-    display: block;
-  }
-
-  &__actions {
-    grid-column: 1 / -1;
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid $color-cloud;
-
-    @include mobile {
-      flex-direction: column;
+  .form__item {
+    input {
+      border-radius: 1.25rem;
     }
   }
 
-  &__cancel,
-  &__save {
-    padding: 0.75rem 2rem;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s;
-
-    &:hover {
-      opacity: 0.9;
-    }
-
-    @include mobile {
-      width: 100%;
-    }
+  .form__button-container {
+    border-radius: 0 0 1.25rem 1.25rem;
   }
 
-  &__cancel {
-    background-color: white;
-    border: 1px solid $color-cloud;
-    color: $color-slate;
-  }
-
-  &__save {
-    background-color: $color-indigo;
-    border: none;
-    color: white;
+  .form__cancel-btn,
+  .form__add-btn {
+    border-radius: 1.25rem;
   }
 }

@@ -56,12 +56,19 @@ const WarehouseListItem = ({ item, onDelete }) => {
         <p className="warehouse-item__name">{item.contact_phone}</p>
         <p className="warehouse-item__name">{item.contact_email}</p>
       </div>
-      <div className="warehouse-item__icons">
-        <button onClick={openDeleteModal} className="icon__button">
-          <img className="icon" src={deleteIcon} alt="Delete" />
-        </button>
-        <Link to={`edit/${item.id}`}>
-          <img className="icon" src={editIcon}></img>
+      <div className="warehouse-item__actions">
+        <img
+          src={deleteIcon}
+          alt="Delete"
+          onClick={openDeleteModal}
+          className="warehouse-item__action-icon"
+        />
+        <Link to={`/warehouses/${item.id}/edit`}>
+          <img
+            src={editIcon}
+            alt="Edit"
+            className="warehouse-item__action-icon"
+          />
         </Link>
       </div>
 
