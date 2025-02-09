@@ -108,7 +108,7 @@ const WarehouseDetails = ({ id }) => {
               <Link to="/warehouses" className="warehouse-details__back ">
                 <img src={backArrow} alt="Back" />
               </Link>
-              <h1 className="warehouse-details__title">{warehouse.warehouse_name}</h1>
+              <p className="warehouse-details__title">{warehouse.warehouse_name}</p>
             </div>
           <Link to={`/warehouses/${id}/edit`} className="warehouse-details__edit-button ">
             <img src={editIcon} alt="Edit" />
@@ -127,13 +127,13 @@ const WarehouseDetails = ({ id }) => {
         </div>
         <div className="warehouse-details__section">
           <div className="warehouse-details__contact-details">
-            <div className="warehouse-details__contact-name">
+            <div className="warehouse-details__contact-name-container">
               <p className="warehouse-details__contact-label label">CONTACT NAME:</p>
               <p className="warehouse-details__text">{warehouse.contact_name}</p>
               <p className="warehouse-details__text">{warehouse.contact_position}</p>
             </div>
 
-            <div className="warehouse-details__contact-info">
+            <div className="warehouse-details__contact-info-container">
               <p className="warehouse-details__contact-label label">CONTACT INFORMATION:</p>
               <p className="warehouse-details__text">{warehouse.contact_phone}</p>
               <p className="warehouse-details__text">{warehouse.contact_email}</p>

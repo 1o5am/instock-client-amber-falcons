@@ -148,7 +148,8 @@ ul {
   list-style: none;
 }
 
-input {
+input,
+textarea {
   text-decoration: none;
 
   &:focus {
