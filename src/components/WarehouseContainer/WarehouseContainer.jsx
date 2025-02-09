@@ -10,7 +10,7 @@ const WarehouseContainer = ({ searchTerm, sortField, sortOrder, onSort }) => {
     async function getAllWarehouseItems() {
       try {
         const allWarehouseResponse = await axios.get(
-          `${BASE_URL}/warehouses?s=${searchTerm}`
+          `${BASE_URL}/warehouses?s=${searchTerm}&sort_by=${sortField}&order_by=${sortOrder}`
         );
 
         setWarehouses(allWarehouseResponse.data);
