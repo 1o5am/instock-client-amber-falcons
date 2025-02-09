@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import "./WarehouseForm.scss";
 import errorIcon from "../../assets/icons/error-24px.svg";
 
 const WarehouseForm = () => {
+  const { id } = useParams();
+  const { pathname } = useLocation();
   const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
+  const isEditing = pathname.includes("/edit");
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     warehouse_name: "",
     address: "",
@@ -18,7 +22,21 @@ const WarehouseForm = () => {
     contact_email: "",
   });
 
-  const [errors, setErrors] = useState({});
+  useEffect(() => {
+    const fetchWarehouseData = async () => {
+      if (!isEditing) return;
+
+      try {
+        const response = await axios.get(`${baseURL}/warehouses/${id}`);
+        setFormData(response.data);
+      } catch (error) {
+        console.error("Error fetching warehouse:", error);
+        navigate("/warehouses");
+      }
+    };
+
+    fetchWarehouseData();
+  }, [id, baseURL, navigate, isEditing]);
 
   // Custom Validation Functions
   const validateForm = () => {
@@ -72,12 +90,17 @@ const WarehouseForm = () => {
     if (!validateForm()) return;
 
     try {
-      const response = await axios.post(`${baseURL}/warehouses`, formData);
-      console.log("Warehouse Added:", response.data);
+      const endpoint = isEditing
+        ? `${baseURL}/warehouses/${id}`
+        : `${baseURL}/warehouses`;
+
+      const method = isEditing ? "put" : "post";
+
+      await axios[method](endpoint, formData);
       navigate("/warehouses");
     } catch (error) {
       console.error(
-        "Error adding warehouse:",
+        `Error ${isEditing ? "updating" : "adding"} warehouse:`,
         error.response?.data || error.message
       );
     }
@@ -254,7 +277,7 @@ const WarehouseForm = () => {
             Cancel
           </button>
           <button className="warehouse-form__button warehouse-form__button--add btn btn--primary">
-            + Add Warehouse
+            {isEditing ? "Save Changes" : "+ Add Warehouse"}
           </button>
         </div>
       </form>

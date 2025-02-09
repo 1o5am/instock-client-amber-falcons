@@ -10,6 +10,7 @@ import AddNewItemPage from "./pages/AddNewItemPage/AddNewItemPage.jsx";
 import InventoryItemDetailPage from "./pages/InventoryItemDetailPage/InventoryItemDetailPage.jsx";
 import AddNewWarehousePage from "./pages/AddNewWarehousePage/AddNewWarehousePage.jsx";
 import EditItemPage from "./pages/EditItemPage/EditItemPage.jsx";
+import EditWarehousePage from "./pages/EditWarehousePage/EditWarehousePage.jsx";
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
         <Route path="/" element={<Navigate to="/warehouses" />} />
         <Route path="/warehouses" element={<WarehousePage />}></Route>
         <Route path="/warehouses/add" element={<AddNewWarehousePage />}></Route>
+        <Route
+          path="/warehouses/edit/:id"
+          element={<EditWarehousePage />}
+        ></Route>
         <Route path="/inventory" element={<InventoryPage />}></Route>
         <Route path="/inventory/add" element={<AddNewItemPage />}></Route>
         <Route path="/inventory/edit/:id" element={<EditItemPage />}></Route>
