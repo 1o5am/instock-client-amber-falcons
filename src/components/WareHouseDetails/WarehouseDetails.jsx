@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./WarehouseDetails.scss";
-import editIcon from "../../assets/icons/edit-24px.svg";
+import editIcon from "../../assets/icons/edit-white-24px.svg";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 
 const WarehouseDetails = ({ id }) => {
@@ -102,18 +102,20 @@ const WarehouseDetails = ({ id }) => {
 
   return (
     <section className="warehouse-details">
-      <div className="warehouse-details__header">
-        <div className="warehouse-details__title-container">
-          <Link to="/warehouses" className="warehouse-details__back button">
-            <img src={backArrow} alt="Back" />
+      <div className="warehouse-details__header-container">
+          <div className="warehouse-details__header">
+            <div className="warehouse-details__title-container">
+              <Link to="/warehouses" className="warehouse-details__back ">
+                <img src={backArrow} alt="Back" />
+              </Link>
+              <h1 className="warehouse-details__title">{warehouse.warehouse_name}</h1>
+            </div>
+          <Link to={`/warehouses/${id}/edit`} className="warehouse-details__edit-button ">
+            <img src={editIcon} alt="Edit" />
           </Link>
-          <h1 className="warehouse-details__title">{warehouse.warehouse_name}</h1>
         </div>
-        <Link to={`/warehouses/${id}/edit`} className="warehouse-details__edit-button button">
-          <img src={editIcon} alt="Edit" />
-        </Link>
       </div>
-      <div className="warehouse-details__content-container">
+      <div className="warehouse-details__contact-container">
         <div className="warehouse-details__section">
           <div className="warehouse-details__address-details">
             <p className="warehouse-details__address-label label">WAREHOUSE ADDRESS:</p>

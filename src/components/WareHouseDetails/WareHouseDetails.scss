@@ -2,15 +2,19 @@
 @use "../../styles/partials/variables" as *;
 
 .warehouse-details {
-  background-color: $color-white;
-  @include grid-container;
   text-align: left;
 
+  &__header-container {
+    border-bottom: 0.015rem solid $color-slate;
+    margin-bottom: 24px;
+  }
+
   &__header {
+    @include grid-container;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
+    padding-bottom: 20px;
   }
 
   &__title-container {
@@ -20,13 +24,41 @@
   }
 
   &__edit-button {
-    
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: $color-instock-indigo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: $color-instock-black;
+    }
+
+  }
+
+  &__contact-container {
+    @include grid-container;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__address-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   &__address-value {
     display: flex;
     gap: 0.3rem;
   }
-  
 
+  &__contact-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
 }
