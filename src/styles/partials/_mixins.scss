@@ -45,7 +45,7 @@
 
 @mixin table-header {
     font-size: 11px;
-    line-heighƒt: 16px;
+    line-height: 16px;
     color: $color-slate;
     @include tablet {
         font-size: 12px;
@@ -91,7 +91,7 @@
         padding-right: 32px;
     }
     @include desktop {
-        max-width: 1020px;
+        // max-width: 1020px;
     }
 }
 

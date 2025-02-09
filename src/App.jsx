@@ -1,4 +1,3 @@
-import "./App.scss";
 import "./styles/partials/_global.scss";
 import Header from "./components/Header/Header.jsx";
 import WarehousePage from "./pages/WarehousePage/WarehousePage.jsx";
