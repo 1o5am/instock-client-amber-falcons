@@ -1,34 +1,47 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import List from "../List/List";
+import InventoryListItem from "../InventoryListItem/InventoryListItem";
+import sortArrowIcon from "../../assets/icons/sort-24px.svg";
+import "./InventoryList.scss";
 
-function InventoryList({ searchTerm }) {
-  const [inventory, setInventory] = useState([]);
-  const baseURL = import.meta.env.VITE_API_URL;
-
-  async function getAllInventoryItems() {
-    const allInventoryResponse = await axios.get(
-      `${baseURL}/inventory?s=${searchTerm}`
-    );
-    setInventory(allInventoryResponse.data);
-  }
-
-  useEffect(() => {
-    getAllInventoryItems();
-  }, [searchTerm]);
-
-  const handleDelete = (deletedId) => {
-    setInventory(inventory.filter((item) => item.id !== deletedId));
-  };
-
+function InventoryList({ allItems, onDelete, isWarehouse = false }) {
   return (
-    <>
-      {inventory ? (
-        <List allItems={inventory} onDelete={handleDelete} />
-      ) : (
-        <></>
-      )}
-    </>
+    <div className="list">
+      <div className="list-headers--tablet">
+        <p className="list__header">
+          INVENTORY ITEM{" "}
+          <img className="icon list__sort-icon" src={sortArrowIcon}></img>
+        </p>
+        <p className="list__header">
+          CATEGORY{" "}
+          <img className="icon list__sort-icon" src={sortArrowIcon}></img>
+        </p>
+        <p className="list__header">
+          STATUS{" "}
+          <img className="icon list__sort-icon" src={sortArrowIcon}></img>
+        </p>
+        <p className="list__header list__header--small">
+          QTY <img className="icon list__sort-icon" src={sortArrowIcon}></img>
+        </p>
+        {!isWarehouse && (
+          <p className="list__header">
+            WAREHOUSE{" "}
+            <img className="icon list__sort-icon" src={sortArrowIcon}></img>
+          </p>
+        )}
+        <p className="list__header list__header--center list__header--small">
+          ACTIONS
+        </p>
+      </div>
+      <ul className="list--mobile">
+        {allItems.map((item) => (
+          <InventoryListItem
+            isWarehouse={isWarehouse}
+            item={item}
+            key={item.id}
+            onDelete={onDelete}
+          />
+        ))}
+      </ul>
+    </div>
   );
 }
 
