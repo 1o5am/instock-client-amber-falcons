@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import "./WarehouseForm.scss";
 import errorIcon from "../../assets/icons/error-24px.svg";
 import { BASE_URL } from "../../utils/utils.js";
 
 const WarehouseForm = () => {
+  const { id } = useParams();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
+
+  const isEditing = pathname.includes("/edit");
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     warehouse_name: "",
     address: "",
@@ -18,7 +23,21 @@ const WarehouseForm = () => {
     contact_email: "",
   });
 
-  const [errors, setErrors] = useState({});
+  useEffect(() => {
+    const fetchWarehouseData = async () => {
+      if (!isEditing) return;
+
+      try {
+        const response = await axios.get(`${BASE_URL}/warehouses/${id}`);
+        setFormData(response.data);
+      } catch (error) {
+        console.error("Error fetching warehouse:", error);
+        navigate("/warehouses");
+      }
+    };
+
+    fetchWarehouseData();
+  }, [id, navigate, isEditing]);
 
   // Custom Validation Functions
   const validateForm = () => {
@@ -72,12 +91,17 @@ const WarehouseForm = () => {
     if (!validateForm()) return;
 
     try {
-      const response = await axios.post(`${BASE_URL}/warehouses`, formData);
-      console.log("Warehouse Added:", response.data);
-      navigate("/warehouses");
+      const endpoint = isEditing
+        ? `${BASE_URL}/warehouses/${id}`
+        : `${BASE_URL}/warehouses`;
+
+      const method = isEditing ? "put" : "post";
+
+      await axios[method](endpoint, formData);
+      navigate(-1);
     } catch (error) {
       console.error(
-        "Error adding warehouse:",
+        `Error ${isEditing ? "updating" : "adding"} warehouse:`,
         error.response?.data || error.message
       );
     }
@@ -246,7 +270,7 @@ const WarehouseForm = () => {
           <button
             onClick={(e) => {
               e.preventDefault();
-              navigate("/warehouses");
+              navigate(-1);
             }}
             type="reset"
             className="warehouse-form__button warehouse-form__button--cancel btn btn--secondary"
@@ -254,7 +278,7 @@ const WarehouseForm = () => {
             Cancel
           </button>
           <button className="warehouse-form__button warehouse-form__button--add btn btn--primary">
-            + Add Warehouse
+            {isEditing ? "Save" : "+ Add Warehouse"}
           </button>
         </div>
       </form>

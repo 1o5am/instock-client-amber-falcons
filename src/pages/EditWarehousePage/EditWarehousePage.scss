@@ -1,12 +1,12 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.new-warehouse-page {
+.edit-warehouse-page {
   position: relative;
   top: -3rem;
   z-index: 10;
   background-color: white;
-  border-radius: 0.1875rem;
+  border-radius: 3px;
 
   @include tablet {
     top: -5.5rem;
