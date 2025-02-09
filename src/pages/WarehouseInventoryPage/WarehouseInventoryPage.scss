@@ -6,10 +6,14 @@
 .page-content {
     width: 100%;
     background-color: $color-white;
-    padding-top: 2rem;
-    margin: 2rem;
-    @include tablet {
-        padding-top: 3rem;
-        margin: 3rem;
-    }
-}
+    padding-top: 3rem;
+    margin-top: 2rem;
+
+    &__wrapper {
+        @include grid-container;
+    // @include grid-container;
+    // @include tablet {
+    //     padding-top: 3rem;
+    //     margin: 3rem;
+    // }
+}   }

@@ -8,6 +8,7 @@
   height: 12.5rem;
   position: relative;
   z-index: 5;
+  @include grid-container;
 
   @include tablet {
     // padding-top: 2.375rem;
