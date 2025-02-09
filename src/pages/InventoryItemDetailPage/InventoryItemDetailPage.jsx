@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";

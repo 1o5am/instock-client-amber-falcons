@@ -1,16 +1,17 @@
-import React from "react";
 import { useParams } from "react-router-dom";
-import InventoryListByWarehouseId from "../../components/InventoryListByWarehouseId/InventoryListByWarehouseId";
+// import InventoryListByWarehouseId from "../../components/InventoryListByWarehouseId/InventoryListByWarehouseId";
 import arrowBackIcon from "../../assets/icons/arrow_back-24px.svg";
 import WarehouseDetails from "../../components/WareHouseDetails/WarehouseDetails"
 import "./WarehouseInventoryPage.scss";
+import WarehouseInventoryContainer from "../../components/WarehouseInventoryContainer/WarehouseInventoryContainer";
 
 function WarehouseInventoryPage() {
   const { id } = useParams();
   return (
     <div className="page-content">
       <WarehouseDetails id={id} />
-      <InventoryListByWarehouseId id={id} />
+      {/* <InventoryListByWarehouseId id={id} /> */}
+      <WarehouseInventoryContainer id={id} />
     </div>
   );
 }

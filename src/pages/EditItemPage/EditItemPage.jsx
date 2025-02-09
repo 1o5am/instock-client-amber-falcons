@@ -48,10 +48,7 @@ function EditItemPage() {
       quantity: Number(formResponse.quantity),
     };
     try {
-      const addItemResponse = await axios.put(
-        `${baseURL}/inventory/${id}`,
-        editItem
-      );
+      await axios.put(`${baseURL}/inventory/${id}`, editItem);
       console.log("Item Edited!");
       return true;
     } catch (error) {
@@ -60,12 +57,17 @@ function EditItemPage() {
     }
   }
   async function validateEditItem() {
-    const isSuccess = await editItem();
-    if (isSuccess) {
-      toast.success("Success! Item Edited");
-      navigate(-1);
-    } else {
-      toast.error("Error. Could not edit item");
+    try {
+      const isSuccess = await editItem();
+      if (isSuccess) {
+        toast.success("Success! Item Edited");
+        navigate(-1);
+      } else {
+        toast.error("Error. Could not edit item");
+      }
+    } catch (error) {
+      console.error("Unexpected error in validateEditItem:", error);
+      toast.error("An unexpected error occurred.");
     }
   }
   return (
