@@ -5,23 +5,27 @@ import editIcon from "../../assets/icons/edit-white-24px.svg";
 import { useState, useEffect } from "react";
 import InventoryItemDetails from "../../components/InventoryItemDetails/InventoryItemDetails";
 import "./InventoryItemDetailPage.scss";
+import { BASE_URL } from "../../utils/utils.js";
 
 function InventoryItemDetailPage() {
-  const baseURL = import.meta.env.VITE_API_URL;
   const [inventoryItemDetails, setInventoryItemDetails] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
 
-  async function getInventoryItemDetails() {
-    const responseInventoryItemDetail = await axios.get(
-      `${baseURL}/inventory/${id}`
-    );
-    setInventoryItemDetails(responseInventoryItemDetail.data);
-  }
-
   useEffect(() => {
+    async function getInventoryItemDetails() {
+      try {
+        const responseInventoryItemDetail = await axios.get(
+          `${BASE_URL}/inventory/${id}`
+        );
+        setInventoryItemDetails(responseInventoryItemDetail.data);
+      } catch (error) {
+        console.log("Error: Could not fetch Item details", error);
+      }
+    }
+
     getInventoryItemDetails();
-  }, []);
+  }, [id]);
 
   return (
     <section className="page-content">

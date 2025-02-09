@@ -3,9 +3,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./WarehouseForm.scss";
 import errorIcon from "../../assets/icons/error-24px.svg";
+import { BASE_URL } from "../../utils/utils.js";
 
 const WarehouseForm = () => {
-  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     warehouse_name: "",
@@ -72,7 +72,7 @@ const WarehouseForm = () => {
     if (!validateForm()) return;
 
     try {
-      const response = await axios.post(`${baseURL}/warehouses`, formData);
+      const response = await axios.post(`${BASE_URL}/warehouses`, formData);
       console.log("Warehouse Added:", response.data);
       navigate("/warehouses");
     } catch (error) {

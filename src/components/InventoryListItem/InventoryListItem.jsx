@@ -7,9 +7,9 @@ import { useState } from "react";
 import axios from "axios";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import modalMessages from "../../constants/modalMessages.js";
+import { BASE_URL } from "../../utils/utils.js";
 
 function InventoryListItem({ item, onDelete, isWarehouse }) {
-  const baseURL = import.meta.env.VITE_API_URL;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
     question: "",
@@ -23,7 +23,7 @@ function InventoryListItem({ item, onDelete, isWarehouse }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${baseURL}/inventory/${item.id}`);
+      await axios.delete(`${BASE_URL}/inventory/${item.id}`);
       onDelete(item.id);
       setIsModalOpen(false);
     } catch (error) {
