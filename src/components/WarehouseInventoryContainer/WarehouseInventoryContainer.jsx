@@ -18,7 +18,7 @@ function WarehouseInventoryContainer({ id }) {
 
         setInventoryById(inventoryByIdResponse.data);
       } catch (error) {
-        console.error("Error in fetching inventory by id", error);
+        console.error("Error in fetching inventory by  id");
       }
     }
 
