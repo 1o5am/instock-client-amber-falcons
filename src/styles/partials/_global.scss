@@ -22,7 +22,7 @@
   top: -4rem;
   z-index: 10;
   background-color: white;
-  margin: 0 0.8rem;
+  margin: 0 1rem;
   box-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
   @include tablet {
     margin: 0 2rem;
@@ -90,7 +90,7 @@ button {
 }
 
 select {
-  //remove default dropdown arrow
+  //remove default dropdown arrow (for Chrome and Firefox)
   -webkit-appearance: none;
   -moz-appearance: none;
   //add custom dropdown arrow
@@ -160,7 +160,8 @@ ul {
 }
 
 input,
-textarea {
+textarea,
+select {
   text-decoration: none;
 
   &:focus {

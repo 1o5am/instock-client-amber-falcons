@@ -1,10 +1,11 @@
 import "./ItemForm.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import errorIcon from "../../assets/icons/error-24px.svg";
 
-function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
+function ItemForm({ formResponse, setFormResponse, addOrEditItem, isNew }) {
   const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [warehouses, setWarehouses] = useState([]);
@@ -17,14 +18,7 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
     { name: "Health", id: 6 },
   ]);
 
-  const [isFormValidState, setFormValidState] = useState({
-    warehouse_id: true,
-    item_name: true,
-    description: true,
-    category: true,
-    status: true,
-    quantity: true,
-  });
+  const [errors, setErrors] = useState({});
 
   async function getAllWarehouses() {
     const allWarehousesResponse = await axios.get(`${baseURL}/warehouses`);
@@ -35,41 +29,24 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
     getAllWarehouses();
   }, []);
 
-  function setValid(name, bool) {
-    setFormValidState((prevFormResponse) => {
-      return {
-        ...prevFormResponse,
-        [name]: bool,
-      };
-    });
-  }
-  function isFormValid() {
-    let isValid = true;
-    if (!formResponse.item_name.trim()) {
-      isValid = false;
-      setValid("item_name", false);
-    }
-    if (!formResponse.description.trim()) {
-      isValid = false;
-      setValid("description", false);
-    }
-    if (!formResponse.category) {
-      isValid = false;
-      setValid("category", false);
-    }
-    if (!formResponse.status.trim()) {
-      isValid = false;
-      setValid("status", false);
-    }
+  function validateForm() {
+    let newErrors = {};
+    if (!formResponse.item_name.trim())
+      newErrors.item_name = "Item Name is required";
+
+    if (!formResponse.description.trim())
+      newErrors.description = "Description is required";
+
+    if (!formResponse.category) newErrors.category = "Category is required";
+
+    if (!formResponse.status.trim()) newErrors.status = "Status is required";
     if (
       formResponse.status === "In Stock" &&
       (!formResponse.quantity || formResponse.quantity <= 0)
     ) {
-      isValid = false;
-      setValid("quantity", false);
+      newErrors.quantity = "Non-zero quantity is required";
     }
     if (formResponse.status === "Out of Stock") {
-      setValid("quantity", true);
       setFormResponse((prevState) => {
         return {
           ...prevState,
@@ -77,14 +54,11 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
         };
       });
     }
-    if (!formResponse.warehouse_id) {
-      isValid = false;
-      setValid("warehouse_id", false);
-    }
-    if (!isValid) {
-      return false;
-    }
-    return true;
+    if (!formResponse.warehouse_id)
+      newErrors.warehouse_id = "Warehouse is required";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   }
 
   function handleInputChange(e) {
@@ -96,18 +70,37 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
       };
     });
     if (value.length > 0) {
-      setValid(name, true);
+      if (errors[name]) {
+        setErrors((prev) => {
+          return {
+            ...prev,
+            [name]: "",
+          };
+        });
+      }
     }
-
     if (name === "quantity") {
       if (value > 0) {
-        setValid("quantity", true);
+        if (errors.quantity) {
+          setErrors((prev) => {
+            return {
+              ...prev,
+              quantity: "",
+            };
+          });
+        }
       } else {
-        setValid("quantity", false);
+        if (!errors.quantity) {
+          setErrors((prev) => {
+            return {
+              ...prev,
+              quantity: "Non-zero quantity is required",
+            };
+          });
+        }
       }
     }
     if (name === "status" && value === "Out of Stock") {
-      setValid("quantity", true);
       setFormResponse((prevState) => {
         return {
           ...prevState,
@@ -119,12 +112,8 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (isFormValid()) {
-      itemManipulation();
-    } else {
-      toast.error("Error! All fields required");
-    }
-    console.log(formResponse, isFormValidState);
+    if (!validateForm()) return;
+    addOrEditItem();
   }
 
   return (
@@ -139,7 +128,7 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
               </label>
               <input
                 className={`form__input ${
-                  isFormValidState.item_name ? "" : "form__input--error"
+                  !errors.item_name ? "" : "form__input--error"
                 }`}
                 id="name"
                 name="item_name"
@@ -147,6 +136,12 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
                 onChange={(e) => handleInputChange(e)}
                 value={formResponse.item_name}
               ></input>
+              {errors.item_name && (
+                <div className="error__container">
+                  <img className="error__icon" src={errorIcon} alt="Close" />
+                  <p className="error__text">{errors.item_name}</p>
+                </div>
+              )}
             </div>
             <div className="form__item">
               <label className="form__label" htmlFor="description">
@@ -154,7 +149,7 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
               </label>
               <textarea
                 className={`form__input ${
-                  isFormValidState.description ? "" : "form__input--error"
+                  !errors.description ? "" : "form__input--error"
                 }`}
                 id="description"
                 name="description"
@@ -163,6 +158,12 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
                 value={formResponse.description}
                 rows={7}
               ></textarea>
+              {errors.description && (
+                <div className="error__container">
+                  <img className="error__icon" src={errorIcon} alt="Close" />
+                  <p className="error__text">{errors.description}</p>
+                </div>
+              )}
             </div>
             <div className="form__item">
               <label className="form__label" htmlFor="category">
@@ -170,7 +171,7 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
               </label>
               <select
                 className={`form__input ${
-                  isFormValidState.category ? "" : "form__input--error"
+                  !errors.category > 0 ? "" : "form__input--error"
                 } ${formResponse.category === "" ? "form__input--grey" : ""}`}
                 id="category"
                 name="category"
@@ -187,6 +188,12 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
                   </option>
                 ))}
               </select>
+              {errors.category && (
+                <div className="error__container">
+                  <img className="error__icon" src={errorIcon} alt="Close" />
+                  <p className="error__text">{errors.category}</p>
+                </div>
+              )}
             </div>
           </div>
           <div className="form__section">
@@ -199,7 +206,7 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
                 <div className="form__radio">
                   <input
                     className={`form__input form__input--radio ${
-                      isFormValidState.status ? "" : "form__input--error"
+                      !errors.status ? "" : "form__input--error"
                     }`}
                     name="status"
                     type="radio"
@@ -222,7 +229,7 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
                 <div className="form__radio">
                   <input
                     className={`form__input form__input--radio ${
-                      isFormValidState.status ? "" : "form__input--error"
+                      !errors.status ? "" : "form__input--error"
                     } `}
                     name="status"
                     type="radio"
@@ -251,7 +258,7 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
                 </label>
                 <input
                   className={`form__input form__input--short ${
-                    isFormValidState.quantity ? "" : "form__input--error"
+                    !errors.quantity ? "" : "form__input--error"
                   }`}
                   type="number"
                   id="quantity"
@@ -259,10 +266,11 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
                   onChange={(e) => handleInputChange(e)}
                   value={formResponse.quantity}
                 ></input>
-                {!isFormValidState.quantity && (
-                  <p className="error-statement">
-                    Quantity must be a positive, non-zero number
-                  </p>
+                {errors.quantity && (
+                  <div className="error__container">
+                    <img className="error__icon" src={errorIcon} alt="Close" />
+                    <p className="error__text">{errors.quantity}</p>
+                  </div>
                 )}
               </div>
             ) : (
@@ -274,7 +282,7 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
               </label>
               <select
                 className={`form__input ${
-                  isFormValidState.warehouse_id ? "" : "form__input--error"
+                  !errors.warehouse_id ? "" : "form__input--error"
                 } ${
                   formResponse.warehouse_id === "" ? "form__input--grey" : ""
                 }`}
@@ -292,6 +300,12 @@ function ItemForm({ formResponse, setFormResponse, itemManipulation, isNew }) {
                   </option>
                 ))}
               </select>
+              {errors.warehouse_id && (
+                <div className="error__container">
+                  <img className="error__icon" src={errorIcon} alt="Close" />
+                  <p className="error__text">{errors.warehouse_id}</p>
+                </div>
+              )}
             </div>
           </div>
         </article>

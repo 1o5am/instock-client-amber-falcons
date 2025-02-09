@@ -29,7 +29,6 @@ function AddNewItemPage() {
     };
     try {
       const addItemResponse = await axios.post(`${baseURL}/inventory`, newItem);
-      console.log(addItemResponse);
       console.log("New Item Added!");
       return true;
     } catch (error) {
@@ -62,7 +61,7 @@ function AddNewItemPage() {
       <ItemForm
         formResponse={formResponse}
         setFormResponse={setFormResponse}
-        itemManipulation={validateAddNew}
+        addOrEditItem={validateAddNew}
         isNew={true}
       />
     </div>

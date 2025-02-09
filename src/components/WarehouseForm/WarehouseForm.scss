@@ -76,9 +76,14 @@
         height: 38px;
       }
 
-      &--error {
+      &:focus {
+        border-color: $color-instock-indigo;
+      }
+
+      &.input--error {
         border-color: $color-red;
       }
+
       &--grey {
         color: $color-slate;
       }
@@ -103,16 +108,18 @@
   &__button {
     display: inline-block;
 
-    &--cancel {
-      width: auto;
-      padding: 0 1rem;
-      color: $color-slate;
-    }
+    @include tablet {
+      &--cancel {
+        width: auto;
+        padding: 0 1rem;
+        color: $color-slate;
+      }
 
-    &--add {
-      width: auto;
-      padding: 0 1rem;
-      color: $color-white;
+      &--add {
+        width: auto;
+        padding: 0 1rem;
+        color: $color-white;
+      }
     }
   }
 }
