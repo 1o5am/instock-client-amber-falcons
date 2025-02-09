@@ -7,6 +7,17 @@ import { useState } from "react";
 const WarehousePage = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortField, setSortField] = useState("warehouse_name");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const handleSort = (field) => {
+    if (field === sortField) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortOrder("asc");
+    }
+  };
 
   return (
     <div className="page-content warehouse-page">
@@ -26,7 +37,12 @@ const WarehousePage = () => {
           </button>
         </div>
       </div>
-      <WarehouseContainer searchTerm={searchTerm} />
+      <WarehouseContainer
+        searchTerm={searchTerm}
+        sortField={sortField}
+        sortOrder={sortOrder}
+        onSort={handleSort}
+      />
     </div>
   );
 };

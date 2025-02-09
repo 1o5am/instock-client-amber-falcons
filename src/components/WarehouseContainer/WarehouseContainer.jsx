@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import WarehouseList from "../WarehouseList/WarehouseList";
 import { BASE_URL } from "../../utils/utils.js";
 
-const WarehouseContainer = ({ searchTerm }) => {
+const WarehouseContainer = ({ searchTerm, sortField, sortOrder, onSort }) => {
   const [warehouses, setWarehouses] = useState([]);
 
   useEffect(() => {
     async function getAllWarehouseItems() {
       try {
         const allWarehouseResponse = await axios.get(
-          `${BASE_URL}/warehouses?s=${searchTerm}`
+          `${BASE_URL}/warehouses?s=${searchTerm}&sort_by=${sortField}&order_by=${sortOrder}`
         );
 
         setWarehouses(allWarehouseResponse.data);
@@ -20,7 +20,7 @@ const WarehouseContainer = ({ searchTerm }) => {
     }
 
     getAllWarehouseItems();
-  }, [searchTerm]);
+  }, [searchTerm, sortField, sortOrder]);
 
   const handleDelete = (deletedId) => {
     setWarehouses(warehouses.filter((warehouse) => warehouse.id !== deletedId));
@@ -29,7 +29,13 @@ const WarehouseContainer = ({ searchTerm }) => {
   return (
     <>
       {warehouses ? (
-        <WarehouseList allItems={warehouses} onDelete={handleDelete} />
+        <WarehouseList
+          allItems={warehouses}
+          onDelete={handleDelete}
+          sortField={sortField}
+          sortOrder={sortOrder}
+          onSort={onSort}
+        />
       ) : (
         <></>
       )}
