@@ -1,0 +1,130 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.inventory-content {
+  padding: 1rem 1rem 0;
+  font-family: "TitilliumWeb";
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @include tablet {
+    flex-direction: row;
+    padding: 2rem;
+  }
+
+  @include desktop {
+    padding: 1.5rem 2.25rem 2.25rem;
+  }
+
+  &__left {
+    @include tablet {
+      width: 50%;
+      padding-right: 2.5rem;
+    }
+
+    @include desktop {
+      padding-right: 5rem;
+    }
+  }
+
+  &__right {
+    @include tablet {
+      width: 50%;
+      border-left: 1px solid $color-cloud;
+      padding-left: 2.5rem;
+    }
+  }
+
+  &__box {
+    padding-bottom: 1rem;
+
+    @include tablet {
+      padding-bottom: 1.5rem;
+    }
+
+    @include desktop {
+      padding-bottom: 2.25rem;
+    }
+  }
+
+  &__header {
+    font-size: $m-h4-size;
+    font-weight: 600;
+    line-height: $m-h4-line-height;
+    color: $color-slate;
+    padding-bottom: 0.25rem;
+
+    @include tablet {
+      font-size: $h4-size;
+      line-height: $h4-line-height;
+    }
+  }
+
+  &__paragraph {
+    font-size: $m-p2-size;
+    font-weight: 400;
+    line-height: $m-p2-line-height;
+    color: $color-instock-black;
+    padding-bottom: 1rem;
+
+    @include tablet {
+      font-size: $p2-size;
+      line-height: $p2-line-height;
+      padding-bottom: 1.5rem;
+    }
+
+    @include desktop {
+      padding-bottom: 2.25rem;
+    }
+
+    &--description {
+      @include tablet {
+        width: 18.438rem;
+      }
+
+      @include desktop {
+        width: 100%;
+      }
+    }
+
+    &--tablet {
+      @include tablet {
+        padding-bottom: 0;
+      }
+    }
+
+    &--quantity {
+      padding-bottom: 0;
+    }
+  }
+
+  &__box {
+    display: flex;
+    gap: 5rem;
+
+    @include desktop {
+      gap: 9rem;
+    }
+  }
+
+  &__tag {
+    padding: 4px 8px;
+    border-radius: 1.25rem;
+    height: 1.5rem;
+
+    @include tablet {
+      height: 1.625rem;
+    }
+
+    &--green {
+      color: green;
+      background-color: rgba($color-green, 0.1);
+    }
+
+    &--red {
+      color: red;
+      background-color: rgba($color-red, 0.1);
+    }
+  }
+}

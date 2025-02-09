@@ -1,5 +1,6 @@
 @use "../../styles/partials/variables.scss" as *;
 @use "../../styles/partials/mixins.scss" as *;
+
 .warehouse-item {
   display: flex;
   flex-wrap: wrap;
@@ -86,7 +87,7 @@
 
   &__name {
     font-size: 0.65rem;
-    width: max-content;
+    width: fit-content;
 
     @include tablet {
       font-size: 0.8rem;
