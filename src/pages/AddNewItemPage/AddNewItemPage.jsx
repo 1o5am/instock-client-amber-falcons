@@ -28,7 +28,7 @@ function AddNewItemPage() {
       quantity: Number(formResponse.quantity),
     };
     try {
-      const addItemResponse = await axios.post(`${baseURL}/inventory`, newItem);
+      const addItemResponse = await axios.post(`${baseURL}/api/inventory`, newItem);
       console.log("New Item Added!");
       return true;
     } catch (error) {

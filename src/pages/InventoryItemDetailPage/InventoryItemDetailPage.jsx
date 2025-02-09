@@ -14,7 +14,7 @@ function InventoryItemDetailPage() {
 
   async function getInventoryItemDetails() {
     const responseInventoryItemDetail = await axios.get(
-      `${baseURL}/inventory/${id}`
+      `${baseURL}/api/inventory/${id}`
     );
     setInventoryItemDetails(responseInventoryItemDetail.data);
   }

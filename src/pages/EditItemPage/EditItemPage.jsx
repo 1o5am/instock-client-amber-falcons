@@ -21,7 +21,7 @@ function EditItemPage() {
 
   async function getItemDetails() {
     try {
-      const getItemResponse = await axios.get(`${baseURL}/inventory/${id}`);
+      const getItemResponse = await axios.get(`${baseURL}/api/inventory/${id}`);
       setFormResponse({
         warehouse_id: getItemResponse.data.warehouse_id,
         item_name: getItemResponse.data.item_name,

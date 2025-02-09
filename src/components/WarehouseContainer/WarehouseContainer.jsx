@@ -10,7 +10,7 @@ const WarehouseContainer = ({ searchTerm }) => {
     async function getAllWarehouseItems() {
       try {
         const allWarehouseResponse = await axios.get(
-          `${baseURL}/warehouses?s=${searchTerm}`
+          `${baseURL}/api/warehouses?s=${searchTerm}`
         );
 
         setWarehouses(allWarehouseResponse.data);

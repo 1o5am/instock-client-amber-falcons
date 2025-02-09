@@ -23,7 +23,7 @@ const WarehouseListItem = ({ item, onDelete }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${baseURL}/warehouses/${item.id}`);
+      await axios.delete(`${baseURL}/api/warehouses/${item.id}`);
       onDelete(item.id);
       setIsModalOpen(false);
     } catch (error) {
