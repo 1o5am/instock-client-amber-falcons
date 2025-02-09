@@ -106,7 +106,6 @@ const WarehouseDetails = ({ id }) => {
         <div className="warehouse-details__title-container">
           <Link to="/warehouses" className="warehouse-details__back">
             <img src={backArrow} alt="Back" />
-            <span>Back to Warehouses</span>
           </Link>
           <h1 className="warehouse-details__title">{warehouse.warehouse_name}</h1>
         </div>
