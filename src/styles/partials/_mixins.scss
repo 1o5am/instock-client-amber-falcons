@@ -1,5 +1,8 @@
 @use "variables" as *;
 
+@use "./variables" as *;
+
+// Breakpoints
 @mixin tablet {
   @media screen and (min-width: $tablet-breakpoint) {
     @content;
@@ -10,4 +13,203 @@
   @media screen and (min-width: $desktop-breakpoint) {
     @content;
   }
+}
+
+// Typography Scale
+@mixin page-header {
+    font-size: 28px;
+    line-height: 36px;
+    @include tablet {
+        font-size: 32px;
+        line-height: 40px;
+    }
+}
+
+@mixin subheader {
+    font-size: 20px;
+    line-height: 28px;
+    @include tablet {
+        font-size: 24px;
+        line-height: 32px;
+    }
+}
+
+@mixin labels-links-buttons {
+    font-size: 13px;
+    line-height: 20px;
+    @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+    }
+}
+
+@mixin table-header {
+    font-size: 11px;
+    line-height: 16px;
+    @include tablet {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@mixin body-large {
+    font-size: 15px;
+    line-height: 26px;
+    @include tablet {
+        font-size: 16px;
+        line-height: 28px;
+    }
+}
+
+@mixin body-medium {
+    font-size: 13px;
+    line-height: 20px;
+    @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+    }
+}
+
+@mixin body-small {
+    font-size: 11px;
+    line-height: 16px;
+    @include tablet {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+// Layout
+@mixin grid-container {
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    @include tablet {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+    @include desktop {
+        max-width: 1020px;
+    }
+}
+
+@mixin grid-columns {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(6, 1fr);
+    @include tablet {
+        gap: 24px;
+        grid-template-columns: repeat(12, 1fr);
+    }
+}
+
+// Buttons
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 100%;
+    padding: 0 16px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    @include labels-links-buttons;
+    @include tablet {
+        height: 38px;
+        width: auto;
+    }
+    .button-icon {
+        margin-left: 4px;
+    }
+}
+
+@mixin button-primary {
+    @include button-base;
+    background-color: $color-instock-indigo;
+    color: $color-white;
+    &:hover {
+        background-color: $color-instock-black;
+    }
+}
+
+@mixin button-secondary {
+    @include button-base;
+    background-color: $color-white;
+    color: $color-instock-indigo;
+    border: 1px solid $color-instock-indigo;
+    &:hover {
+        border-color: $color-instock-black;
+        color: $color-instock-black;
+    }
+}
+
+@mixin button-delete {
+    @include button-base;
+    background-color: $color-red;
+    color: $color-white;
+    &:hover {
+        background-color: $color-instock-black;
+    }
+}
+
+// Form Fields
+@mixin form-field {
+    height: 36px;
+    width: 100%;
+    padding: 0 16px;
+    border: 1px solid $color-cloud;
+    border-radius: 20px;
+    @include tablet {
+        height: 38px;
+    }
+    &:focus {
+        outline: none;
+        border-color: $color-instock-indigo;
+    }
+    &.error {
+        border-color: $color-red;
+    }
+    &-label {
+        margin-bottom: 4px;
+    }
+}
+
+// Selection Controls
+@mixin radio-group {
+    margin-top: 4px;
+}
+
+@mixin radio-button {
+    display: flex;
+    align-items: center;
+    input[type="radio"] {
+        margin-right: 8px;
+    }
+}
+
+// Tags
+@mixin tag-base {
+    height: 24px;
+    padding: 0 8px;
+    border-radius: 20px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    @include tablet {
+        height: 26px;
+    }
+}
+
+@mixin tag-in-stock {
+    @include tag-base;
+    background-color: rgba($color-green, 0.07);
+    color: $color-green;
+}
+
+@mixin tag-out-of-stock {
+    @include tag-base;
+    background-color: rgba($color-red, 0.07);
+    color: $color-red;
 }
