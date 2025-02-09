@@ -92,10 +92,12 @@ a {
   color: inherit;
 }
 
-body,
-textarea,
-* {
+body {
   font-family: $font-family-primary;
+}
+
+textarea {
+  font-family: inherit;
 }
 
 h1 {
@@ -146,8 +148,7 @@ ul {
   list-style: none;
 }
 
-input,
-textarea {
+input {
   text-decoration: none;
 
   &:focus {
