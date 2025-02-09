@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import modalMessages from "../../constants/modalMessages";
 import "./WarehouseListItem.scss";
+import { BASE_URL } from "../../utils/utils.js";
 
 const WarehouseListItem = ({ item, onDelete }) => {
-  const baseURL = import.meta.env.VITE_API_URL;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
     question: "",
@@ -23,7 +23,7 @@ const WarehouseListItem = ({ item, onDelete }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${baseURL}/warehouses/${item.id}`);
+      await axios.delete(`${BASE_URL}/warehouses/${item.id}`);
       onDelete(item.id);
       setIsModalOpen(false);
     } catch (error) {

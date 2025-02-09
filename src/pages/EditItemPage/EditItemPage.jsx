@@ -1,13 +1,13 @@
 import ItemForm from "../../components/ItemForm/ItemForm.jsx";
 import "./EditItemPage.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { BASE_URL } from "../../utils/utils.js";
 
 function EditItemPage() {
-  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const { id } = useParams();
   const [formResponse, setFormResponse] = useState({
@@ -21,7 +21,7 @@ function EditItemPage() {
 
   async function getItemDetails() {
     try {
-      const getItemResponse = await axios.get(`${baseURL}/inventory/${id}`);
+      const getItemResponse = await axios.get(`${BASE_URL}/inventory/${id}`);
       setFormResponse({
         warehouse_id: getItemResponse.data.warehouse_id,
         item_name: getItemResponse.data.item_name,
@@ -31,7 +31,7 @@ function EditItemPage() {
         quantity: getItemResponse.data.quantity,
       });
     } catch (error) {
-      console.log(`Error: Could not get Item with id ${id}`);
+      console.log(`Error: Could not get Item with id ${id}`, error);
     }
   }
   useEffect(() => {
@@ -48,7 +48,7 @@ function EditItemPage() {
       quantity: Number(formResponse.quantity),
     };
     try {
-      await axios.put(`${baseURL}/inventory/${id}`, editItem);
+      await axios.put(`${BASE_URL}/inventory/${id}`, editItem);
       console.log("Item Edited!");
       return true;
     } catch (error) {
