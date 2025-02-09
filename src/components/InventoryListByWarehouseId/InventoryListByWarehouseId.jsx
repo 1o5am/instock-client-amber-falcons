@@ -13,7 +13,7 @@ function InventoryListByWarehouseId({ id }) {
   async function getAllInventoryItemsById() {
     try {
       const inventoryByIdResponse = await axios.get(
-        `${baseURL}/warehouses/${id}/inventories`
+        `http://localhost:8080/api/warehouses/${id}/inventories`
       );
       //   console.log(inventoryByIdResponse.data);
       setInventoryById(inventoryByIdResponse.data);
