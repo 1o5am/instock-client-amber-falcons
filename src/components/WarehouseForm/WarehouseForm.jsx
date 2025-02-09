@@ -36,7 +36,7 @@ const WarehouseForm = () => {
     };
 
     fetchWarehouseData();
-  }, [id, baseURL, navigate, isEditing]);
+  }, [id, BASE_URL, navigate, isEditing]);
 
   // Custom Validation Functions
   const validateForm = () => {
