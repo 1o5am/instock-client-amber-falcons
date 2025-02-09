@@ -1,13 +1,13 @@
 import "./AddNewItemPage.scss";
 import ItemForm from "../../components/ItemForm/ItemForm.jsx";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { BASE_URL } from "../../utils/utils.js";
 
 function AddNewItemPage() {
-  const baseURL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [formResponse, setFormResponse] = useState({
     warehouse_id: "",
@@ -28,19 +28,23 @@ function AddNewItemPage() {
       quantity: Number(formResponse.quantity),
     };
     try {
-      const addItemResponse = await axios.post(`${baseURL}/inventory`, newItem);
+      const addItemResponse = await axios.post(
+        `${BASE_URL}/inventory`,
+        newItem
+      );
       console.log("New Item Added!");
-      return true;
+      return addItemResponse.data;
     } catch (error) {
       console.log("Error: Could not add Item", error);
       return false;
     }
   }
-  function validateAddNew() {
-    const isSuccess = addNewItem();
-    if (isSuccess) {
+
+  async function validateAddNew() {
+    const result = await addNewItem();
+    if (result) {
       toast.success("New Item Added");
-      navigate("/inventory");
+      navigate("/inventory", { state: { refresh: true } });
     } else {
       toast.error("Error. Could not add item");
     }

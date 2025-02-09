@@ -91,10 +91,10 @@ button {
 }
 
 select {
-  //remove default dropdown arrow (for Chrome and Firefox)
+  // remove default dropdown arrow (for Chrome and Firefox)
   -webkit-appearance: none;
   -moz-appearance: none;
-  //add custom dropdown arrow
+  // add custom dropdown arrow
   background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
   background-repeat: no-repeat;
   background-position-x: 96%;
@@ -169,19 +169,5 @@ select {
 
   &:focus {
     outline: none;
-  }
-}
-
-// Section Container
-.section-container {
-  margin: 0 1rem;
-
-  @include tablet {
-    margin: 0 1.5rem;
-  }
-
-  @include desktop {
-    margin: 0 auto;
-    max-width: 1280px;
   }
 }
