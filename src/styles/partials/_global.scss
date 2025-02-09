@@ -11,9 +11,10 @@
 }
 
 .icon {
-  width: 20px;
+  width: 1.25rem;
+
   @include tablet {
-    width: 25px;
+    width: 1.5625rem;
   }
 }
 
@@ -29,7 +30,7 @@
   }
   @include desktop {
     margin: 0 auto;
-    max-width: 1000px;
+    max-width: 1020px;
   }
 }
 

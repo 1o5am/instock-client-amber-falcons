@@ -35,14 +35,14 @@
     &--bubble {
       font-size: 0.5rem;
       width: fit-content;
-      padding: 5px 8px;
+      padding: 0.3125rem 0.5rem;
       border-radius: 3rem;
     }
     &--blue {
       display: flex;
       align-items: center;
       & .icon {
-        width: 18px;
+        width: 1.125rem;
       }
     }
     &--green {
