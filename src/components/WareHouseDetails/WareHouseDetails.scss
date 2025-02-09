@@ -3,9 +3,14 @@
 
 .warehouse-details {
   text-align: left;
+  padding-bottom: 1rem;
+  // margin-bottom: 1rem;
   border-bottom: 1px solid $color-cloud;
-  padding-bottom: 24px;
-  margin-bottom: 24px;
+  // width: 100%;
+
+  @include tablet {
+    border-bottom: none;
+  }
 
   &__header-container {
     border-bottom: 1px solid $color-cloud;
@@ -20,6 +25,10 @@
     padding-bottom: 20px;
     @include page-header;
     font-weight: $font-weight-semibold;
+  }
+
+  &__content-wrapper {
+    @include grid-container;
   }
 
   &__title-container {
@@ -66,7 +75,6 @@
   }
 
   &__contact-container {
-    @include grid-container;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -74,6 +82,7 @@
     @include tablet {
       flex-direction: row;
       justify-content: space-between;
+      padding: 1.5rem 0;
     }
   }
 
@@ -82,7 +91,6 @@
     flex-direction: column;
     gap: 4px;
   }
-
 
   &__address-value {
     display: flex;

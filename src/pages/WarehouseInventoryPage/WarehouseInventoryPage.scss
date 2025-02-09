@@ -4,7 +4,12 @@
 
 
 .page-content {
+    width: 100%;
     background-color: $color-white;
     padding-top: 2rem;
     margin: 2rem;
+    @include tablet {
+        padding-top: 3rem;
+        margin: 3rem;
+    }
 }
