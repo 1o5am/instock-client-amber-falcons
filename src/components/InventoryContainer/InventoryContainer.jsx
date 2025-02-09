@@ -6,16 +6,21 @@ function InventoryContainer({ searchTerm }) {
   const [inventory, setInventory] = useState([]);
   const baseURL = import.meta.env.VITE_API_URL;
 
-  async function getAllInventoryItems() {
-    const allInventoryResponse = await axios.get(
-      `${baseURL}/inventory?s=${searchTerm}`
-    );
-    setInventory(allInventoryResponse.data);
-  }
-
   useEffect(() => {
+    async function getAllInventoryItems() {
+      try {
+        const allInventoryResponse = await axios.get(
+          `${baseURL}/inventory?s=${searchTerm}`
+        );
+
+        setInventory(allInventoryResponse.data);
+      } catch (error) {
+        console.error("Failed to fetch inventory:", error);
+      }
+    }
+
     getAllInventoryItems();
-  }, [searchTerm]);
+  }, [searchTerm, baseURL]);
 
   const handleDelete = (deletedId) => {
     setInventory(inventory.filter((item) => item.id !== deletedId));

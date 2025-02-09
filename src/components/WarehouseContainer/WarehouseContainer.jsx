@@ -6,18 +6,21 @@ const WarehouseContainer = ({ searchTerm }) => {
   const [warehouses, setWarehouses] = useState([]);
   const baseURL = import.meta.env.VITE_API_URL;
 
-  async function getAllWarehouseItems() {
-    const allWarehouseResponse = await axios.get(
-      `${baseURL}/warehouses?s=${searchTerm}`
-    );
-
-    console.log("Warehouse", allWarehouseResponse.data);
-    setWarehouses(allWarehouseResponse.data);
-  }
-
   useEffect(() => {
+    async function getAllWarehouseItems() {
+      try {
+        const allWarehouseResponse = await axios.get(
+          `${baseURL}/warehouses?s=${searchTerm}`
+        );
+
+        setWarehouses(allWarehouseResponse.data);
+      } catch (error) {
+        console.error("Failed to fetch warehouses:", error);
+      }
+    }
+
     getAllWarehouseItems();
-  }, [searchTerm]);
+  }, [searchTerm, baseURL]);
 
   const handleDelete = (deletedId) => {
     setWarehouses(warehouses.filter((warehouse) => warehouse.id !== deletedId));
