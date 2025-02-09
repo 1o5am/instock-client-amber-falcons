@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import WarehouseList from "../WarehouseList/WarehouseList";
 
-const WarehouseContainer = ({ searchTerm }) => {
+const WarehouseContainer = ({ searchTerm, sortField, sortOrder, onSort }) => {
   const [warehouses, setWarehouses] = useState([]);
   const baseURL = import.meta.env.VITE_API_URL;
 
@@ -10,7 +10,7 @@ const WarehouseContainer = ({ searchTerm }) => {
     async function getAllWarehouseItems() {
       try {
         const allWarehouseResponse = await axios.get(
-          `${baseURL}/warehouses?s=${searchTerm}`
+          `${baseURL}/warehouses?s=${searchTerm}&sort_by=${sortField}&order_by=${sortOrder}`
         );
 
         setWarehouses(allWarehouseResponse.data);
@@ -20,7 +20,7 @@ const WarehouseContainer = ({ searchTerm }) => {
     }
 
     getAllWarehouseItems();
-  }, [searchTerm, baseURL]);
+  }, [searchTerm, sortField, sortOrder]);
 
   const handleDelete = (deletedId) => {
     setWarehouses(warehouses.filter((warehouse) => warehouse.id !== deletedId));
@@ -29,7 +29,13 @@ const WarehouseContainer = ({ searchTerm }) => {
   return (
     <>
       {warehouses ? (
-        <WarehouseList allItems={warehouses} onDelete={handleDelete} />
+        <WarehouseList
+          allItems={warehouses}
+          onDelete={handleDelete}
+          sortField={sortField}
+          sortOrder={sortOrder}
+          onSort={onSort}
+        />
       ) : (
         <></>
       )}

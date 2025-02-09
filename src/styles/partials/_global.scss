@@ -11,6 +11,7 @@
 }
 
 .icon {
+  cursor: pointer;
   width: 20px;
   @include tablet {
     width: 25px;

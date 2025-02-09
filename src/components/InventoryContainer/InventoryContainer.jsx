@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import InventoryList from "../InventoryList/InventoryList";
 
-function InventoryContainer({ searchTerm }) {
+function InventoryContainer({ searchTerm, sortField, sortOrder, onSort }) {
   const [inventory, setInventory] = useState([]);
   const baseURL = import.meta.env.VITE_API_URL;
 
@@ -10,17 +10,17 @@ function InventoryContainer({ searchTerm }) {
     async function getAllInventoryItems() {
       try {
         const allInventoryResponse = await axios.get(
-          `${baseURL}/inventory?s=${searchTerm}`
+          `${baseURL}/inventory?s=${searchTerm}&sort_by=${sortField}&order_by=${sortOrder}`
         );
 
         setInventory(allInventoryResponse.data);
       } catch (error) {
-        console.error("Failed to fetch inventory:", error);
+        console.error("Failed to fetch all inventories:", error);
       }
     }
 
     getAllInventoryItems();
-  }, [searchTerm, baseURL]);
+  }, [searchTerm, sortField, sortOrder]);
 
   const handleDelete = (deletedId) => {
     setInventory(inventory.filter((item) => item.id !== deletedId));
@@ -29,7 +29,13 @@ function InventoryContainer({ searchTerm }) {
   return (
     <>
       {inventory ? (
-        <InventoryList allItems={inventory} onDelete={handleDelete} />
+        <InventoryList
+          allItems={inventory}
+          onDelete={handleDelete}
+          sortField={sortField}
+          sortOrder={sortOrder}
+          onSort={onSort}
+        />
       ) : (
         <></>
       )}

@@ -7,6 +7,18 @@ import { useState } from "react";
 function InventoryPage() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortField, setSortField] = useState("item_name");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const handleSort = (field) => {
+    if (field === sortField) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortOrder("asc");
+    }
+  };
+
   return (
     <div className="page-content inventory-page">
       <div className="inventory-page__header">
@@ -24,7 +36,12 @@ function InventoryPage() {
         </div>
       </div>
 
-      <InventoryContainer searchTerm={searchTerm} />
+      <InventoryContainer
+        searchTerm={searchTerm}
+        sortField={sortField}
+        sortOrder={sortOrder}
+        onSort={handleSort}
+      />
     </div>
   );
 }
