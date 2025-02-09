@@ -3,17 +3,18 @@
 @use "../../styles/partials/global" as *;
 
 
-.page-content {
-    width: 100%;
-    background-color: $color-white;
-    padding-top: 3rem;
-    margin-top: 2rem;
+// .page-content {
+//     // width: 100%;
+//     background-color: $color-white;
+//     padding-top: 3rem;
+//     // margin-top: 2rem;
 
-    &__wrapper {
-        @include grid-container;
-    // @include grid-container;
-    // @include tablet {
-    //     padding-top: 3rem;
-    //     margin: 3rem;
-    // }
-}   }
+//     &__wrapper {
+//         @include grid-container;
+//     // @include grid-container;
+//     // @include tablet {
+//     //     padding-top: 3rem;
+//     //     margin: 3rem;
+//     // }
+// }   }
+

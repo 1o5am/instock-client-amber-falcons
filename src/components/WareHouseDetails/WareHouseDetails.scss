@@ -7,9 +7,11 @@
   // margin-bottom: 1rem;
   border-bottom: 1px solid $color-cloud;
   // width: 100%;
+  padding: 1.2rem 0;
 
   @include tablet {
     border-bottom: none;
+    padding: 2rem 0;
   }
 
   &__header-container {
