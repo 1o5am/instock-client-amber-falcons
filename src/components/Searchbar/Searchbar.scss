@@ -6,7 +6,7 @@
   width: 100%;
 
   &__bar {
-    padding: 1rem;
+    padding: 0.625rem;
     border-radius: 1.25rem;
     border: 1px solid $color-cloud;
     font-size: $m-p3-size;
@@ -21,17 +21,15 @@
   &__icon {
     cursor: pointer;
     position: absolute;
-    top: 8px;
-    right: 0.75rem;
-    width: 20px;
-    @include tablet {
-      top: 9px;
-    }
+    right: 0.625rem;
+    top: 0.5rem;
+    width: 1.25rem;
   }
 
   @include tablet {
     flex: 1.5;
   }
+
   @include desktop {
     flex: 2;
   }
