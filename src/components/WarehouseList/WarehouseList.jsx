@@ -2,7 +2,7 @@ import WarehouseListItem from "../WarehouseListItem/WarehouseListItem";
 import sortArrowIcon from "../../assets/icons/sort-24px.svg";
 import "./WarehouseList.scss";
 
-const WarehouseList = ({ allItems, onDelete, searchTerm }) => {
+const WarehouseList = ({ allItems, onDelete }) => {
   return (
     <div className="warehouse-list">
       <div className="warehouse-list-headers--tablet">

@@ -2,13 +2,13 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import arrowIcon from "../../assets/icons/chevron_right-24px.svg";
 import { Link } from "react-router-dom";
-import "./ListItem.scss";
+import "./InventoryListItem.scss";
 import { useState } from "react";
 import axios from "axios";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
-import modalMessages from "../../constants/modalMessages";
+import modalMessages from "../../constants/modalMessages.js";
 
-function ListItem({ item, onDelete, isWarehouse }) {
+function InventoryListItem({ item, onDelete, isWarehouse }) {
   const baseURL = import.meta.env.VITE_API_URL;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
@@ -91,4 +91,4 @@ function ListItem({ item, onDelete, isWarehouse }) {
     </li>
   );
 }
-export default ListItem;
+export default InventoryListItem;
