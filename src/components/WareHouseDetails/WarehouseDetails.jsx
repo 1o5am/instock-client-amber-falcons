@@ -43,6 +43,7 @@ const WarehouseDetails = ({ id }) => {
             </div>
           <Link to={`/warehouses/${id}/edit`} className="warehouse-details__edit-button ">
             <img src={editIcon} alt="Edit" />
+            <span className="warehouse-details__edit-button__text">Edit</span>
           </Link>
         </div>
       </div>
