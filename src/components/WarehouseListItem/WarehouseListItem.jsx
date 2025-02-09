@@ -60,7 +60,7 @@ const WarehouseListItem = ({ item, onDelete }) => {
         <button onClick={openDeleteModal} className="icon__button">
           <img className="icon" src={deleteIcon} alt="Delete" />
         </button>
-        <Link to={`edit/${item.id}`}>
+        <Link to={`edit/${item.id}`} state={{ from: "/warehouses" }}>
           <img className="icon" src={editIcon}></img>
         </Link>
       </div>

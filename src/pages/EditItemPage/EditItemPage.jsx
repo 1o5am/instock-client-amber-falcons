@@ -10,6 +10,7 @@ import { BASE_URL } from "../../utils/utils.js";
 function EditItemPage() {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [formResponse, setFormResponse] = useState({
     warehouse_id: "",
     item_name: "",

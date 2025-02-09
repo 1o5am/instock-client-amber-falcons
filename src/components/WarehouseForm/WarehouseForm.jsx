@@ -9,6 +9,7 @@ const WarehouseForm = () => {
   const { id } = useParams();
   const { pathname } = useLocation();
   const navigate = useNavigate();
+
   const isEditing = pathname.includes("/edit");
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ const WarehouseForm = () => {
     };
 
     fetchWarehouseData();
-  }, [id, BASE_URL, navigate, isEditing]);
+  }, [id, navigate, isEditing]);
 
   // Custom Validation Functions
   const validateForm = () => {
@@ -97,7 +98,7 @@ const WarehouseForm = () => {
       const method = isEditing ? "put" : "post";
 
       await axios[method](endpoint, formData);
-      navigate("/warehouses");
+      navigate(-1);
     } catch (error) {
       console.error(
         `Error ${isEditing ? "updating" : "adding"} warehouse:`,
@@ -269,7 +270,7 @@ const WarehouseForm = () => {
           <button
             onClick={(e) => {
               e.preventDefault();
-              navigate("/warehouses");
+              navigate(-1);
             }}
             type="reset"
             className="warehouse-form__button warehouse-form__button--cancel btn btn--secondary"
@@ -277,7 +278,7 @@ const WarehouseForm = () => {
             Cancel
           </button>
           <button className="warehouse-form__button warehouse-form__button--add btn btn--primary">
-            {isEditing ? "Save Changes" : "+ Add Warehouse"}
+            {isEditing ? "Save" : "+ Add Warehouse"}
           </button>
         </div>
       </form>
