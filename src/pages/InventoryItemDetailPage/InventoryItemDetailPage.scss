@@ -3,7 +3,7 @@
 
 .page-content {
   box-shadow: 0px 2px 5px 0px #13182c1a;
-  border-radius: 0.1875rem 0 0 0;
+  border-radius: 3px 0px 0px 0px;
   position: relative;
   top: -3rem;
   z-index: 10;
@@ -54,7 +54,7 @@
 
     &--tablet {
       background-color: $color-instock-indigo;
-      border-radius: 1.25rem;
+      border-radius: 20px;
       display: none;
       gap: 0.625rem;
       padding: 0.5rem 1rem;
