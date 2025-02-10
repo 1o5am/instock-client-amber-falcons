@@ -15,7 +15,7 @@
   width: 1.25rem;
 
   @include tablet {
-    width: 1.5625rem;
+    width: 25px;
   }
 }
 
@@ -34,7 +34,7 @@
   }
   @include desktop {
     margin: 0 auto;
-    max-width: 1020px;
+    max-width: 1000px;
   }
 }
 
@@ -169,6 +169,14 @@ textarea,
 * {
   font-family: $font-family-primary;
 }
+
+// body {
+//   font-family: $font-family-primary;
+// }
+
+// textarea {
+//   font-family: inherit;
+// }
 
 h1 {
   font-size: $m-h1-size;
