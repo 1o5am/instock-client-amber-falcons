@@ -58,6 +58,7 @@
 
     @include tablet {
       padding-top: 0;
+      gap: 0.5rem;
       justify-content: space-between;
       justify-content: flex-end;
     }
@@ -80,7 +81,8 @@
     @include tablet {
       font-size: $h3-size;
       line-height: $h3-line-height;
-      width: 7rem;
+      width: auto;
+      padding: 0 1rem;
     }
 
     &:hover {
