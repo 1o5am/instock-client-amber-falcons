@@ -15,9 +15,7 @@ import EditWarehousePage from "./pages/EditWarehousePage/EditWarehousePage.jsx";
 function App() {
   return (
     <BrowserRouter>
-      <div className="app-container">
         <Header />
-        <main className="main-content">
           <Routes>
             <Route path="/" element={<Navigate to="/warehouses" />} />
             <Route path="/warehouses" element={<WarehousePage />}></Route>
@@ -38,9 +36,7 @@ function App() {
               element={<InventoryItemDetailPage />}
             ></Route>
           </Routes>
-        </main>
         <Footer />
-      </div>
     </BrowserRouter>
   );
 }
