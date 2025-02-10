@@ -29,37 +29,35 @@ const WarehouseDetails = ({ id }) => {
   return (
     <>
       {warehouse ? (
-        <section className="warehouse-details">
-          <div className="warehouse-details__header-container">
-            <div className="warehouse-details__header">
-              <div className="warehouse-details__title-container">
-                <Link to="/warehouses" className="warehouse-details__back ">
-                  <img src={backArrow} alt="Back" />
-                </Link>
-                <p className="warehouse-details__title">
-                  {warehouse.warehouse_name}
-                </p>
-              </div>
-              <Link
-                to={`/warehouses/edit/${id}`}
-                state={{ from: `/warehouses/${id}/inventories` }}
-                className="warehouse-details__edit-button "
-              >
-                <img src={editIcon} alt="Edit" />
-                <span className="warehouse-details__edit-button__text">
-                  Edit
-                </span>
-              </Link>
-            </div>
+        <section className="warehouse-details-page">
+          <div className="warehouse-details-page__title-button">
+            <Link to="/warehouses" className="warehouse-details-page__back">
+              <img
+                src={backArrow}
+                alt="Back"
+                className="icon warehouse-details-page__back-icon"
+              />
+            </Link>
+            <h1 className="warehouse-details-page__title">
+              {warehouse.warehouse_name}
+            </h1>
           </div>
-          <div className="warehouse-details__content-wrapper">
-            <div className="warehouse-details__contact-container">
+          <div className="warehouse-details-page__edit-button">
+            <Link
+              to={`/warehouses/edit/${id}`}
+              state={{ from: `/warehouses/${id}/inventories` }}
+              className="edit-button"
+            >
+              <img className="edit-button__image" src={editIcon} alt="Edit" />
+              <p className="edit-button__text">Edit</p>
+            </Link>
+          </div>
+          <div className="warehouse-details__content">
+            <div className="warehouse-details__contact">
               <div className="warehouse-details__section">
-                <div className="warehouse-details__address-details">
-                  <p className="warehouse-details__address-label label">
-                    WAREHOUSE ADDRESS:
-                  </p>
-                  <div className="warehouse-details__address-value">
+                <div className="warehouse-details__address">
+                  <p className="warehouse-details__label">WAREHOUSE ADDRESS:</p>
+                  <div className="warehouse-details__address-text">
                     <p className="warehouse-details__text">
                       {warehouse.address},
                     </p>
@@ -70,11 +68,9 @@ const WarehouseDetails = ({ id }) => {
                 </div>
               </div>
               <div className="warehouse-details__section">
-                <div className="warehouse-details__contact-details">
-                  <div className="warehouse-details__contact-name-container">
-                    <p className="warehouse-details__contact-label label">
-                      CONTACT NAME:
-                    </p>
+                <div className="warehouse-details__contact-info">
+                  <div className="warehouse-details__contact-name">
+                    <p className="warehouse-details__label">CONTACT NAME:</p>
                     <p className="warehouse-details__text">
                       {warehouse.contact_name}
                     </p>
@@ -83,8 +79,8 @@ const WarehouseDetails = ({ id }) => {
                     </p>
                   </div>
 
-                  <div className="warehouse-details__contact-info-container">
-                    <p className="warehouse-details__contact-label label">
+                  <div className="warehouse-details__contact-data">
+                    <p className="warehouse-details__label">
                       CONTACT INFORMATION:
                     </p>
                     <p className="warehouse-details__text">

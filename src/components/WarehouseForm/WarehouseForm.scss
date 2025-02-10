@@ -124,19 +124,6 @@
   }
 }
 
-.form-col-divider {
-  border-top: 1px solid rgba($color-instock-black, 0.2);
-  @include tablet {
-    border-top: none;
-  }
-}
-
-.form-row-divider {
-  @include tablet {
-    border-right: 1px solid rgba($color-instock-black, 0.2);
-  }
-}
-
 .error {
   &__container {
     position: absolute;

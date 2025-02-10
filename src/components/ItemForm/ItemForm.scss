@@ -25,14 +25,12 @@ select:focus {
     display: flex;
     flex-direction: column;
     @include tablet {
-      border-top: 1px solid rgba($color-instock-black, 0.2);
       flex-direction: row;
       justify-content: space-between;
       padding-top: 1rem;
     }
   }
   &__section {
-    border-top: 1px solid rgba($color-instock-black, 0.2);
     padding: 0.8rem 1.2rem;
     display: flex;
     flex-direction: column;
@@ -41,9 +39,6 @@ select:focus {
     @include tablet {
       border-top: none;
       gap: 1.8rem;
-      &--right-border {
-        border-right: 1px solid rgba($color-instock-black, 0.2);
-      }
     }
   }
   &__section-title {

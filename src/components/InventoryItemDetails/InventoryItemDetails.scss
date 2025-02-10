@@ -109,11 +109,17 @@
   }
 
   &__tag {
-    padding: 4px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
     border-radius: 1.25rem;
     height: 1.5rem;
+    font-size: $m-h4-size;
 
     @include tablet {
+      font-size: $h4-size;
       height: 1.625rem;
     }
 
