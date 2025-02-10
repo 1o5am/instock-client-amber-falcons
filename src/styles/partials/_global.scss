@@ -1,0 +1,274 @@
+@use "typography";
+@use "mixins" as *;
+@use "variables" as *;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.icon {
+  cursor: pointer;
+  width: 1.25rem;
+
+  @include tablet {
+    width: 25px;
+  }
+}
+
+.page-content {
+  position: relative;
+  top: -4.5rem;
+  z-index: 10;
+  background-color: white;
+  margin: 0 1rem;
+  box-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.1875rem 0.1875rem 0 0;
+
+  @include tablet {
+    top: -7.5rem;
+    margin: 0 2rem;
+  }
+  @include desktop {
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+}
+
+.edit-button {
+  background-color: $color-instock-indigo;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 50%;
+  padding: 0 1rem;
+  height: 2.25rem;
+  width: 2.25rem;
+
+  @include tablet {
+    border-radius: 1.25rem;
+    height: 2.5rem;
+    width: auto;
+  }
+
+  &__image {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &__text {
+    display: none;
+    @include tablet {
+      display: flex;
+      color: $color-white;
+      font-size: $h3-size;
+    }
+  }
+
+  &:hover {
+    background-color: $color-instock-black;
+  }
+}
+
+.edit-button {
+  background-color: $color-instock-indigo;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 50%;
+  padding: 0 1rem;
+  height: 2.25rem;
+  width: 2.25rem;
+
+  @include tablet {
+    border-radius: 1.25rem;
+    height: 2.5rem;
+    width: auto;
+  }
+
+  &__image {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &__text {
+    display: none;
+    @include tablet {
+      display: flex;
+      color: $color-white;
+      font-size: $h3-size;
+    }
+  }
+
+  &:hover {
+    background-color: $color-instock-black;
+  }
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.text-link {
+  width: fit-content;
+
+  .icon {
+    transition: transform 0.1s linear;
+  }
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    .icon {
+      transform: translateX(4px);
+    }
+  }
+
+  &__content {
+    color: $color-instock-indigo;
+    transition: transform 0.1s linear;
+  }
+}
+
+.form-col-divider {
+  border-top: 1px solid rgba($color-instock-black, 0.2);
+  @include tablet {
+    border-top: none;
+  }
+}
+
+.form-row-divider {
+  @include tablet {
+    border-right: 1px solid rgba($color-instock-black, 0.2);
+  }
+}
+
+.btn {
+  padding: 0.5rem 0;
+  border-radius: 1.25rem;
+  height: 2.25rem;
+  width: 100%;
+  cursor: pointer;
+  @include tablet {
+    height: 2.375rem;
+  }
+  &--primary {
+    background-color: $color-instock-indigo;
+    color: $color-white;
+    &:hover {
+      background-color: $color-graphite;
+    }
+  }
+  &--secondary {
+    background-color: $color-white;
+    border: 1px solid $color-cloud;
+    color: $color-slate;
+    &:hover {
+      color: $color-instock-indigo;
+      border-color: $color-instock-indigo;
+    }
+  }
+  &--delete {
+    color: $color-white;
+    background-color: $color-red;
+    &:hover {
+      background-color: $color-graphite;
+    }
+  }
+}
+
+select {
+  // remove default dropdown arrow (for Chrome and Firefox)
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  // add custom dropdown arrow
+  background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
+  background-repeat: no-repeat;
+  background-position-x: 96%;
+  background-position-y: 3px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body,
+textarea,
+* {
+  font-family: $font-family-primary;
+}
+
+// body {
+//   font-family: $font-family-primary;
+// }
+
+// textarea {
+//   font-family: inherit;
+// }
+
+h1 {
+  font-size: $m-h1-size;
+  line-height: $m-h1-line-height;
+  font-weight: $font-weight-semibold;
+
+  @include tablet {
+    font-size: $h1-size;
+    line-height: $h1-line-height;
+  }
+}
+
+h2 {
+  font-size: $m-h2-size;
+  line-height: $m-h2-line-height;
+  font-weight: $font-weight-semibold;
+
+  @include tablet {
+    font-size: $h2-size;
+    line-height: $h2-line-height;
+  }
+}
+
+h3 {
+  font-size: $m-h3-size;
+  line-height: $m-h3-line-height;
+  font-weight: $font-weight-semibold;
+
+  @include tablet {
+    font-size: $h3-size;
+    line-height: $h3-line-height;
+  }
+}
+
+h4 {
+  font-size: $m-h4-size;
+  line-height: $m-h4-line-height;
+  font-weight: $font-weight-regular;
+
+  @include tablet {
+    font-size: $h4-size;
+    line-height: $h4-line-height;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+input,
+textarea,
+select {
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+  }
+}

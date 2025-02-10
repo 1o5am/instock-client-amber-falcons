@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.scss";
+import "./styles/partials/_global.scss";
+import Header from "./components/Header/Header.jsx";
+import WarehousePage from "./pages/WarehousePage/WarehousePage.jsx";
+import InventoryPage from "./pages/InventoryPage/InventoryPage.jsx";
+import WarehouseInventoryPage from "./pages/WarehouseInventoryPage/WarehouseInventoryPage.jsx";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Footer from "./components/Footer/Footer.jsx";
+import AddNewItemPage from "./pages/AddNewItemPage/AddNewItemPage.jsx";
+import InventoryItemDetailPage from "./pages/InventoryItemDetailPage/InventoryItemDetailPage.jsx";
+import AddNewWarehousePage from "./pages/AddNewWarehousePage/AddNewWarehousePage.jsx";
+import EditItemPage from "./pages/EditItemPage/EditItemPage.jsx";
+import EditWarehousePage from "./pages/EditWarehousePage/EditWarehousePage.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <BrowserRouter>
+      <div className="app-container">
+        <Header />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Navigate to="/warehouses" />} />
+            <Route path="/warehouses" element={<WarehousePage />}></Route>
+            <Route path="/warehouses/add" element={<AddNewWarehousePage />}></Route>
+            <Route
+              path="/warehouses/edit/:id"
+              element={<EditWarehousePage />}
+            ></Route>
+            <Route path="/inventory" element={<InventoryPage />}></Route>
+            <Route path="/inventory/add" element={<AddNewItemPage />}></Route>
+            <Route path="/inventory/edit/:id" element={<EditItemPage />}></Route>
+            <Route
+              path="/warehouses/:id/inventories"
+              element={<WarehouseInventoryPage />}
+            ></Route>
+            <Route
+              path="/inventory/:id"
+              element={<InventoryItemDetailPage />}
+            ></Route>
+          </Routes>
+        </main>
+        <Footer />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,132 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid $color-cloud;
+  padding: 1.5rem;
+  padding-bottom: 1rem;
+  border-radius: 0.1875rem;
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+
+  @include tablet {
+    padding: 0.5rem 2rem;
+    align-items: center;
+  }
+
+  &:hover {
+    background-color: rgba($color-instock-indigo, 0.1);
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    width: 50%;
+    padding-bottom: 1rem;
+
+    @include tablet {
+      flex: 2;
+      width: fit-content;
+      padding: 1rem 0;
+    }
+
+    &--right {
+      margin-left: auto;
+    }
+    &--tablet {
+      display: none;
+    }
+  }
+
+  &__title {
+    font-size: 0.5rem;
+    color: $color-slate;
+  }
+
+  &__name {
+    font-size: 0.65rem;
+
+    &--bold {
+      font-weight: 600;
+    }
+
+    &--bubble {
+      font-size: 0.5rem;
+      width: fit-content;
+      padding: 5px 8px;
+      border-radius: 3rem;
+    }
+
+    &--blue {
+      display: flex;
+      align-items: center;
+      & .icon {
+        width: 18px;
+      }
+    }
+
+    &--green {
+      color: $color-green;
+      background-color: rgba($color-green, 0.1);
+    }
+
+    &--red {
+      color: $color-red;
+      background-color: rgba($color-red, 0.1);
+    }
+  }
+
+  &__icons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @include tablet {
+    padding: 0.5rem 2rem;
+    align-items: center;
+    justify-content: space-between;
+    &__title {
+      display: none;
+    }
+    &__info {
+      flex: 2;
+      width: fit-content;
+
+      &--right {
+        margin: 0 0;
+      }
+      &--tablet {
+        display: flex;
+      }
+      &--mobile {
+        display: none;
+      }
+      &--small {
+        flex: 1;
+      }
+    }
+
+    &__icons {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex: 1;
+
+      &--warehouse {
+        justify-content: center;
+      }
+    }
+
+    &__name {
+      font-size: 0.8rem;
+      &--bubble {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
