@@ -2,62 +2,102 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/variables" as *;
 
-.warehouse-details {
-  text-align: left;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid $color-cloud;
-  padding: 1.2rem 0;
-
-  @include tablet {
-    border-bottom: none;
-    padding: 2rem 0;
-  }
-
-  &__header-container {
-    border-bottom: 1px solid $color-cloud;
-    margin-bottom: 24px;
-  }
-
+.warehouse-details-page {
   &__header {
-    width: 100%;
-    margin: 0 auto;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 0 1.5rem;
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid $color-cloud;
     justify-content: space-between;
-    padding-bottom: 20px;
-    font-size: 28px;
-    line-height: 36px;
-    font-weight: $font-weight-semibold;
 
     @include tablet {
-      padding-left: 32px;
-      padding-right: 32px;
-      font-size: 32px;
-      line-height: 40px;
+      flex-direction: row;
+      height: 7.5rem;
+      padding: 0 2rem;
     }
   }
 
-  &__content-wrapper {
+  &__back {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+    padding-right: 0.5rem;
+
+    @include tablet {
+      align-self: end;
+      padding-bottom: 2rem;
+      padding-right: 1rem;
+    }
+  }
+
+  &__back-icon {
+    padding-bottom: 0.1rem;
+
+    @include tablet {
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  &__title-button {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__title {
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+
+    @include tablet {
+      align-self: end;
+      padding-bottom: 2rem;
+    }
+  }
+
+  &__edit-button {
+    align-self: end;
+    padding-bottom: 1.75rem;
+
+    @include tablet {
+      padding-bottom: 2rem;
+    }
+  }
+}
+
+.warehouse-details {
+  &__content {
     width: 100%;
     margin: 0 auto;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 1.5rem;
+    border-bottom: 1px solid $color-cloud;
 
     @include tablet {
-      padding-left: 32px;
-      padding-right: 32px;
+      border-bottom: none;
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
   }
 
-  &__title-container {
+  &__section {
+    @include tablet {
+      &:first-child {
+        width: 35%;
+      }
+
+      &:last-child {
+        width: 65%;
+      }
+    }
+  }
+
+  &__title {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
 
-  &__edit-button {
+  &__edit-btn {
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -66,11 +106,6 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-
-    img {
-      width: 24px;
-      height: 24px;
-    }
 
     &:hover {
       background-color: $color-instock-black;
@@ -83,38 +118,41 @@
       padding-left: 15px;
       border-radius: 22px;
     }
+  }
 
-    &__text {
-      display: none;
+  &__edit-icon {
+    width: 24px;
+    height: 24px;
+  }
 
-      @include tablet {
-        display: inline;
-        font-size: 13px;
-        line-height: 20px;
-        color: $color-white;
-      }
+  &__edit-text {
+    display: none;
+
+    @include tablet {
+      display: inline;
+      font-size: 13px;
+      line-height: 20px;
+      color: $color-white;
     }
   }
 
-  &__contact-container {
+  &__contact {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2.5rem;
 
     @include tablet {
       flex-direction: row;
-      justify-content: space-between;
-      padding: 1.5rem 0;
     }
   }
 
-  &__address-details {
+  &__address {
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
 
-  &__address-value {
+  &__address-text {
     display: flex;
     gap: 0.3rem;
 
@@ -123,9 +161,8 @@
     }
   }
 
-  &__contact-details {
+  &__contact-info {
     display: flex;
-    justify-content: space-between;
     gap: 1rem;
 
     @include tablet {
@@ -137,36 +174,38 @@
     }
   }
 
-  &__contact-name-container,
-  &__contact-info-container {
+  &__contact-name,
+  &__contact-data {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.25rem;
+    width: 50%;
   }
 
   &__text {
-    font-size: 13px;
-    line-height: 20px;
+    color: $color-instock-black;
+    font-size: $m-p2-size;
+    line-height: $m-p2-line-height;
 
     @include tablet {
-      font-size: 14px;
-      line-height: 22px;
+      font-size: $p2-size;
+      line-height: $p2-line-height;
     }
   }
 
-  &__not-found {
+  &__label {
+    font-size: $m-h4-size;
+    line-height: $m-h4-line-height;
+    color: $color-slate;
+
+    @include tablet {
+      font-size: $h4-size;
+      line-height: $h4-line-height;
+    }
+  }
+
+  &--not-found {
     background-color: $color-white;
     height: 100vh;
-  }
-}
-
-.label {
-  font-size: 11px;
-  line-height: 16px;
-  color: $color-slate;
-
-  @include tablet {
-    font-size: 12px;
-    line-height: 18px;
   }
 }

@@ -7,8 +7,11 @@ function AddNewWarehousePage() {
   return (
     <div className="page-content new-warehouse-page">
       <div className="new-warehouse-page__header">
-        <Link to="/warehouses">
-          <img className="icon new-warehouse-page__back" src={backArrow}></img>
+        <Link to="/warehouses" className="new-warehouse-page__back">
+          <img
+            className="icon new-warehouse-page__back-icon"
+            src={backArrow}
+          ></img>
         </Link>
         <h1 className="new-warehouse-page__title">Add New Warehouse</h1>
       </div>

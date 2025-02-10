@@ -84,8 +84,9 @@ function EditItemPage() {
           onClick={() => {
             navigate(-1);
           }}
+          className="edit-item-page__back"
         >
-          <img className="icon edit-item-page__back" src={backArrow}></img>
+          <img className="icon edit-item-page__back-icon" src={backArrow}></img>
         </a>
         <h1 className="edit-item-page__title">Edit Inventory Item</h1>
       </div>

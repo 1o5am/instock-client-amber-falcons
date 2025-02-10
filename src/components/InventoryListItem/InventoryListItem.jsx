@@ -35,8 +35,8 @@ function InventoryListItem({ item, onDelete, isWarehouse }) {
     <li className="item">
       <div className="item__info">
         <p className="item__title">INVENTORY ITEM</p>
-        <Link to={`/inventory/${item.id}`}>
-          <p className="item__name item__name--bold item__name--blue text-link">
+        <Link to={`/inventory/${item.id}`} className="text-link">
+          <p className="item__name item__name--bold item__name--blue text-link__content">
             {item.item_name} <img className="icon" src={arrowIcon}></img>
           </p>
         </Link>

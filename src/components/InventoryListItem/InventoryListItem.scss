@@ -4,9 +4,16 @@
 .item {
   display: flex;
   flex-wrap: wrap;
-  border-bottom: 1px solid rgba($color-instock-black, 0.3);
-  padding: 1.2rem 1.2rem;
-  justify-content: space-between;
+  border-bottom: 1px solid $color-cloud;
+  padding: 1.5rem;
+  padding-bottom: 1rem;
+  border-radius: 0.188rem;
+
+  @include tablet {
+    padding: 0.5rem 2rem;
+    align-items: center;
+  }
+
   &:hover {
     background-color: rgba($color-instock-indigo, 0.1);
   }
@@ -14,8 +21,15 @@
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    width: calc(50% - 0.2rem);
+    width: 50%;
     padding-bottom: 1rem;
+
+    @include tablet {
+      flex: 2;
+      width: fit-content;
+      padding: 1rem 0;
+    }
+
     &--right {
       margin-left: auto;
     }
@@ -23,21 +37,26 @@
       display: none;
     }
   }
+
   &__title {
     font-size: 0.5rem;
     color: $color-slate;
   }
+
   &__name {
     font-size: 0.65rem;
+
     &--bold {
       font-weight: 600;
     }
+
     &--bubble {
       font-size: 0.5rem;
       width: fit-content;
       padding: 0.3125rem 0.5rem;
       border-radius: 3rem;
     }
+
     &--blue {
       display: flex;
       align-items: center;
@@ -45,15 +64,18 @@
         width: 1.125rem;
       }
     }
+
     &--green {
       color: $color-green;
       background-color: rgba($color-green, 0.1);
     }
+
     &--red {
       color: $color-red;
       background-color: rgba($color-red, 0.1);
     }
   }
+
   &__icons {
     width: 100%;
     display: flex;
@@ -84,8 +106,8 @@
         flex: 1;
       }
     }
+
     &__icons {
-      width: fit-content;
       display: flex;
       justify-content: space-between;
       gap: 1rem;
@@ -95,6 +117,7 @@
         justify-content: center;
       }
     }
+
     &__name {
       font-size: 0.8rem;
       &--bubble {

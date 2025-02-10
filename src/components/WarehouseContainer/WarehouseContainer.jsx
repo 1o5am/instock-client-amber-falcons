@@ -29,13 +29,15 @@ const WarehouseContainer = ({ searchTerm, sortField, sortOrder, onSort }) => {
   return (
     <>
       {warehouses ? (
-        <WarehouseList
-          allItems={warehouses}
-          onDelete={handleDelete}
-          sortField={sortField}
-          sortOrder={sortOrder}
-          onSort={onSort}
-        />
+        <>
+          <WarehouseList
+            allItems={warehouses}
+            onDelete={handleDelete}
+            sortField={sortField}
+            sortOrder={sortOrder}
+            onSort={onSort}
+          />
+        </>
       ) : (
         <></>
       )}

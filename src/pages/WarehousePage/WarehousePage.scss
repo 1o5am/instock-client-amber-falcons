@@ -2,20 +2,18 @@
 @use "../../styles/partials/mixins" as *;
 
 .warehouse-page {
-  @include tablet {
-    top: -5.5rem;
-  }
-
   &__header {
-    padding: 1.2rem;
+    padding: 0 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    border-bottom: 1px solid $color-cloud;
+    padding-bottom: 1.5rem;
+
     @include tablet {
       flex-direction: row;
       justify-content: space-between;
-      align-items: center;
-      height: 5.5rem;
+      border-bottom: none;
+      height: 7.5rem;
       padding: 0 2rem;
     }
   }
@@ -26,6 +24,7 @@
     gap: 1rem;
 
     @include tablet {
+      align-self: center;
       flex-direction: row;
     }
   }
@@ -37,6 +36,16 @@
   &__add.btn--primary {
     @include tablet {
       padding: 0 1rem;
+    }
+  }
+
+  &__title {
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+
+    @include tablet {
+      align-self: end;
+      padding-bottom: 2rem;
     }
   }
 }

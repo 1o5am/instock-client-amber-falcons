@@ -3,19 +3,48 @@
 
 .new-item-page {
   &__header {
-    padding: 1.2rem;
+    padding: 0 1.5rem;
     display: flex;
     flex-direction: row;
-    align-items: baseline;
-    gap: 0.5rem;
+    border-bottom: 1px solid $color-cloud;
+
     @include tablet {
       flex-direction: row;
-      align-items: center;
-      padding: 2rem;
+      height: 7.5rem;
+      padding: 0 2rem;
     }
   }
+
   &__back {
-    height: 100%;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+    padding-right: 0.5rem;
+
+    @include tablet {
+      align-self: end;
+      padding-bottom: 2rem;
+      padding-right: 1rem;
+    }
+  }
+
+  &__back-icon {
+    padding-bottom: 0.1rem;
+
+    @include tablet {
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  &__title {
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+
+    @include tablet {
+      align-self: end;
+      padding-bottom: 2rem;
+    }
   }
 }

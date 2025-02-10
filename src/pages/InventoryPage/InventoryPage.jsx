@@ -24,7 +24,9 @@ function InventoryPage() {
       <div className="inventory-page__header">
         <h1 className="inventory-page__title">Inventory</h1>
         <div className="inventory-page__buttons">
-          <Searchbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <div className="inventory-page__search">
+            <Searchbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          </div>
           <button
             onClick={() => {
               navigate("/inventory/add");
