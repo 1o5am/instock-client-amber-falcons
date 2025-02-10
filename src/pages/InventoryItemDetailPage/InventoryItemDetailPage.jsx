@@ -29,7 +29,7 @@ function InventoryItemDetailPage() {
 
   return (
     <section className="page-content">
-      <section className="item-details-header">
+      <div className="item-details-header">
         <div className="item-details-header__title-button">
           <a
             onClick={() => {
@@ -53,7 +53,7 @@ function InventoryItemDetailPage() {
             <p className="edit-button__text">Edit</p>
           </Link>
         </div>
-      </section>
+      </div>
       <InventoryItemDetails allDetails={inventoryItemDetails} />
     </section>
   );
