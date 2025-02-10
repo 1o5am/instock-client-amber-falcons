@@ -30,28 +30,31 @@ const WarehouseDetails = ({ id }) => {
     <>
       {warehouse ? (
         <section className="warehouse-details-page">
-          <div className="warehouse-details-page__title-button">
-            <Link to="/warehouses" className="warehouse-details-page__back">
-              <img
-                src={backArrow}
-                alt="Back"
-                className="icon warehouse-details-page__back-icon"
-              />
-            </Link>
-            <h1 className="warehouse-details-page__title">
-              {warehouse.warehouse_name}
-            </h1>
+          <div className="item-details-header">
+            <div className="item-details-header__title-button">
+              <Link to="/warehouses" className="warehouse-details-page__back">
+                <img
+                  src={backArrow}
+                  alt="Back"
+                  className="icon warehouse-details-page__back-icon"
+                />
+              </Link>
+              <h1 className="warehouse-details-page__title">
+                {warehouse.warehouse_name}
+              </h1>
+            </div>
+            <div className="warehouse-details-page__edit-button">
+              <Link
+                to={`/warehouses/edit/${id}`}
+                state={{ from: `/warehouses/${id}/inventories` }}
+                className="edit-button"
+              >
+                <img className="edit-button__image" src={editIcon} alt="Edit" />
+                <p className="edit-button__text">Edit</p>
+              </Link>
+            </div>
           </div>
-          <div className="warehouse-details-page__edit-button">
-            <Link
-              to={`/warehouses/edit/${id}`}
-              state={{ from: `/warehouses/${id}/inventories` }}
-              className="edit-button"
-            >
-              <img className="edit-button__image" src={editIcon} alt="Edit" />
-              <p className="edit-button__text">Edit</p>
-            </Link>
-          </div>
+
           <div className="warehouse-details__content">
             <div className="warehouse-details__contact">
               <div className="warehouse-details__section">
