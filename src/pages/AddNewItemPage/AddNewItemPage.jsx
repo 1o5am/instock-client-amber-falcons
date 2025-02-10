@@ -57,8 +57,9 @@ function AddNewItemPage() {
           onClick={() => {
             navigate(-1);
           }}
+          className="new-item-page__back"
         >
-          <img className="icon new-item-page__back" src={backArrow}></img>
+          <img className="icon new-item-page__back-icon" src={backArrow}></img>
         </a>
         <h1 className="new-item-page__title">Add New Inventory Item</h1>
       </div>

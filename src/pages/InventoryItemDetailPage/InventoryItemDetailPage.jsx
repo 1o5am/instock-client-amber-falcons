@@ -29,44 +29,31 @@ function InventoryItemDetailPage() {
 
   return (
     <section className="page-content">
-      <div className="page-header-container">
-        <div className="page-header-container__icon">
+      <section className="item-details-header">
+        <div className="item-details-header__title-button">
           <a
             onClick={() => {
               navigate(-1);
             }}
-            className="page-header-container__back-icon"
+            className="item-details-header__back"
           >
-            <img src={backArrow} alt="" />
+            <img
+              src={backArrow}
+              alt="Back"
+              className="icon item-details-header__back-icon"
+            />
           </a>
-          <h1 className="page-header-container__icon__header">
+          <h1 className="item-details-header__title">
             {inventoryItemDetails.item_name}
           </h1>
         </div>
-        <Link
-          className="page-header-container__edit-icon"
-          to={`/inventory/edit/${id}`}
-        >
-          {" "}
-          <img
-            className="page-header-container__edit-icon__image"
-            src={editIcon}
-            alt=""
-          />
-        </Link>
-        <Link
-          className="page-header-container__edit-icon--tablet"
-          to={`/inventory/edit/${id}`}
-        >
-          {" "}
-          <img
-            className="page-header-container__edit-icon__image"
-            src={editIcon}
-            alt=""
-          />
-          <p className="page-header-container__edit-icon__text">Edit</p>
-        </Link>
-      </div>
+        <div className="item-details-header__edit-button">
+          <Link className="edit-button" to={`/inventory/edit/${id}`}>
+            <img className="edit-button__image" src={editIcon} alt="" />
+            <p className="edit-button__text">Edit</p>
+          </Link>
+        </div>
+      </section>
       <InventoryItemDetails allDetails={inventoryItemDetails} />
     </section>
   );

@@ -16,6 +16,7 @@ function WarehouseInventoryContainer({ id }) {
           `${BASE_URL}/warehouses/${id}/inventories`
         );
 
+        console.log("here", id);
         setInventoryById(inventoryByIdResponse.data);
       } catch (error) {
         console.error("Error in fetching inventory by  id", error);

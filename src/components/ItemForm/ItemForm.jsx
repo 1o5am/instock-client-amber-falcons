@@ -124,7 +124,7 @@ function ItemForm({ formResponse, setFormResponse, addOrEditItem, isNew }) {
     <div>
       <form className="item__form" onSubmit={handleSubmit}>
         <article className="form__details">
-          <div className="form__section form__section--right-border">
+          <div className="form__section form-row-divider">
             <h2 className="form__section-title">Item Details</h2>
             <div className="form__item">
               <label className="form__label" htmlFor="name">
@@ -200,7 +200,7 @@ function ItemForm({ formResponse, setFormResponse, addOrEditItem, isNew }) {
               )}
             </div>
           </div>
-          <div className="form__section">
+          <div className="form__section form-col-divider">
             <h2 className="form__section-title">Item Availability</h2>
             <div className="form__item">
               <label className="form__label" htmlFor="status">

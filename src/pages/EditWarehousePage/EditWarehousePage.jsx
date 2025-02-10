@@ -10,9 +10,9 @@ const EditWarehousePage = () => {
   return (
     <div className="page-content edit-warehouse-page">
       <div className="edit-warehouse-page__header">
-        <Link to={previousPage}>
+        <Link to={previousPage} className="edit-warehouse-page__back">
           <img
-            className="icon edit-warehouse-page__back"
+            className="icon edit-warehouse-page__back-icon"
             src={backArrow}
             alt="Back"
           />
