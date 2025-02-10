@@ -24,7 +24,8 @@
     gap: 1rem;
 
     @include tablet {
-      align-self: center;
+      align-self: end;
+      padding-bottom: 2rem;
       flex-direction: row;
     }
   }
